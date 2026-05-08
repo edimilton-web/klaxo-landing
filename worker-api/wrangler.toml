@@ -1,0 +1,6 @@
+name = "klaxo-waitlist-api"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+MAILERLITE_GROUP_ID = "186449088501253414"
