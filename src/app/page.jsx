@@ -322,16 +322,16 @@ function DesktopShowcase() {
           {/* Main content */}
           <div style={{ flex: 1, padding: '22px 24px', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
-              <p style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>Dashboard</p>
+              <p style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>Bom dia, Edimilton 👋</p>
               <span style={{ fontSize: 11, color: '#7C5CFC', fontWeight: 600 }}>+ Add new</span>
             </div>
 
             {/* Stat cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 20 }}>
               {[
-                { label: 'Monthly total', value: '€130.96', sub: 'May 2025', color: '#7C5CFC' },
-                { label: 'Active', value: '6 subs', sub: '2 paused', color: '#10B981' },
-                { label: 'Next renewal', value: 'May 4', sub: 'Netflix · €17.99', color: '#F59E0B' },
+                { label: 'Monthly', value: '€89', sub: '↑ +€12', color: '#F59E0B' },
+                { label: 'Next bill', value: 'Netflix', sub: '⚡ 3 days', color: '#F59E0B' },
+                { label: 'Active', value: '7', sub: '✓ All OK', color: '#10B981' },
               ].map(stat => (
                 <div key={stat.label} style={{
                   background: '#111118', borderRadius: 10, padding: '14px 16px',
@@ -480,7 +480,7 @@ export default function KlaxoLanding() {
 
       {/* ── NAV ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-4" style={{ background: 'rgba(10,10,15,0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <span className="font-bold text-white text-base md:text-lg" style={{ letterSpacing: '-0.02em' }}>klaxo</span>
+        <span className="font-bold text-white text-base md:text-lg" style={{ letterSpacing: '-0.02em' }}>klax<span style={{ color: '#7C5CFC' }}>o</span></span>
         <div className="flex items-center gap-2 md:gap-3">
           <a href="https://app.klaxo.app" className="hidden sm:block text-sm font-medium transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}
             onMouseEnter={e => e.currentTarget.style.color = '#fff'}
@@ -552,12 +552,24 @@ export default function KlaxoLanding() {
       <section className="py-10 md:py-14 px-4 md:px-6 reveal" style={{ borderTop: '1px solid rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xs font-semibold mb-6 md:mb-8" style={{ color: 'rgba(255,255,255,0.25)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-            Track everything you're subscribed to
+            Track any service, automatically recognised
           </p>
           <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-            {['Netflix', 'Spotify', 'Adobe CC', 'GitHub', 'Notion', 'ChatGPT', 'YouTube', 'Figma', 'iCloud', 'Disney+'].map(s => (
-              <span key={s} className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(255,255,255,0.55)' }}>
-                {s}
+            {[
+              { name: 'Netflix',   dot: '#E50914' },
+              { name: 'Spotify',   dot: '#1DB954' },
+              { name: 'Adobe CC',  dot: '#FF0000' },
+              { name: 'GitHub',    dot: '#ffffff' },
+              { name: 'Notion',    dot: '#ffffff' },
+              { name: 'ChatGPT',   dot: '#10A37F' },
+              { name: 'YouTube',   dot: '#FF0000' },
+              { name: 'Figma',     dot: '#F24E1E' },
+              { name: 'iCloud',    dot: '#007AFF' },
+              { name: '+50 more',  dot: '#7C5CFC' },
+            ].map(s => (
+              <span key={s.name} className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(255,255,255,0.55)' }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: s.dot, display: 'inline-block', flexShrink: 0 }} />
+                {s.name}
               </span>
             ))}
           </div>
@@ -594,12 +606,13 @@ export default function KlaxoLanding() {
       {/* ── HOW IT WORKS ── */}
       <section className="py-16 md:py-24 px-4 md:px-6" id="how" style={{ background: 'rgba(255,255,255,0.012)' }}>
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest mb-3 reveal" style={{ color: '#A78BFA', letterSpacing: '0.15em' }}>How it works</p>
+          <p className="text-xs font-semibold uppercase tracking-widest mb-3 reveal" style={{ color: '#7C5CFC', letterSpacing: '0.15em' }}>How it works</p>
           <h2 className="font-bold text-white mb-10 md:mb-16 reveal" style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.025em' }}>
             Simple by design.
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {/* Mobile: stacked cards */}
+          <div className="md:hidden grid grid-cols-1 gap-6">
             {[
               { step: '01', title: 'Add your subscriptions', body: 'Manually in 30 seconds, or via bank connection — coming soon.' },
               { step: '02', title: 'Get notified before renewals', body: '5-day advance alerts via email or push. Never be surprised again.' },
@@ -607,9 +620,31 @@ export default function KlaxoLanding() {
             ].map((s, i) => (
               <div key={s.step} className="relative text-left reveal" style={{ transitionDelay: `${i * 0.12}s` }}>
                 <div className="font-bold mb-3 gradient-text" style={{ fontSize: 13, letterSpacing: '0.1em' }}>{s.step}</div>
-                <div className="glass rounded-2xl p-5 md:p-6">
+                <div className="glass rounded-2xl p-5">
                   <h3 className="font-semibold text-white mb-2" style={{ fontSize: 16 }}>{s.title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.48)' }}>{s.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: zigzag layout */}
+          <div className="hidden md:block relative" style={{ maxWidth: 760, margin: '0 auto' }}>
+            <div style={{ position: 'absolute', top: 22, left: 'calc(50% - 1px)', width: 2, height: 'calc(100% - 44px)', background: 'linear-gradient(to bottom, #7C5CFC, transparent)', opacity: 0.2 }} />
+            {[
+              { step: '01', title: 'Add your subscriptions', body: 'Manually in 30 seconds, or via bank connection — coming soon. We recognise 50+ services automatically.', side: 'left' },
+              { step: '02', title: 'Get notified before renewals', body: '5-day advance alerts via email. Never be surprised by an unexpected charge again.', side: 'right' },
+              { step: '03', title: 'See your real monthly cost', body: 'Dashboard with total spend by category, upcoming bills, and trends over time. Finally, clarity.', side: 'left' },
+            ].map((s, i) => (
+              <div key={s.step} className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 32, alignItems: 'start', marginBottom: i < 2 ? 48 : 0, transitionDelay: `${i * 0.12}s` }}>
+                <div style={{ textAlign: 'right', visibility: s.side === 'right' ? 'hidden' : 'visible' }}>
+                  <div style={{ fontSize: 17, fontWeight: 700, color: '#fff', marginBottom: 6, letterSpacing: '-0.02em' }}>{s.title}</div>
+                  <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{s.body}</div>
+                </div>
+                <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#111118', border: '1px solid rgba(124,92,252,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 14, color: '#7C5CFC', flexShrink: 0, boxShadow: '0 0 20px rgba(124,92,252,0.2)', position: 'relative', zIndex: 1 }}>{s.step}</div>
+                <div style={{ textAlign: 'left', visibility: s.side === 'left' ? 'hidden' : 'visible' }}>
+                  <div style={{ fontSize: 17, fontWeight: 700, color: '#fff', marginBottom: 6, letterSpacing: '-0.02em' }}>{s.title}</div>
+                  <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{s.body}</div>
                 </div>
               </div>
             ))}
@@ -620,8 +655,9 @@ export default function KlaxoLanding() {
       {/* ── TESTIMONIALS ── */}
       <section className="py-16 md:py-24 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest mb-4 reveal" style={{ color: '#7C5CFC', letterSpacing: '0.15em' }}>Early users</p>
           <h2 className="font-bold text-white text-center mb-10 md:mb-14 reveal" style={{ fontSize: 'clamp(22px, 3.5vw, 38px)', letterSpacing: '-0.02em' }}>
-            Join people taking back control<br />of their budget.
+            Taking back control<br />of their budget.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             {[
