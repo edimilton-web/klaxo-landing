@@ -1,3 +1,5 @@
+import { EmailMessage } from 'cloudflare:email'
+
 const ALLOWED_ORIGINS = ['https://klaxo.app', 'https://www.klaxo.app']
 
 export default {
@@ -28,28 +30,22 @@ export default {
       })
     }
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'Klaxo Waitlist <onboarding@resend.dev>',
-        to: ['eddie.varjao.reis@gmail.com'],
-        subject: `New waitlist signup: ${email}`,
-        html: `
-          <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px;background:#0A0A0F;color:#F0F0F5;border-radius:12px">
-            <h2 style="color:#7C5CFC;margin-bottom:16px">New Klaxo waitlist signup</h2>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Country:</strong> ${country || 'Not specified'}</p>
-          </div>
-        `,
-      }),
-    })
+    const rawEmail = [
+      'MIME-Version: 1.0',
+      'From: Klaxo Waitlist <hello@klaxo.app>',
+      'To: hello@klaxo.app',
+      `Subject: New waitlist signup: ${email}`,
+      'Content-Type: text/html; charset=utf-8',
+      '',
+      `<p><strong>Email:</strong> ${email}</p>`,
+      `<p><strong>Country:</strong> ${country || 'Not specified'}</p>`,
+    ].join('\r\n')
 
-    return new Response(JSON.stringify({ ok: res.ok }), {
-      status: res.ok ? 200 : res.status,
+    const message = new EmailMessage('hello@klaxo.app', 'hello@klaxo.app', rawEmail)
+    await env.SEND_EMAIL.send(message)
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
       headers: { 'Content-Type': 'application/json', ...corsHeaders },
     })
   },
