@@ -28,23 +28,27 @@ export default {
       })
     }
 
-    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${env.MAILERLITE_API_KEY}`,
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        email,
-        groups: [env.MAILERLITE_GROUP_ID],
-        fields: { country: country || '' },
+        from: 'Klaxo Waitlist <onboarding@resend.dev>',
+        to: ['eddie.varjao.reis@gmail.com'],
+        subject: `New waitlist signup: ${email}`,
+        html: `
+          <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px;background:#0A0A0F;color:#F0F0F5;border-radius:12px">
+            <h2 style="color:#7C5CFC;margin-bottom:16px">New Klaxo waitlist signup</h2>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Country:</strong> ${country || 'Not specified'}</p>
+          </div>
+        `,
       }),
     })
 
-    const data = await res.json()
-
-    return new Response(JSON.stringify(data), {
+    return new Response(JSON.stringify({ ok: res.ok }), {
       status: res.ok ? 200 : res.status,
       headers: { 'Content-Type': 'application/json', ...corsHeaders },
     })

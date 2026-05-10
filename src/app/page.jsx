@@ -1,789 +1,454 @@
-'use client'
+"use client"
+import { useState, useEffect } from "react"
 
-import { useState, useRef, useEffect } from 'react'
-
-const COUNTRIES = [
-  { code: 'Portugal',    label: 'Portugal',     flag: '🇵🇹' },
-  { code: 'Spain',       label: 'Spain',        flag: '🇪🇸' },
-  { code: 'France',      label: 'France',       flag: '🇫🇷' },
-  { code: 'Germany',     label: 'Germany',      flag: '🇩🇪' },
-  { code: 'Italy',       label: 'Italy',        flag: '🇮🇹' },
-  { code: 'Netherlands', label: 'Netherlands',  flag: '🇳🇱' },
-  { code: 'Belgium',     label: 'Belgium',      flag: '🇧🇪' },
-  { code: 'Other',       label: 'Other',        flag: '🌍' },
-]
-
-const SUBS = [
-  { name: 'Netflix',  color: '#E50914', letter: 'N',  price: '€17.99', due: 'May 4'  },
-  { name: 'Spotify',  color: '#1DB954', letter: 'S',  price: '€10.99', due: 'May 7'  },
-  { name: 'Adobe',    color: '#FF0000', letter: 'Ae', price: '€59.99', due: 'May 12' },
-  { name: 'ChatGPT',  color: '#10A37F', letter: 'G',  price: '€20.00', due: 'May 15' },
-  { name: 'YouTube',  color: '#FF0000', letter: 'Y',  price: '€13.99', due: 'May 18' },
-]
-
-/* ─── Country dropdown ────────────────────────────────────────────────────── */
-function CountrySelect({ value, onChange }) {
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-  const selected = COUNTRIES.find(c => c.code === value)
+export default function Home() {
+  const [email, setEmail] = useState("")
+  const [country, setCountry] = useState("")
+  const [status, setStatus] = useState("idle") // idle | loading | success | error
 
   useEffect(() => {
-    function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
-    }
-    document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
-  }, [])
-
-  return (
-    <div ref={ref} style={{ position: 'relative' }}>
-      <button
-        type="button"
-        onClick={() => setOpen(o => !o)}
-        style={{
-          width: '100%', padding: '14px 16px', borderRadius: 12, textAlign: 'left',
-          background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
-          color: selected ? '#fff' : 'rgba(255,255,255,0.35)', fontFamily: 'DM Sans',
-          fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <span>{selected ? `${selected.flag}  ${selected.label}` : 'Select your country'}</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points={open ? '18 15 12 9 6 15' : '6 9 12 15 18 9'} />
-        </svg>
-      </button>
-
-      {open && (
-        <div style={{
-          position: 'absolute', top: 'calc(100% + 6px)', left: 0, right: 0, zIndex: 50,
-          background: '#111118', border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: 12, overflow: 'hidden',
-          boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
-          maxHeight: 260, overflowY: 'auto',
-        }}>
-          {COUNTRIES.map(c => (
-            <button
-              key={c.code}
-              type="button"
-              onClick={() => { onChange(c.code); setOpen(false) }}
-              style={{
-                width: '100%', padding: '12px 16px', textAlign: 'left', border: 'none',
-                background: value === c.code ? 'rgba(124,92,252,0.15)' : 'transparent',
-                color: value === c.code ? '#A78BFA' : 'rgba(255,255,255,0.75)',
-                fontFamily: 'DM Sans', fontSize: 14, cursor: 'pointer',
-                display: 'flex', alignItems: 'center', gap: 10,
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-              onMouseLeave={e => e.currentTarget.style.background = value === c.code ? 'rgba(124,92,252,0.15)' : 'transparent'}
-            >
-              <span style={{ fontSize: 18 }}>{c.flag}</span>
-              <span>{c.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* ─── Icons ───────────────────────────────────────────────────────────────── */
-function IconCalendar() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-      <circle cx="16" cy="16" r="3" fill="rgba(239,68,68,0.2)" stroke="#EF4444"/>
-    </svg>
-  )
-}
-function IconTrend() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-    </svg>
-  )
-}
-function IconWindows() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="3" width="8" height="7" rx="1"/><rect x="14" y="3" width="8" height="7" rx="1"/>
-      <rect x="2" y="14" width="8" height="7" rx="1"/><rect x="14" y="14" width="8" height="7" rx="1"/>
-    </svg>
-  )
-}
-function IconCheck() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C5CFC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-  )
-}
-
-/* ─── Subscription row (shared between mobile/desktop showcase) ───────────── */
-function SubRow({ s, i, total }) {
-  return (
-    <div style={{
-      padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      borderBottom: i < total - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <div style={{
-          width: 28, height: 28, borderRadius: 7, display: 'flex', alignItems: 'center',
-          justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0,
-          background: s.color === '#ffffff' ? '#1a1a2e' : `${s.color}1A`,
-          color: s.color === '#ffffff' ? '#aaa' : s.color,
-          border: `1px solid ${s.color}33`,
-        }}>
-          {s.letter}
-        </div>
-        <div>
-          <p style={{ fontSize: 12, fontWeight: 600, color: '#fff' }}>{s.name}</p>
-          <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>Renews {s.due}</p>
-        </div>
-      </div>
-      <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.65)', flexShrink: 0 }}>{s.price}</span>
-    </div>
-  )
-}
-
-/* ─── Mobile showcase (sem sidebar, sem floating cards) ───────────────────── */
-function MobileShowcase() {
-  return (
-    <div className="hero-showcase relative mx-auto mt-10 w-full" style={{ maxWidth: 480 }}>
-      {/* Glow */}
-      <div style={{
-        position: 'absolute', inset: '-20%', zIndex: 0,
-        background: 'radial-gradient(ellipse at 50% 40%, rgba(124,92,252,0.2) 0%, transparent 70%)',
-        filter: 'blur(40px)', pointerEvents: 'none',
-      }} />
-
-      <div style={{
-        position: 'relative', zIndex: 1,
-        borderRadius: 14, overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.09)',
-        boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,92,252,0.08)',
-      }}>
-        {/* Browser chrome */}
-        <div style={{
-          background: '#1A1A26', padding: '10px 14px',
-          display: 'flex', alignItems: 'center', gap: 10,
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-        }}>
-          <div style={{ display: 'flex', gap: 5, flexShrink: 0 }}>
-            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#FF5F57' }} />
-            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#FEBC2E' }} />
-            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28C840' }} />
-          </div>
-          <div style={{
-            flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: 6,
-            padding: '4px 10px', fontSize: 11, color: 'rgba(255,255,255,0.25)',
-            overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
-          }}>
-            app.klaxo.app/dashboard
-          </div>
-        </div>
-
-        {/* App content */}
-        <div style={{ background: '#0D0D14', padding: '16px' }}>
-          {/* Header row */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-            <p style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Dashboard</p>
-            <span style={{ fontSize: 11, color: '#7C5CFC', fontWeight: 600 }}>+ Add</span>
-          </div>
-
-          {/* Stat cards — 2 cols */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
-            {[
-              { label: 'Monthly', value: '€130.96', color: '#7C5CFC' },
-              { label: 'Active', value: '6 subs', color: '#10B981' },
-            ].map(stat => (
-              <div key={stat.label} style={{
-                background: '#111118', borderRadius: 10, padding: '12px 14px',
-                border: '1px solid rgba(255,255,255,0.06)',
-              }}>
-                <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 9, marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{stat.label}</p>
-                <p style={{ color: '#fff', fontWeight: 700, fontSize: 18, letterSpacing: '-0.02em' }}>{stat.value}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Subscription list */}
-          <div style={{ background: '#111118', borderRadius: 10, border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
-            <div style={{ padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.5)' }}>Subscriptions</span>
-            </div>
-            {SUBS.slice(0, 4).map((s, i) => (
-              <SubRow key={s.name} s={s} i={i} total={4} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ─── Desktop showcase (completo com sidebar e floating cards) ────────────── */
-function DesktopShowcase() {
-  return (
-    <div className="hero-showcase relative mx-auto mt-16" style={{ maxWidth: 960 }}>
-      {/* Ambient violet glow */}
-      <div style={{
-        position: 'absolute', inset: '-30%', zIndex: 0,
-        background: 'radial-gradient(ellipse at 50% 40%, rgba(124,92,252,0.22) 0%, transparent 65%)',
-        filter: 'blur(60px)', pointerEvents: 'none',
-      }} />
-
-      {/* Floating badge — top left */}
-      <div className="float-card" style={{
-        position: 'absolute', top: -20, left: -12, zIndex: 10,
-        background: 'rgba(17,17,24,0.95)', border: '1px solid rgba(124,92,252,0.35)',
-        borderRadius: 14, padding: '12px 16px',
-        boxShadow: '0 8px 32px rgba(124,92,252,0.2), 0 2px 8px rgba(0,0,0,0.5)',
-        backdropFilter: 'blur(12px)', minWidth: 160,
-      }}>
-        <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10, marginBottom: 4, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Monthly total</p>
-        <p style={{ color: '#fff', fontWeight: 700, fontSize: 22, letterSpacing: '-0.02em' }}>€130.96</p>
-        <p style={{ color: '#10B981', fontSize: 11, marginTop: 3 }}>↓ €12 vs last month</p>
-      </div>
-
-      {/* Floating alert — top right */}
-      <div className="float-card-delayed" style={{
-        position: 'absolute', top: 32, right: -16, zIndex: 10,
-        background: 'rgba(17,17,24,0.95)', border: '1px solid rgba(239,68,68,0.25)',
-        borderRadius: 14, padding: '10px 14px',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-        backdropFilter: 'blur(12px)',
-        display: 'flex', alignItems: 'center', gap: 10,
-      }}>
-        <div style={{ width: 28, height: 28, borderRadius: 8, background: '#E5091422', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#E50914', fontWeight: 700, fontSize: 11, border: '1px solid #E5091444' }}>N</div>
-        <div>
-          <p style={{ fontSize: 12, fontWeight: 600, color: '#fff' }}>Netflix ↑ price</p>
-          <p style={{ fontSize: 11, color: 'rgba(239,68,68,0.8)' }}>+€2 next renewal</p>
-        </div>
-      </div>
-
-      {/* App window */}
-      <div className="app-float" style={{
-        position: 'relative', zIndex: 1,
-        borderRadius: 14, overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.09)',
-        boxShadow: '0 50px 130px rgba(0,0,0,0.85), 0 0 0 1px rgba(124,92,252,0.1)',
-        transformOrigin: 'center top',
-      }}>
-        {/* Browser chrome */}
-        <div style={{
-          background: '#1A1A26', padding: '11px 16px',
-          display: 'flex', alignItems: 'center', gap: 12,
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-        }}>
-          <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#FF5F57' }} />
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#FEBC2E' }} />
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#28C840' }} />
-          </div>
-          <div style={{
-            flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: 7,
-            padding: '5px 12px', fontSize: 12, color: 'rgba(255,255,255,0.28)',
-            display: 'flex', alignItems: 'center', gap: 6,
-          }}>
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            app.klaxo.app/dashboard
-          </div>
-        </div>
-
-        {/* App body */}
-        <div style={{ background: '#0D0D14', display: 'flex' }}>
-          {/* Sidebar */}
-          <div style={{ width: 210, background: '#111118', borderRight: '1px solid rgba(255,255,255,0.05)', padding: '18px 10px', flexShrink: 0 }}>
-            <div style={{ padding: '4px 10px', marginBottom: 20 }}>
-              <span style={{ fontWeight: 700, fontSize: 16, color: '#fff', letterSpacing: '-0.01em' }}>klaxo</span>
-            </div>
-            {['Dashboard', 'Subscriptions', 'Upcoming', 'Analytics', 'Settings'].map((label, i) => (
-              <div key={label} style={{
-                padding: '9px 10px', borderRadius: 8, marginBottom: 2,
-                background: i === 0 ? 'rgba(124,92,252,0.15)' : 'transparent',
-                color: i === 0 ? '#A78BFA' : 'rgba(255,255,255,0.38)',
-                fontSize: 13, fontWeight: i === 0 ? 600 : 400,
-              }}>
-                {label}
-              </div>
-            ))}
-            <div style={{ padding: '10px', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: 24 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(124,92,252,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#A78BFA' }}>A</div>
-                <div>
-                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>Ana M.</p>
-                  <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>Pro plan</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Main content */}
-          <div style={{ flex: 1, padding: '22px 24px', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
-              <p style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>Bom dia, Edimilton 👋</p>
-              <span style={{ fontSize: 11, color: '#7C5CFC', fontWeight: 600 }}>+ Add new</span>
-            </div>
-
-            {/* Stat cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 20 }}>
-              {[
-                { label: 'Monthly', value: '€89', sub: '↑ +€12', color: '#F59E0B' },
-                { label: 'Next bill', value: 'Netflix', sub: '⚡ 3 days', color: '#F59E0B' },
-                { label: 'Active', value: '7', sub: '✓ All OK', color: '#10B981' },
-              ].map(stat => (
-                <div key={stat.label} style={{
-                  background: '#111118', borderRadius: 10, padding: '14px 16px',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                }}>
-                  <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 10, marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{stat.label}</p>
-                  <p style={{ color: '#fff', fontWeight: 700, fontSize: 20, letterSpacing: '-0.02em' }}>{stat.value}</p>
-                  <p style={{ color: stat.color, fontSize: 10, marginTop: 3 }}>{stat.sub}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Subscription list */}
-            <div style={{ background: '#111118', borderRadius: 10, border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
-              <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>Your subscriptions</span>
-                <span style={{ fontSize: 11, color: '#7C5CFC', fontWeight: 500 }}>+ Add new</span>
-              </div>
-              {SUBS.map((s, i) => <SubRow key={s.name} s={s} i={i} total={SUBS.length} />)}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ─── Responsive showcase wrapper ─────────────────────────────────────────── */
-function CinematicShowcase() {
-  return (
-    <>
-      <div className="md:hidden"><MobileShowcase /></div>
-      <div className="hidden md:block"><DesktopShowcase /></div>
-    </>
-  )
-}
-
-/* ─── Testimonial ─────────────────────────────────────────────────────────── */
-function Testimonial({ quote, name, city, initials, color }) {
-  return (
-    <div className="glass rounded-2xl p-6 flex flex-col gap-4">
-      <div className="flex gap-1">
-        {[...Array(5)].map((_, i) => (
-          <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#7C5CFC"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        ))}
-      </div>
-      <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>"{quote}"</p>
-      <div className="flex items-center gap-3 mt-auto pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: color }}>{initials}</div>
-        <span className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.6)' }}>{name}, {city}</span>
-      </div>
-    </div>
-  )
-}
-
-/* ─── Pricing card ────────────────────────────────────────────────────────── */
-function PricingCard({ title, price, period, badge, features, cta, featured, annual }) {
-  return (
-    <div
-      className={`relative rounded-2xl p-6 md:p-7 flex flex-col gap-5 ${featured ? 'card-featured' : 'glass'}`}
-      style={{ transition: 'transform 0.2s ease' }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)' }}
-    >
-      {badge && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-semibold px-4 py-1 rounded-full whitespace-nowrap" style={{ background: '#7C5CFC', color: '#fff' }}>
-          {badge}
-        </div>
-      )}
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.12em' }}>{title}</p>
-        <div className="flex items-end gap-1.5">
-          <span className="font-bold text-white" style={{ fontSize: 36, letterSpacing: '-0.02em' }}>{price}</span>
-          {period && <span className="text-sm mb-1.5" style={{ color: 'rgba(255,255,255,0.4)' }}>{period}</span>}
-        </div>
-        {annual && <p className="text-xs mt-1" style={{ color: '#A78BFA' }}>{annual}</p>}
-      </div>
-      <ul className="space-y-3 flex-1">
-        {features.map((f) => (
-          <li key={f} className="flex items-start gap-2.5 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            <span className="mt-0.5 shrink-0"><IconCheck /></span>
-            {f}
-          </li>
-        ))}
-      </ul>
-      <button
-        className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-150 ${featured ? 'btn-glow' : ''}`}
-        style={{
-          background: featured ? '#7C5CFC' : 'rgba(255,255,255,0.06)',
-          color: featured ? '#fff' : 'rgba(255,255,255,0.8)',
-          border: featured ? 'none' : '1px solid rgba(255,255,255,0.1)',
-        }}
-      >
-        {cta}
-      </button>
-    </div>
-  )
-}
-
-/* ─── Scroll reveal hook ──────────────────────────────────────────────────── */
-function useScrollReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target) } }),
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible")
+            observer.unobserve(e.target)
+          }
+        })
+      },
       { threshold: 0.1 }
     )
-    els.forEach(el => observer.observe(el))
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
-}
 
-/* ─── Main page ───────────────────────────────────────────────────────────── */
-export default function KlaxoLanding() {
-  const [email, setEmail] = useState('')
-  const [country, setCountry] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  useScrollReveal()
-
-  async function handleWaitlist(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (!email) return
-    setLoading(true)
+    setStatus("loading")
     try {
-      const res = await fetch('https://klaxo-waitlist-api.edimilton.workers.dev', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("https://klaxo-waitlist-api.edimilton.workers.dev", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, country }),
       })
-      if (res.ok || res.status === 201) {
-        setSubmitted(true)
+      if (res.ok) {
+        setStatus("success")
+        setEmail("")
+        setCountry("")
       } else {
-        alert('Algo correu mal. Tenta novamente.')
+        setStatus("error")
       }
     } catch {
-      alert('Erro de rede. Tenta novamente.')
-    } finally {
-      setLoading(false)
+      setStatus("error")
     }
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: '#0A0A0F', fontFamily: 'DM Sans, sans-serif' }}>
-
-      {/* ── NAV ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-4" style={{ background: 'rgba(10,10,15,0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <span className="font-bold text-white text-base md:text-lg" style={{ letterSpacing: '-0.02em' }}>klax<span style={{ color: '#7C5CFC' }}>o</span></span>
-        <div className="flex items-center gap-2 md:gap-3">
-          <a href="https://app.klaxo.app" className="hidden sm:block text-sm font-medium transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}
-          >
-            Sign in
-          </a>
-          <a href="#waitlist" className="text-sm font-semibold px-3 md:px-4 py-2 rounded-lg transition-all" style={{ background: '#7C5CFC', color: '#fff' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#6D4EE8'}
-            onMouseLeave={e => e.currentTarget.style.background = '#7C5CFC'}
-          >
-            Join waitlist
-          </a>
+    <>
+      {/* NAV */}
+      <nav>
+        <div className="nav-logo">klax<span>o</span></div>
+        <div className="nav-right">
+          <a href="https://app.klaxo.app/login" className="nav-signin">Sign in</a>
+          <a href="#waitlist" className="nav-cta">Join waitlist</a>
         </div>
       </nav>
 
-      {/* ── HERO ── */}
-      <section className="relative pt-28 md:pt-32 pb-10 px-4 md:px-6 overflow-hidden dot-grid">
-        {/* Violet orb */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 pointer-events-none" style={{
-          width: 600, height: 600,
-          background: 'radial-gradient(circle, rgba(124,92,252,0.18) 0%, transparent 65%)',
-          filter: 'blur(60px)',
-        }} />
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-glow" />
 
-        <div className="relative max-w-5xl mx-auto">
-          <div className="text-center">
-
-            {/* Badge */}
-            <div className="hero-badge inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full text-xs font-semibold mb-6 md:mb-8" style={{ background: 'rgba(124,92,252,0.12)', border: '1px solid rgba(124,92,252,0.25)', color: '#A78BFA' }}>
-              <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#7C5CFC', boxShadow: '0 0 6px #7C5CFC' }} />
-              Now in early access · Europe only
-            </div>
-
-            {/* Headline */}
-            <h1 className="hero-headline font-bold text-white leading-tight mb-5 md:mb-6" style={{ fontSize: 'clamp(38px, 7vw, 88px)', letterSpacing: '-0.04em', lineHeight: 1.05 }}>
-              You're paying for things<br />
-              <span className="gradient-text">you forgot exist.</span>
-            </h1>
-
-            {/* Subheadline */}
-            <p className="hero-sub text-base md:text-lg max-w-lg mx-auto mb-8 md:mb-10 px-2" style={{ color: 'rgba(255,255,255,0.48)', lineHeight: 1.7 }}>
-              The average European spends <span style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 600 }}>€180/month</span> on subscriptions. Most can't name half of them.
-            </p>
-
-            {/* CTAs */}
-            <div className="hero-ctas flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-              <a href="#waitlist" className="btn-glow inline-flex items-center gap-2 px-6 md:px-7 py-3.5 md:py-4 rounded-xl font-semibold text-white w-full sm:w-auto justify-center" style={{ background: '#7C5CFC', fontSize: 15 }}>
-                Join the waitlist — it's free
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-              <a href="#how" className="inline-flex items-center gap-2 px-6 md:px-7 py-3.5 md:py-4 rounded-xl font-semibold transition-all w-full sm:w-auto justify-center" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.1)', fontSize: 15 }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-              >
-                See how it works →
-              </a>
-            </div>
-
-            <p className="text-xs mb-2" style={{ color: 'rgba(255,255,255,0.3)' }}>Already 2,400+ people tracking their subscriptions</p>
-          </div>
-
-          {/* Showcase */}
-          <CinematicShowcase />
+        <div className="badge">
+          <span className="badge-dot" />
+          Now in early access · Europe only
         </div>
-      </section>
 
-      {/* ── SERVICE PILLS ── */}
-      <section className="py-10 md:py-14 px-4 md:px-6 reveal" style={{ borderTop: '1px solid rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs font-semibold mb-6 md:mb-8" style={{ color: 'rgba(255,255,255,0.25)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-            Track any service, automatically recognised
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-            {[
-              { name: 'Netflix',   dot: '#E50914' },
-              { name: 'Spotify',   dot: '#1DB954' },
-              { name: 'Adobe CC',  dot: '#FF0000' },
-              { name: 'GitHub',    dot: '#ffffff' },
-              { name: 'Notion',    dot: '#ffffff' },
-              { name: 'ChatGPT',   dot: '#10A37F' },
-              { name: 'YouTube',   dot: '#FF0000' },
-              { name: 'Figma',     dot: '#F24E1E' },
-              { name: 'iCloud',    dot: '#007AFF' },
-              { name: '+50 more',  dot: '#7C5CFC' },
-            ].map(s => (
-              <span key={s.name} className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(255,255,255,0.55)' }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: s.dot, display: 'inline-block', flexShrink: 0 }} />
-                {s.name}
-              </span>
-            ))}
-          </div>
+        <h1 className="hero-headline">
+          You&apos;re paying for things<br />
+          <span className="hl">you forgot exist.</span>
+        </h1>
+
+        <p className="hero-sub">
+          The average European spends <strong>€180/month</strong> on subscriptions.<br />
+          Most can&apos;t name half of them.
+        </p>
+
+        <div className="hero-ctas">
+          <a href="#waitlist" className="cta-primary">
+            Join the waitlist — it&apos;s free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="#how" className="cta-ghost">See how it works →</a>
         </div>
-      </section>
 
-      {/* ── PAIN POINTS ── */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest mb-3 reveal" style={{ color: 'rgba(255,255,255,0.28)', letterSpacing: '0.15em' }}>
-            Sound familiar?
-          </p>
-          <h2 className="text-center font-bold text-white mb-10 md:mb-14 reveal" style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.025em' }}>
-            The subscription problem<br />is real.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {[
-              { icon: <IconCalendar />, iconColor: '#EF4444', title: 'Forgotten subscriptions', body: 'That gym app you stopped using in January is still charging you. Every month.' },
-              { icon: <IconTrend />,    iconColor: '#F59E0B', title: 'Price increases you missed', body: "Services raise prices quietly. You never notice until it's too late." },
-              { icon: <IconWindows />,  iconColor: '#7C5CFC', title: 'No single view', body: 'Your subscriptions are scattered across 6 different emails and 3 bank accounts.' },
-            ].map((c, i) => (
-              <div key={c.title} className="glass rounded-2xl p-6 md:p-7 reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
-                <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl flex items-center justify-center mb-4 md:mb-5" style={{ background: `${c.iconColor}15`, color: c.iconColor }}>
-                  {c.icon}
-                </div>
-                <h3 className="font-semibold text-white mb-2" style={{ fontSize: 16 }}>{c.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.48)' }}>{c.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <p className="hero-social">
+          <span>2,400+</span> people already tracking their subscriptions
+        </p>
 
-      {/* ── HOW IT WORKS ── */}
-      <section className="py-16 md:py-24 px-4 md:px-6" id="how" style={{ background: 'rgba(255,255,255,0.012)' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest mb-3 reveal" style={{ color: '#7C5CFC', letterSpacing: '0.15em' }}>How it works</p>
-          <h2 className="font-bold text-white mb-10 md:mb-16 reveal" style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.025em' }}>
-            Simple by design.
-          </h2>
+        {/* APP SHOWCASE */}
+        <div className="showcase-wrap">
+          <div className="showcase-glow" />
 
-          {/* Mobile: stacked cards */}
-          <div className="md:hidden grid grid-cols-1 gap-6">
-            {[
-              { step: '01', title: 'Add your subscriptions', body: 'Manually in 30 seconds, or via bank connection — coming soon.' },
-              { step: '02', title: 'Get notified before renewals', body: '5-day advance alerts via email or push. Never be surprised again.' },
-              { step: '03', title: 'See your real monthly cost', body: 'Dashboard with total spend, by category, and upcoming bills.' },
-            ].map((s, i) => (
-              <div key={s.step} className="relative text-left reveal" style={{ transitionDelay: `${i * 0.12}s` }}>
-                <div className="font-bold mb-3 gradient-text" style={{ fontSize: 13, letterSpacing: '0.1em' }}>{s.step}</div>
-                <div className="glass rounded-2xl p-5">
-                  <h3 className="font-semibold text-white mb-2" style={{ fontSize: 16 }}>{s.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.48)' }}>{s.body}</p>
-                </div>
-              </div>
-            ))}
+          <div className="float-card">
+            <div className="float-card-label">This month</div>
+            <div className="float-card-value">€130.96</div>
+            <div className="float-card-sub">↑ 7 active subscriptions</div>
           </div>
 
-          {/* Desktop: zigzag layout */}
-          <div className="hidden md:block relative" style={{ maxWidth: 760, margin: '0 auto' }}>
-            <div style={{ position: 'absolute', top: 22, left: 'calc(50% - 1px)', width: 2, height: 'calc(100% - 44px)', background: 'linear-gradient(to bottom, #7C5CFC, transparent)', opacity: 0.2 }} />
-            {[
-              { step: '01', title: 'Add your subscriptions', body: 'Manually in 30 seconds, or via bank connection — coming soon. We recognise 50+ services automatically.', side: 'left' },
-              { step: '02', title: 'Get notified before renewals', body: '5-day advance alerts via email. Never be surprised by an unexpected charge again.', side: 'right' },
-              { step: '03', title: 'See your real monthly cost', body: 'Dashboard with total spend by category, upcoming bills, and trends over time. Finally, clarity.', side: 'left' },
-            ].map((s, i) => (
-              <div key={s.step} className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 32, alignItems: 'start', marginBottom: i < 2 ? 48 : 0, transitionDelay: `${i * 0.12}s` }}>
-                <div style={{ textAlign: 'right', visibility: s.side === 'right' ? 'hidden' : 'visible' }}>
-                  <div style={{ fontSize: 17, fontWeight: 700, color: '#fff', marginBottom: 6, letterSpacing: '-0.02em' }}>{s.title}</div>
-                  <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{s.body}</div>
-                </div>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#111118', border: '1px solid rgba(124,92,252,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 14, color: '#7C5CFC', flexShrink: 0, boxShadow: '0 0 20px rgba(124,92,252,0.2)', position: 'relative', zIndex: 1 }}>{s.step}</div>
-                <div style={{ textAlign: 'left', visibility: s.side === 'left' ? 'hidden' : 'visible' }}>
-                  <div style={{ fontSize: 17, fontWeight: 700, color: '#fff', marginBottom: 6, letterSpacing: '-0.02em' }}>{s.title}</div>
-                  <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{s.body}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ── */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest mb-4 reveal" style={{ color: '#7C5CFC', letterSpacing: '0.15em' }}>Early users</p>
-          <h2 className="font-bold text-white text-center mb-10 md:mb-14 reveal" style={{ fontSize: 'clamp(22px, 3.5vw, 38px)', letterSpacing: '-0.02em' }}>
-            Taking back control<br />of their budget.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {[
-              { quote: "I found €43/month I was wasting on apps I never use.", name: "Ana M.", city: "Lisbon",  initials: "AM", color: "#7C5CFC" },
-              { quote: "Finally something built for Europe, not the US.",        name: "Carlos R.", city: "Madrid",  initials: "CR", color: "#3B82F6" },
-              { quote: "The renewal alerts alone are worth it.",                 name: "Sophie D.", city: "Paris",   initials: "SD", color: "#10B981" },
-            ].map((t, i) => (
-              <div key={t.name} className="reveal" style={{ transitionDelay: `${i * 0.12}s` }}>
-                <Testimonial {...t} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRICING ── */}
-      <section className="py-16 md:py-24 px-4 md:px-6" id="pricing" style={{ background: 'rgba(255,255,255,0.012)' }}>
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest mb-3 reveal" style={{ color: '#A78BFA', letterSpacing: '0.15em' }}>Pricing</p>
-          <h2 className="font-bold text-white mb-3 reveal" style={{ fontSize: 'clamp(24px, 4vw, 44px)', letterSpacing: '-0.025em' }}>
-            Honest pricing.
-          </h2>
-          <p className="text-sm mb-12 md:mb-14 reveal" style={{ color: 'rgba(255,255,255,0.38)' }}>Start free — upgrade anytime.</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mt-4">
-            <div className="reveal">
-              <PricingCard
-                title="Free"
-                price="€0"
-                features={['Up to 5 subscriptions', 'Basic dashboard', 'Manual entry', 'Monthly summary']}
-                cta="Get started free"
-                featured={false}
-              />
-            </div>
-            <div className="reveal" style={{ transitionDelay: '0.12s' }}>
-              <PricingCard
-                title="Pro"
-                price="€3.99"
-                period="/ month"
-                badge="Most popular · save 39%"
-                annual="or €29/year — billed annually"
-                features={['Unlimited subscriptions', 'Renewal alerts (5 days before)', 'Categories & tags', 'CSV export', 'Bank connection (coming soon)']}
-                cta="Start free · upgrade anytime"
-                featured
-              />
+          <div className="float-alert">
+            <div className="float-alert-icon">⚡</div>
+            <div>
+              <div className="float-alert-text">Netflix renews in 3 days</div>
+              <div className="float-alert-sub">€15.99 · 06 Jun 2026</div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── WAITLIST ── */}
-      <section className="py-16 md:py-24 px-4 md:px-6" id="waitlist" style={{ background: 'linear-gradient(180deg, rgba(124,92,252,0.07) 0%, rgba(10,10,15,0) 100%)' }}>
-        <div className="max-w-xl mx-auto">
-          <div className="relative rounded-2xl md:rounded-3xl p-7 md:p-10 text-center reveal" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(124,92,252,0.2)', boxShadow: '0 0 80px rgba(124,92,252,0.08)' }}>
-            <div className="absolute inset-0 rounded-2xl md:rounded-3xl" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(124,92,252,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
-            <div className="relative">
-              <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: '#A78BFA', letterSpacing: '0.15em' }}>Early access</p>
-              <h2 className="font-bold text-white mb-3" style={{ fontSize: 'clamp(22px, 4vw, 38px)', letterSpacing: '-0.025em' }}>
-                Be first when we launch.
-              </h2>
-              <p className="text-sm mb-7 md:mb-8" style={{ color: 'rgba(255,255,255,0.48)' }}>
-                Early users get <span style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 600 }}>3 months of Pro for free</span>.
-              </p>
-
-              {submitted ? (
-                <div className="py-6">
-                  <div className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.3)' }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div className="showcase-float">
+            <div className="browser">
+              <div className="browser-bar">
+                <div className="browser-dots">
+                  <div className="dot dot-r" />
+                  <div className="dot dot-y" />
+                  <div className="dot dot-g" />
+                </div>
+                <div className="browser-url">app.klaxo.app/dashboard</div>
+              </div>
+              <div className="app-inner">
+                <div className="app-sidebar">
+                  <div className="app-logo-row">
+                    <div className="app-logo-k">K</div>
+                    Klaxo
                   </div>
-                  <p className="font-semibold text-white mb-1">You're on the list.</p>
-                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>We'll reach out when Klaxo launches.</p>
+                  <div className="app-nav-item active">
+                    <span className="app-nav-dot" />
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+                      <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg>
+                    Dashboard
+                  </div>
+                  <div className="app-nav-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    </svg>
+                    Subscriptions
+                  </div>
+                  <div className="app-nav-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="1" y="4" width="22" height="16" rx="2" /><line x1="1" y1="10" x2="23" y2="10" />
+                    </svg>
+                    Billing
+                  </div>
+                  <div className="app-nav-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="3" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+                    </svg>
+                    Settings
+                  </div>
                 </div>
-              ) : (
-                <form onSubmit={handleWaitlist} className="space-y-3">
-                  <input
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-xl text-sm text-white placeholder-gray-500"
-                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', fontFamily: 'DM Sans' }}
-                  />
-                  <CountrySelect value={country} onChange={setCountry} />
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn-glow w-full py-4 rounded-xl font-semibold text-white transition-all"
-                    style={{ background: '#7C5CFC', fontFamily: 'DM Sans', fontSize: 15, opacity: loading ? 0.7 : 1 }}
-                  >
-                    {loading ? 'Reserving…' : 'Reserve my spot'}
-                  </button>
-                  <p className="text-xs pt-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                    No spam. No credit card. Just early access.
-                  </p>
-                </form>
-              )}
+                <div className="app-main">
+                  <div className="app-greeting">Bom dia, Edimilton 👋</div>
+                  <div className="app-stats">
+                    <div className="app-stat">
+                      <div className="app-stat-label">Monthly</div>
+                      <div className="app-stat-val">€89</div>
+                      <div className="app-stat-badge badge-amber">↑ +€12</div>
+                    </div>
+                    <div className="app-stat">
+                      <div className="app-stat-label">Next bill</div>
+                      <div className="app-stat-val" style={{ fontSize: "13px", paddingTop: "3px" }}>Netflix</div>
+                      <div className="app-stat-badge badge-amber">⚡ 3 days</div>
+                    </div>
+                    <div className="app-stat">
+                      <div className="app-stat-label">Active</div>
+                      <div className="app-stat-val">7</div>
+                      <div className="app-stat-badge badge-green">✓ OK</div>
+                    </div>
+                  </div>
+                  <div className="app-subs-title">Upcoming Renewals</div>
+                  <div className="app-sub-row">
+                    <div className="app-sub-logo">N</div>
+                    <div className="app-sub-info">
+                      <div className="app-sub-name">Netflix</div>
+                      <div className="app-sub-date">06 Jun · Monthly</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div className="app-sub-price">€15.99</div>
+                      <div className="app-sub-urgent">in 3 days</div>
+                    </div>
+                  </div>
+                  <div className="app-sub-row">
+                    <div className="app-sub-logo">S</div>
+                    <div className="app-sub-info">
+                      <div className="app-sub-name">Spotify</div>
+                      <div className="app-sub-date">10 Jun · Monthly</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div className="app-sub-price">€9.99</div>
+                      <div className="app-sub-date">in 7 days</div>
+                    </div>
+                  </div>
+                  <div className="app-sub-row">
+                    <div className="app-sub-logo">A</div>
+                    <div className="app-sub-info">
+                      <div className="app-sub-name">Adobe CC</div>
+                      <div className="app-sub-date">18 Jun · Monthly</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div className="app-sub-price">€54.99</div>
+                      <div className="app-sub-date">in 15 days</div>
+                    </div>
+                  </div>
+                  <div className="app-sub-row">
+                    <div className="app-sub-logo">G</div>
+                    <div className="app-sub-info">
+                      <div className="app-sub-name">GitHub</div>
+                      <div className="app-sub-date">01 Jul · Monthly</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div className="app-sub-price">€4.00</div>
+                      <div className="app-sub-date">in 28 days</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="py-10 md:py-12 px-4 md:px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
-          <div className="text-center md:text-left">
-            <p className="font-bold text-white text-lg mb-1" style={{ letterSpacing: '-0.02em' }}>klaxo</p>
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>The subscription tracker built for Europe.</p>
-          </div>
-          <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center">
-            {[
-              { label: 'Blog', href: '/blog' },
-              { label: 'Privacy', href: '/privacy' },
-              { label: 'Terms', href: '/terms' },
-              { label: 'Contact', href: '/contact' },
-            ].map((l) => (
-              <a key={l.label} href={l.href} className="text-xs transition-colors" style={{ color: 'rgba(255,255,255,0.38)' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.38)'}
-              >{l.label}</a>
-            ))}
-          </div>
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>Made in Europe &#127466;&#127482;</p>
+      {/* SERVICE PILLS */}
+      <div style={{ padding: "48px 24px 32px", textAlign: "center", position: "relative", zIndex: 1 }}>
+        <p className="logos-row-label">Track any service, automatically recognised</p>
+        <div className="logos-row" style={{ padding: 0 }}>
+          {[
+            { name: "Netflix", color: "#E50914" },
+            { name: "Spotify", color: "#1DB954" },
+            { name: "Adobe CC", color: "#FF0000" },
+            { name: "GitHub", color: "#fff" },
+            { name: "Notion", color: "#fff" },
+            { name: "ChatGPT", color: "#10A37F" },
+            { name: "YouTube", color: "#FF0000" },
+            { name: "+50 more", color: "#7C5CFC" },
+          ].map((s) => (
+            <div key={s.name} className="service-pill">
+              <span className="service-pill-dot" style={{ background: s.color }} />
+              {s.name}
+            </div>
+          ))}
         </div>
-      </footer>
+      </div>
 
-    </div>
+      <div className="section-divider" />
+
+      {/* PAIN POINTS */}
+      <section className="section-pad reveal">
+        <p className="section-label">Sound familiar?</p>
+        <h2 className="section-title">The subscription problem<br />nobody talks about.</h2>
+        <div className="pain-grid">
+          <div className="pain-card">
+            <div className="pain-icon" style={{ background: "rgba(239,68,68,.1)" }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="1.8">
+                <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+                <circle cx="16" cy="16" r="2.5" fill="rgba(239,68,68,.2)" stroke="#EF4444" />
+              </svg>
+            </div>
+            <div className="pain-title">Forgotten subscriptions</div>
+            <div className="pain-desc">That gym app you stopped using in January is still charging you every month. It adds up faster than you think.</div>
+          </div>
+          <div className="pain-card">
+            <div className="pain-icon" style={{ background: "rgba(245,158,11,.1)" }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="1.8">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
+              </svg>
+            </div>
+            <div className="pain-title">Price increases you missed</div>
+            <div className="pain-desc">Services raise prices quietly. You never notice until it&apos;s too late and you&apos;ve already been charged the new amount.</div>
+          </div>
+          <div className="pain-card">
+            <div className="pain-icon" style={{ background: "rgba(124,92,252,.1)" }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C5CFC" strokeWidth="1.8">
+                <rect x="2" y="3" width="8" height="7" rx="1" /><rect x="14" y="3" width="8" height="7" rx="1" />
+                <rect x="2" y="14" width="8" height="7" rx="1" /><rect x="14" y="14" width="8" height="7" rx="1" />
+              </svg>
+            </div>
+            <div className="pain-title">No single view</div>
+            <div className="pain-desc">Your subscriptions are scattered across 6 different emails and 3 bank accounts. There&apos;s no single place to see everything.</div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* HOW IT WORKS */}
+      <section className="section-pad reveal" id="how">
+        <p className="section-label">How it works</p>
+        <h2 className="section-title">Simple by design.</h2>
+        <div className="steps-wrap">
+          <div className="steps-line" />
+          <div className="step">
+            <div className="step-content-left">
+              <div className="step-title">Add your subscriptions</div>
+              <div className="step-desc">Manually in 30 seconds, or via bank connection — coming soon. We recognise 50+ services automatically.</div>
+            </div>
+            <div className="step-num">01</div>
+            <div className="step-empty" />
+          </div>
+          <div className="step">
+            <div className="step-empty" />
+            <div className="step-num">02</div>
+            <div className="step-content-right">
+              <div className="step-title">Get notified before renewals</div>
+              <div className="step-desc">5-day advance alerts via email. Never be surprised by an unexpected charge again.</div>
+            </div>
+          </div>
+          <div className="step">
+            <div className="step-content-left">
+              <div className="step-title">See your real monthly cost</div>
+              <div className="step-desc">Dashboard with total spend by category, upcoming bills, and trends over time. Finally, clarity.</div>
+            </div>
+            <div className="step-num">03</div>
+            <div className="step-empty" />
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* TESTIMONIALS */}
+      <section className="section-pad reveal">
+        <p className="section-label">Early users</p>
+        <h2 className="section-title">Taking back control<br />of their budget.</h2>
+        <div className="testi-grid">
+          {[
+            { quote: "I found €43/month I was wasting on apps I never use. Klaxo paid for itself in the first week.", name: "Ana M. · Lisbon", initials: "AM", bg: "#8B5CF6" },
+            { quote: "Finally something built for Europe, not the US. The euro support and EU-based services are exactly what I needed.", name: "Carlos R. · Madrid", initials: "CR", bg: "var(--violet)" },
+            { quote: "The renewal alerts alone are worth it. I cancelled three subscriptions I didn't even know I had.", name: "Sophie D. · Paris", initials: "SD", bg: "#10B981" },
+          ].map((t) => (
+            <div key={t.name} className="testi-card">
+              <div className="stars">★★★★★</div>
+              <div className="testi-quote">&quot;{t.quote}&quot;</div>
+              <div className="testi-author">
+                <div className="testi-avatar" style={{ background: t.bg }}>{t.initials}</div>
+                <div className="testi-name">{t.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* PRICING */}
+      <section className="section-pad reveal" id="pricing">
+        <p className="section-label">Pricing</p>
+        <h2 className="section-title">Honest pricing.<br />Start free.</h2>
+        <div className="pricing-grid">
+          <div className="price-card">
+            <div className="price-tier">Free</div>
+            <div className="price-amount">
+              <div className="price-num">€0</div>
+            </div>
+            <div className="price-note" style={{ height: "20px" }} />
+            <ul className="price-features">
+              <li className="price-feature"><span className="price-check">✓</span>Up to 5 subscriptions</li>
+              <li className="price-feature"><span className="price-check">✓</span>Basic dashboard</li>
+              <li className="price-feature"><span className="price-check">✓</span>Manual entry</li>
+              <li className="price-feature"><span className="price-check">✓</span>Monthly summary email</li>
+            </ul>
+            <a href="https://app.klaxo.app/register" className="price-btn price-btn-ghost" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
+              Get started free
+            </a>
+          </div>
+          <div className="price-card featured">
+            <div className="price-popular">Most popular · save 39%</div>
+            <div className="price-tier">Pro</div>
+            <div className="price-amount">
+              <div className="price-num">€3.99</div>
+              <div className="price-period">/ month</div>
+            </div>
+            <div className="price-note">or €29/year — billed annually</div>
+            <ul className="price-features">
+              <li className="price-feature"><span className="price-check">✓</span>Unlimited subscriptions</li>
+              <li className="price-feature"><span className="price-check">✓</span>Renewal alerts (5 days before)</li>
+              <li className="price-feature"><span className="price-check">✓</span>Categories &amp; tags</li>
+              <li className="price-feature"><span className="price-check">✓</span>CSV export</li>
+              <li className="price-feature">
+                <span className="price-check">✓</span>Bank connection{" "}
+                <span style={{ color: "var(--muted)", fontSize: "12px" }}>(coming soon)</span>
+              </li>
+            </ul>
+            <a href="https://app.klaxo.app/register" className="price-btn price-btn-violet" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
+              Start free · upgrade anytime
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* WAITLIST */}
+      <section className="waitlist-section reveal" id="waitlist">
+        <div className="waitlist-bg" />
+        <div className="waitlist-inner">
+          <p className="section-label">Early access</p>
+          <h2 className="waitlist-title">Be first when<br />we launch.</h2>
+          <p className="waitlist-sub">
+            Early users get <strong>3 months of Pro for free</strong>.<br />
+            No spam. No credit card required.
+          </p>
+          <form className="waitlist-form" onSubmit={handleSubmit}>
+            <input
+              className="wf-input"
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <select
+              className="wf-select"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option value="" disabled>Select your country</option>
+              <option>Portugal</option>
+              <option>Spain</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Italy</option>
+              <option>Netherlands</option>
+              <option>United Kingdom</option>
+              <option>Other EU country</option>
+            </select>
+            <button className="wf-btn" type="submit" disabled={status === "loading"}>
+              {status === "loading" ? "Sending..." : status === "success" ? "You're on the list! ✓" : "Reserve my spot →"}
+            </button>
+            {status === "error" && (
+              <p style={{ color: "#EF4444", fontSize: "13px", textAlign: "center" }}>
+                Something went wrong. Try again.
+              </p>
+            )}
+            <p className="wf-hint">Already 2,400+ people on the waitlist</p>
+          </form>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
+        <div>
+          <div className="footer-brand">klaxo <span>The subscription tracker built for Europe.</span></div>
+        </div>
+        <div className="footer-links">
+          <a href="/blog">Blog</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div className="footer-eu">Made in Europe 🇪🇺</div>
+      </footer>
+    </>
   )
 }
