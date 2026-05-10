@@ -1,5 +1,3 @@
-import { EmailMessage } from 'cloudflare:email'
-
 const ALLOWED_ORIGINS = ['https://klaxo.app', 'https://www.klaxo.app']
 
 export default {
@@ -30,22 +28,24 @@ export default {
       })
     }
 
-    const rawEmail = [
-      'MIME-Version: 1.0',
-      'From: Klaxo Waitlist <hello@klaxo.app>',
-      'To: hello@klaxo.app',
-      `Subject: New waitlist signup: ${email}`,
-      'Content-Type: text/html; charset=utf-8',
-      '',
-      `<p><strong>Email:</strong> ${email}</p>`,
-      `<p><strong>Country:</strong> ${country || 'Not specified'}</p>`,
-    ].join('\r\n')
+    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${env.MAILERLITE_API_KEY}`,
+      },
+      body: JSON.stringify({
+        email,
+        groups: [env.MAILERLITE_GROUP_ID],
+        fields: { country: country || '' },
+      }),
+    })
 
-    const message = new EmailMessage('hello@klaxo.app', 'hello@klaxo.app', rawEmail)
-    await env.SEND_EMAIL.send(message)
+    const data = await res.json()
 
-    return new Response(JSON.stringify({ ok: true }), {
-      status: 200,
+    return new Response(JSON.stringify(data), {
+      status: res.ok ? 200 : res.status,
       headers: { 'Content-Type': 'application/json', ...corsHeaders },
     })
   },
