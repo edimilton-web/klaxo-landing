@@ -1,11 +1,7 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 
 export default function Home() {
-  const [email, setEmail] = useState("")
-  const [country, setCountry] = useState("")
-  const [status, setStatus] = useState("idle") // idle | loading | success | error
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -22,28 +18,6 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-    if (!email) return
-    setStatus("loading")
-    try {
-      const res = await fetch("https://klaxo-waitlist-api.edimilton.workers.dev", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, country }),
-      })
-      if (res.ok) {
-        setStatus("success")
-        setEmail("")
-        setCountry("")
-      } else {
-        setStatus("error")
-      }
-    } catch {
-      setStatus("error")
-    }
-  }
-
   return (
     <>
       {/* NAV */}
@@ -51,7 +25,7 @@ export default function Home() {
         <div className="nav-logo">klax<span>o</span></div>
         <div className="nav-right">
           <a href="https://app.klaxo.app/login" className="nav-signin">Sign in</a>
-          <a href="#waitlist" className="nav-cta">Join waitlist</a>
+          <a href="https://app.klaxo.app/register" className="nav-cta">Start for free</a>
         </div>
       </nav>
 
@@ -61,7 +35,7 @@ export default function Home() {
 
         <div className="badge">
           <span className="badge-dot" />
-          Now in early access · Europe only
+          Free forever · No credit card required
         </div>
 
         <h1 className="hero-headline">
@@ -75,8 +49,8 @@ export default function Home() {
         </p>
 
         <div className="hero-ctas">
-          <a href="#waitlist" className="cta-primary">
-            Join the waitlist — it&apos;s free
+          <a href="https://app.klaxo.app/register" className="cta-primary">
+            Start for free
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
               <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
             </svg>
@@ -85,7 +59,7 @@ export default function Home() {
         </div>
 
         <p className="hero-social">
-          <span>2,400+</span> people already tracking their subscriptions
+          Free forever · No credit card required · Upgrade anytime
         </p>
 
         {/* APP SHOWCASE */}
@@ -382,57 +356,28 @@ export default function Home() {
                 <span style={{ color: "var(--muted)", fontSize: "12px" }}>(coming soon)</span>
               </li>
             </ul>
-            <a href="https://app.klaxo.app/register" className="price-btn price-btn-violet" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
-              Start free · upgrade anytime
+            <a href="https://app.klaxo.app/checkout?plan=pro-monthly" className="price-btn price-btn-violet" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
+              Get Pro — €3,99/month
             </a>
           </div>
         </div>
       </section>
 
-      {/* WAITLIST */}
-      <section className="waitlist-section reveal" id="waitlist">
+      {/* CTA FINAL */}
+      <section className="waitlist-section reveal">
         <div className="waitlist-bg" />
         <div className="waitlist-inner">
-          <p className="section-label">Early access</p>
-          <h2 className="waitlist-title">Be first when<br />we launch.</h2>
+          <h2 className="waitlist-title">Ready to take<br />control?</h2>
           <p className="waitlist-sub">
-            Early users get <strong>3 months of Pro for free</strong>.<br />
-            No spam. No credit card required.
+            Start tracking your subscriptions in minutes.<br />
+            No credit card required.
           </p>
-          <form className="waitlist-form" onSubmit={handleSubmit}>
-            <input
-              className="wf-input"
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <select
-              className="wf-select"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            >
-              <option value="" disabled>Select your country</option>
-              <option>Portugal</option>
-              <option>Spain</option>
-              <option>France</option>
-              <option>Germany</option>
-              <option>Italy</option>
-              <option>Netherlands</option>
-              <option>United Kingdom</option>
-              <option>Other EU country</option>
-            </select>
-            <button className="wf-btn" type="submit" disabled={status === "loading"}>
-              {status === "loading" ? "Sending..." : status === "success" ? "You're on the list! ✓" : "Reserve my spot →"}
-            </button>
-            {status === "error" && (
-              <p style={{ color: "#EF4444", fontSize: "13px", textAlign: "center" }}>
-                Something went wrong. Try again.
-              </p>
-            )}
-            <p className="wf-hint">Already 2,400+ people on the waitlist</p>
-          </form>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", marginTop: "8px" }}>
+            <a href="https://app.klaxo.app/register" className="wf-btn" style={{ textDecoration: "none", display: "inline-block" }}>
+              Start for free →
+            </a>
+            <p className="wf-hint">Free forever · No credit card required · Upgrade anytime</p>
+          </div>
         </div>
       </section>
 

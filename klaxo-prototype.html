@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klaxo — Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --bg-card: #111118;
+    --bg-card-hover: #16161F;
+    --bg-sidebar: #0D0D14;
+    --accent: #7C5CFC;
+    --accent-dim: rgba(124, 92, 252, 0.15);
+    --accent-glow: rgba(124, 92, 252, 0.3);
+    --text: #F0F0F5;
+    --text-muted: #6B6B80;
+    --text-dim: #3A3A50;
+    --border: #1E1E2E;
+    --border-hover: rgba(124, 92, 252, 0.5);
+    --green: #22C55E;
+    --amber: #F59E0B;
+    --red: #EF4444;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  .app {
+    display: flex;
+    height: 100vh;
+    background: var(--bg);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 12px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 20px;
+    margin-bottom: 4px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: -0.5px;
+    box-shadow: 0 0 20px rgba(124, 92, 252, 0.4);
+  }
+
+  .logo-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .nav { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    position: relative;
+    border: 1px solid transparent;
+    user-select: none;
+  }
+
+  .nav-item:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.04);
+    border-color: var(--border);
+  }
+
+  .nav-item.active {
+    color: var(--text);
+    background: var(--accent-dim);
+    border-color: rgba(124, 92, 252, 0.25);
+  }
+
+  .nav-item.active .nav-icon { color: var(--accent); }
+
+  .nav-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.7; }
+  .nav-item.active .nav-icon { opacity: 1; }
+
+  .sidebar-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 8px;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .user-info:hover { background: rgba(255,255,255,0.04); }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--accent), #5B8DEF);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .user-details { flex: 1; min-width: 0; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .plan-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 7px;
+    background: rgba(107,107,128,0.15);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .signout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.15s;
+    margin-top: 4px;
+  }
+
+  .signout:hover { color: var(--red); }
+
+  /* ── MAIN ── */
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 40px;
+    position: relative;
+  }
+
+  .main::-webkit-scrollbar { width: 4px; }
+  .main::-webkit-scrollbar-track { background: transparent; }
+  .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* ── PAGE ── */
+  .page { display: none; animation: pageIn 0.25s ease; }
+  .page.active { display: block; }
+
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HEADER ── */
+  .page-header { margin-bottom: 32px; }
+
+  .greeting {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .greeting-date {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ── STAT CARDS ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    cursor: default;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    animation: cardIn 0.4s ease both;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,92,252,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .stat-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(124,92,252,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(124,92,252,0.1);
+  }
+
+  .stat-card:hover::before { opacity: 1; }
+
+  .stat-card:nth-child(1) { animation-delay: 0.05s; }
+  .stat-card:nth-child(2) { animation-delay: 0.1s; }
+  .stat-card:nth-child(3) { animation-delay: 0.15s; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stat-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .stat-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .stat-badge.green { background: rgba(34,197,94,0.12); color: var(--green); }
+  .stat-badge.amber { background: rgba(245,158,11,0.12); color: var(--amber); }
+
+  /* ── TWO COL LAYOUT ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    animation: cardIn 0.4s ease 0.2s both;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s;
+  }
+  .section-link:hover { opacity: 1; }
+
+  /* ── RENEWAL ITEM ── */
+  .renewal-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.15s;
+    cursor: default;
+  }
+
+  .renewal-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .renewal-item:first-child { padding-top: 0; }
+
+  .renewal-item:hover { transform: translateX(2px); }
+
+  .renewal-logo {
+    width: 36px; height: 36px;
+    background: #1A1A28;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .renewal-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+
+  .renewal-info { flex: 1; min-width: 0; }
+  .renewal-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
+  .renewal-date { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+  .renewal-amount {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: right;
+  }
+
+  .renewal-days {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 1px;
+  }
+
+  .renewal-days.soon { color: var(--amber); }
+  .renewal-days.urgent { color: var(--red); }
+
+  /* ── CHART ── */
+  .chart-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    animation: cardIn 0.4s ease 0.25s both;
+    margin-top: 20px;
+  }
+
+  .chart-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .chart-row { display: flex; align-items: center; gap: 12px; }
+  .chart-label { font-size: 12px; color: var(--text-muted); width: 100px; flex-shrink: 0; }
+
+  .chart-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .chart-bar {
+    height: 100%;
+    border-radius: 10px;
+    background: var(--accent);
+    animation: barGrow 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+    transform-origin: left;
+  }
+
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .chart-bar.green { background: var(--green); }
+  .chart-bar.amber { background: var(--amber); }
+  .chart-bar.blue { background: #5B8DEF; }
+  .chart-bar.pink { background: #EC4899; }
+
+  .chart-amount { font-size: 12px; font-weight: 600; color: var(--text); width: 48px; text-align: right; flex-shrink: 0; }
+
+  /* ── SUBSCRIPTIONS PAGE ── */
+  .page-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .page-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .btn-add {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(124,92,252,0.35);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-add:hover {
+    background: #6B4EE6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(124,92,252,0.5);
+  }
+
+  .subs-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .sub-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    cursor: default;
+    transition: all 0.2s ease;
+    animation: cardIn 0.35s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sub-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+    pointer-events: none;
+  }
+
+  .sub-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,92,252,0.15);
+    border-color: rgba(124,92,252,0.25);
+  }
+
+  .sub-card:nth-child(1) { animation-delay: 0.05s; }
+  .sub-card:nth-child(2) { animation-delay: 0.1s; }
+  .sub-card:nth-child(3) { animation-delay: 0.15s; }
+  .sub-card:nth-child(4) { animation-delay: 0.2s; }
+  .sub-card:nth-child(5) { animation-delay: 0.25s; }
+
+  .sub-logo {
+    width: 46px; height: 46px;
+    background: #1A1A28;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .sub-logo img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+
+  .sub-info { flex: 1; min-width: 0; }
+
+  .sub-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+  .sub-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .badge-default { background: rgba(124,92,252,0.12); color: #A78BFA; border: 1px solid rgba(124,92,252,0.2); }
+  .badge-green { background: rgba(34,197,94,0.12); color: #4ADE80; border: 1px solid rgba(34,197,94,0.2); }
+  .badge-blue { background: rgba(91,141,239,0.12); color: #7DD3FC; border: 1px solid rgba(91,141,239,0.2); }
+  .badge-amber { background: rgba(245,158,11,0.12); color: #FCD34D; border: 1px solid rgba(245,158,11,0.2); }
+  .badge-pink { background: rgba(236,72,153,0.12); color: #F9A8D4; border: 1px solid rgba(236,72,153,0.2); }
+
+  .sub-meta { font-size: 12.5px; color: var(--text-muted); }
+
+  .sub-right { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+
+  .sub-price {
+    text-align: right;
+  }
+
+  .sub-amount {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .sub-cycle {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .sub-actions { display: flex; gap: 4px; }
+
+  .action-btn {
+    width: 32px; height: 32px;
+    border: 1px solid var(--border);
+    background: transparent;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.15s;
+  }
+
+  .action-btn:hover { border-color: rgba(124,92,252,0.4); color: var(--accent); background: var(--accent-dim); }
+  .action-btn.danger:hover { border-color: rgba(239,68,68,0.4); color: var(--red); background: rgba(239,68,68,0.08); }
+
+  /* ── DIVIDER ── */
+  .active-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .active-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SCROLLBAR ── */
+  .main::-webkit-scrollbar { width: 4px; }
+  .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+  /* SVG ICONS inline */
+  svg { display: block; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">K</div>
+      <span class="logo-text">Klaxo</span>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-item active" onclick="showPage('dashboard', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Dashboard
+      </div>
+      <div class="nav-item" onclick="showPage('subscriptions', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        Subscriptions
+      </div>
+      <div class="nav-item" onclick="showPage('billing', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+        Billing
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/>
+        </svg>
+        Settings
+      </div>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-info">
+        <div class="avatar">E</div>
+        <div class="user-details">
+          <div class="user-name">Edimilton Gomes Reis</div>
+          <div class="plan-badge">Free</div>
+        </div>
+      </div>
+      <div class="signout">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Sign out
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div class="greeting">Bom dia, Edimilton 👋</div>
+        <div class="greeting-date">Sexta-feira, 9 de Maio de 2026</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label"><span class="stat-dot"></span>Total Mensal</div>
+          <div class="stat-value" data-count="89" data-prefix="€">€0</div>
+          <div class="stat-sub">por mês em subscrições</div>
+          <div class="stat-badge amber">↑ +€12 vs mês passado</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label"><span class="stat-dot" style="background:#F59E0B"></span>Próximo Pagamento</div>
+          <div class="stat-value" style="font-size:20px;letter-spacing:-0.3px;padding-top:5px">Netflix</div>
+          <div class="stat-sub" style="margin-top:4px">€15.99 · daqui a 3 dias</div>
+          <div class="stat-badge amber">⚡ Em breve</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label"><span class="stat-dot" style="background:#22C55E"></span>Subscrições Activas</div>
+          <div class="stat-value" data-count="7">0</div>
+          <div class="stat-sub">serviços activos</div>
+          <div class="stat-badge green">✓ Tudo em dia</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <!-- Próximas Renovações -->
+        <div class="section">
+          <div class="section-title">
+            Próximas Renovações
+            <span class="section-link">Ver todas →</span>
+          </div>
+
+          <div class="renewal-item">
+            <div class="renewal-logo" style="background:#1A1A28">N</div>
+            <div class="renewal-info">
+              <div class="renewal-name">Netflix</div>
+              <div class="renewal-date">06 Jun 2026 · Mensal</div>
+            </div>
+            <div>
+              <div class="renewal-amount">€15.99</div>
+              <div class="renewal-days urgent">em 3 dias</div>
+            </div>
+          </div>
+
+          <div class="renewal-item">
+            <div class="renewal-logo" style="background:#1A1A28">S</div>
+            <div class="renewal-info">
+              <div class="renewal-name">Spotify</div>
+              <div class="renewal-date">10 Jun 2026 · Mensal</div>
+            </div>
+            <div>
+              <div class="renewal-amount">€9.99</div>
+              <div class="renewal-days soon">em 7 dias</div>
+            </div>
+          </div>
+
+          <div class="renewal-item">
+            <div class="renewal-logo" style="background:#1A1A28">A</div>
+            <div class="renewal-info">
+              <div class="renewal-name">Adobe CC</div>
+              <div class="renewal-date">18 Jun 2026 · Mensal</div>
+            </div>
+            <div>
+              <div class="renewal-amount">€54.99</div>
+              <div class="renewal-days">em 15 dias</div>
+            </div>
+          </div>
+
+          <div class="renewal-item">
+            <div class="renewal-logo" style="background:#1A1A28">G</div>
+            <div class="renewal-info">
+              <div class="renewal-name">GitHub</div>
+              <div class="renewal-date">01 Jul 2026 · Mensal</div>
+            </div>
+            <div>
+              <div class="renewal-amount">€4.00</div>
+              <div class="renewal-days">em 28 dias</div>
+            </div>
+          </div>
+
+          <div class="renewal-item">
+            <div class="renewal-logo" style="background:#1A1A28">N</div>
+            <div class="renewal-info">
+              <div class="renewal-name">Notion</div>
+              <div class="renewal-date">05 Jul 2026 · Mensal</div>
+            </div>
+            <div>
+              <div class="renewal-amount">€8.00</div>
+              <div class="renewal-days">em 32 dias</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gasto por Categoria -->
+        <div>
+          <div class="section" style="height:100%">
+            <div class="section-title">Gasto por Categoria</div>
+            <div class="chart-bars">
+              <div class="chart-row">
+                <div class="chart-label">Entertainment</div>
+                <div class="chart-bar-wrap"><div class="chart-bar" style="width:72%;animation-delay:0.3s"></div></div>
+                <div class="chart-amount">€25.98</div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-label">Design</div>
+                <div class="chart-bar-wrap"><div class="chart-bar pink" style="width:60%;animation-delay:0.4s"></div></div>
+                <div class="chart-amount">€54.99</div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-label">Music</div>
+                <div class="chart-bar-wrap"><div class="chart-bar green" style="width:28%;animation-delay:0.5s"></div></div>
+                <div class="chart-amount">€9.99</div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-label">Development</div>
+                <div class="chart-bar-wrap"><div class="chart-bar blue" style="width:12%;animation-delay:0.6s"></div></div>
+                <div class="chart-amount">€4.00</div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-label">Productivity</div>
+                <div class="chart-bar-wrap"><div class="chart-bar amber" style="width:22%;animation-delay:0.7s"></div></div>
+                <div class="chart-amount">€8.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SUBSCRIPTIONS ── -->
+    <div class="page" id="page-subscriptions">
+      <div class="page-top">
+        <div>
+          <div class="greeting" style="font-size:22px">Subscriptions</div>
+          <div class="page-meta">7 activas · €89.00/mês</div>
+        </div>
+        <button class="btn-add">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Adicionar
+        </button>
+      </div>
+
+      <div class="active-label">Activas · 5</div>
+
+      <div class="subs-list">
+
+        <div class="sub-card">
+          <div class="sub-logo" style="background:#1A1A28">N</div>
+          <div class="sub-info">
+            <div class="sub-name-row">
+              <span class="sub-name">Netflix</span>
+              <span class="badge badge-default">Entertainment</span>
+            </div>
+            <div class="sub-meta">Mensal · Renova em 3 dias · 06 Jun 2026</div>
+          </div>
+          <div class="sub-right">
+            <div class="sub-price">
+              <div class="sub-amount">€15.99</div>
+              <div class="sub-cycle">por mês</div>
+            </div>
+            <div class="sub-actions">
+              <button class="action-btn" title="Editar">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+              <button class="action-btn" title="Pausar">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+              <button class="action-btn danger" title="Cancelar">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-card">
+          <div class="sub-logo" style="background:#1A1A28">S</div>
+          <div class="sub-info">
+            <div class="sub-name-row">
+              <span class="sub-name">Spotify</span>
+              <span class="badge badge-green">Music</span>
+            </div>
+            <div class="sub-meta">Mensal · Renova em 7 dias · 10 Jun 2026</div>
+          </div>
+          <div class="sub-right">
+            <div class="sub-price">
+              <div class="sub-amount">€9.99</div>
+              <div class="sub-cycle">por mês</div>
+            </div>
+            <div class="sub-actions">
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+              <button class="action-btn danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-card">
+          <div class="sub-logo" style="background:#1A1A28">A</div>
+          <div class="sub-info">
+            <div class="sub-name-row">
+              <span class="sub-name">Adobe Creative Cloud</span>
+              <span class="badge badge-pink">Design</span>
+            </div>
+            <div class="sub-meta">Mensal · Renova em 15 dias · 18 Jun 2026</div>
+          </div>
+          <div class="sub-right">
+            <div class="sub-price">
+              <div class="sub-amount">€54.99</div>
+              <div class="sub-cycle">por mês</div>
+            </div>
+            <div class="sub-actions">
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+              <button class="action-btn danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-card">
+          <div class="sub-logo" style="background:#1A1A28">G</div>
+          <div class="sub-info">
+            <div class="sub-name-row">
+              <span class="sub-name">GitHub</span>
+              <span class="badge badge-blue">Development</span>
+            </div>
+            <div class="sub-meta">Mensal · Renova em 28 dias · 01 Jul 2026</div>
+          </div>
+          <div class="sub-right">
+            <div class="sub-price">
+              <div class="sub-amount">€4.00</div>
+              <div class="sub-cycle">por mês</div>
+            </div>
+            <div class="sub-actions">
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+              <button class="action-btn danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-card">
+          <div class="sub-logo" style="background:#1A1A28">N</div>
+          <div class="sub-info">
+            <div class="sub-name-row">
+              <span class="sub-name">Notion</span>
+              <span class="badge badge-amber">Productivity</span>
+            </div>
+            <div class="sub-meta">Mensal · Renova em 32 dias · 05 Jul 2026</div>
+          </div>
+          <div class="sub-right">
+            <div class="sub-price">
+              <div class="sub-amount">€8.00</div>
+              <div class="sub-cycle">por mês</div>
+            </div>
+            <div class="sub-actions">
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+              <button class="action-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+              <button class="action-btn danger"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── BILLING ── -->
+    <div class="page" id="page-billing">
+      <div class="page-header">
+        <div class="greeting" style="font-size:22px">Billing</div>
+        <div class="greeting-date">Gere o teu plano e pagamentos</div>
+      </div>
+      <div class="section" style="max-width:480px">
+        <div class="section-title">Plano actual</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+          <div>
+            <div style="font-size:20px;font-weight:800;color:var(--text)">Free</div>
+            <div style="font-size:13px;color:var(--text-muted);margin-top:3px">Até 5 subscrições</div>
+          </div>
+          <button class="btn-add">Upgrade para Pro</button>
+        </div>
+        <div style="background:var(--accent-dim);border:1px solid rgba(124,92,252,0.2);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:13px;font-weight:600;color:#A78BFA;margin-bottom:6px">✦ Pro · €4.99/mês</div>
+          <div style="font-size:12.5px;color:var(--text-muted);line-height:1.6">
+            Subscrições ilimitadas · Alertas por email · Exportação CSV · Relatórios mensais
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function showPage(id, el) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    el.classList.add('active');
+    // Re-trigger animations
+    const cards = document.querySelectorAll('#page-' + id + ' .stat-card, #page-' + id + ' .sub-card, #page-' + id + ' .section');
+    cards.forEach(c => { c.style.animation = 'none'; c.offsetHeight; c.style.animation = ''; });
+    if (id === 'dashboard') animateCounters();
+  }
+
+  function animateCounters() {
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      let start = 0;
+      const duration = 800;
+      const step = Math.ceil(target / (duration / 16));
+      el.textContent = prefix + '0' + suffix;
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = prefix + start + suffix;
+        if (start >= target) clearInterval(timer);
+      }, 16);
+    });
+  }
+
+  // Run on load
+  setTimeout(animateCounters, 300);
+</script>
+
+</body>
+</html>
