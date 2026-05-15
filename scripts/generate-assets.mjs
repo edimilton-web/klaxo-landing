@@ -1,5 +1,5 @@
 import sharp from 'sharp'
-import { writeFileSync } from 'fs'
+import { writeFileSync, readFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -8,13 +8,24 @@ const publicDir = join(__dirname, '..', 'public')
 
 // ─── LOGO 240×240 ──────────────────────────────────────────────────────────
 
+const nunitoB64 = readFileSync(join(__dirname, 'nunito-800.ttf')).toString('base64')
+
 const logoSvg = `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @font-face {
+        font-family: 'Nunito';
+        font-weight: 800;
+        src: url('data:font/truetype;base64,${nunitoB64}') format('truetype');
+      }
+    </style>
+  </defs>
   <text
     x="122" y="190"
     text-anchor="middle"
-    font-family="Arial Black, Arial, Helvetica, sans-serif"
+    font-family="Nunito, sans-serif"
     font-size="210"
-    font-weight="900"
+    font-weight="800"
     fill="#7C3AED"
   >K</text>
 </svg>`
