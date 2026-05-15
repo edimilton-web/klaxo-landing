@@ -68,7 +68,10 @@ export default function Home() {
 
       {/* NAV */}
       <nav>
-        <div className="nav-logo">klax<span>o</span></div>
+        <a href="/" className="nav-logo">
+          <span className="nav-logo-icon">K</span>
+          Klaxo
+        </a>
         <div className="nav-right">
           <a href="https://app.klaxo.app/login" className="nav-signin">Sign in</a>
           <a href="https://app.klaxo.app/register" className="nav-cta">Start for free</a>

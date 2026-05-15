@@ -14,14 +14,13 @@ export const metadata = {
   alternates: { canonical: "https://www.klaxo.app/contact" },
 }
 
+import KlaxoNav from '../components/KlaxoNav'
+
 export default function Contact() {
   return (
     <div style={{ background: '#0A0F1E', minHeight: '100vh', fontFamily: 'DM Sans, sans-serif', color: '#fff' }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '80px 24px' }}>
-
-        <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'rgba(255,255,255,0.4)', fontSize: 14, textDecoration: 'none', marginBottom: 48 }}>
-          ← Back to Klaxo
-        </a>
+      <KlaxoNav />
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '108px 24px 80px' }}>
 
         <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 8 }}>Contact</h1>
         <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: 56 }}>

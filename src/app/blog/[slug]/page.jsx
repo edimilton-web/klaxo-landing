@@ -1,5 +1,6 @@
 import { posts, getPostBySlug } from '../../../lib/posts'
 import { notFound } from 'next/navigation'
+import KlaxoNav from '../../components/KlaxoNav'
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }))
@@ -85,7 +86,8 @@ export default function BlogPost({ params }) {
 
   return (
     <div style={{ background: '#0A0F1E', minHeight: '100vh', fontFamily: 'DM Sans, sans-serif', color: '#fff' }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '80px 24px' }}>
+      <KlaxoNav />
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '108px 24px 80px' }}>
 
         <a href="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'rgba(255,255,255,0.4)', fontSize: 14, textDecoration: 'none', marginBottom: 48 }}>
           ← Back to blog
