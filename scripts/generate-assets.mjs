@@ -10,8 +10,14 @@ const publicDir = join(__dirname, '..', 'public')
 
 const nunitoB64 = readFileSync(join(__dirname, 'nunito-900.ttf')).toString('base64')
 
-const logoSvg = `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+// ── klaxo-logo.png — ícone 240×240 com gradiente exacto do componente KlaxoLogo
+const logoSvg = `<svg width="240" height="240" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#A78BFA"/>
+      <stop offset="52%"  stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#3B0764"/>
+    </linearGradient>
     <style>
       @font-face {
         font-family: 'Nunito';
@@ -20,14 +26,14 @@ const logoSvg = `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http
       }
     </style>
   </defs>
-  <!-- K violeta em Nunito Black, fundo transparente -->
+  <rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g)"/>
   <text
-    x="122" y="196"
+    x="50" y="70"
     text-anchor="middle"
     font-family="Nunito, sans-serif"
-    font-size="188"
+    font-size="62"
     font-weight="900"
-    fill="#7C5CFC"
+    fill="white"
   >K</text>
 </svg>`
 
@@ -221,3 +227,249 @@ await sharp(Buffer.from(dash))
   .png()
   .toFile(join(publicDir, 'klaxo-screenshot-1.png'))
 console.log('✓ klaxo-screenshot-1.png')
+
+// ─── SCREENSHOT 2 — "€180" impact card 1270×760 ────────────────────────────
+
+const s2 = `<svg width="1270" height="760" viewBox="0 0 1270 760" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @font-face { font-family:'Nunito'; font-weight:900; src:url('data:font/truetype;base64,${nunitoB64}') format('truetype'); }
+    </style>
+    <linearGradient id="gv" x1="0" y1="0" x2="635" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#A78BFA"/>
+      <stop offset="52%"  stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#3B0764"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#7C3AED" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1270" height="760" fill="#0A0F1E"/>
+
+  <!-- Subtle dot grid -->
+  <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.045)"/>
+  </pattern>
+  <rect width="1270" height="760" fill="url(#dots)"/>
+
+  <!-- Centre glow -->
+  <ellipse cx="635" cy="380" rx="480" ry="320" fill="url(#glow)"/>
+
+  <!-- Top label -->
+  <text x="635" y="198"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="28"
+    font-weight="400"
+    letter-spacing="1"
+    fill="rgba(255,255,255,0.52)"
+  >The average European spends</text>
+
+  <!-- €180 — hero number -->
+  <text x="635" y="390"
+    text-anchor="middle"
+    font-family="Nunito, 'Arial Black', sans-serif"
+    font-size="260"
+    font-weight="900"
+    fill="url(#gv)"
+  >€180</text>
+
+  <!-- per month -->
+  <text x="635" y="460"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="30"
+    font-weight="400"
+    letter-spacing="0.5"
+    fill="rgba(255,255,255,0.52)"
+  >per month on subscriptions</text>
+
+  <!-- Divider line -->
+  <line x1="510" y1="504" x2="760" y2="504" stroke="rgba(124,58,237,0.35)" stroke-width="1"/>
+
+  <!-- Secondary line -->
+  <text x="635" y="548"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="22"
+    font-weight="600"
+    fill="rgba(255,255,255,0.36)"
+    font-style="italic"
+  >Most can't name half of them.</text>
+
+  <!-- Logo bottom-right -->
+  <rect x="1098" y="694" width="32" height="32" rx="8" fill="url(#gv)"/>
+  <text x="1114" y="719" text-anchor="middle" font-family="Nunito, sans-serif" font-size="20" font-weight="900" fill="white">K</text>
+  <text x="1140" y="719" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="rgba(255,255,255,0.85)">Klaxo</text>
+</svg>`
+
+await sharp(Buffer.from(s2))
+  .png()
+  .toFile(join(publicDir, 'klaxo-screenshot-2.png'))
+console.log('✓ klaxo-screenshot-2.png')
+
+// ─── SCREENSHOT 3 — 3-cards feature overview 1270×760 ──────────────────────
+
+const s3 = `<svg width="1270" height="760" viewBox="0 0 1270 760" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @font-face { font-family:'Nunito'; font-weight:900; src:url('data:font/truetype;base64,${nunitoB64}') format('truetype'); }
+    </style>
+    <linearGradient id="gv3" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#A78BFA"/>
+      <stop offset="52%"  stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#3B0764"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="50%" cy="30%" r="55%">
+      <stop offset="0%"   stop-color="#7C3AED" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1270" height="760" fill="#0A0F1E"/>
+  <pattern id="dots3" width="32" height="32" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.04)"/>
+  </pattern>
+  <rect width="1270" height="760" fill="url(#dots3)"/>
+  <ellipse cx="635" cy="200" rx="600" ry="260" fill="url(#glow3)"/>
+
+  <!-- Top title -->
+  <text x="635" y="118"
+    text-anchor="middle"
+    font-family="Arial Black, Arial, sans-serif"
+    font-size="42"
+    font-weight="900"
+    fill="#FFFFFF"
+    letter-spacing="-1"
+  >Everything you need to take control</text>
+
+  <!-- Subtitle -->
+  <text x="635" y="158"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="19"
+    fill="rgba(255,255,255,0.42)"
+  >One app. All your subscriptions. Zero surprises.</text>
+
+  <!-- ── CARD 1 — Renewal Alerts ── -->
+  <!-- card bg -->
+  <rect x="80" y="200" width="336" height="430" rx="20"
+    fill="#0D1528" stroke="#7C3AED" stroke-opacity="0.35" stroke-width="1.5"/>
+  <!-- violet top accent -->
+  <rect x="80" y="200" width="336" height="4" rx="2" fill="url(#gv3)"/>
+  <!-- icon circle -->
+  <circle cx="248" cy="290" r="40" fill="rgba(124,58,237,0.16)"/>
+  <text x="248" y="306" text-anchor="middle" font-family="Arial, sans-serif" font-size="36">🔔</text>
+  <!-- title -->
+  <text x="248" y="368"
+    text-anchor="middle"
+    font-family="Arial Black, Arial, sans-serif"
+    font-size="24"
+    font-weight="900"
+    fill="#FFFFFF"
+  >Renewal Alerts</text>
+  <!-- body -->
+  <text x="248" y="408"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >Get notified 5 days before</text>
+  <text x="248" y="432"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >every charge. No more</text>
+  <text x="248" y="456"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >surprises.</text>
+  <!-- pill -->
+  <rect x="168" y="574" width="160" height="30" rx="15" fill="rgba(124,58,237,0.18)" stroke="rgba(124,58,237,0.4)" stroke-width="1"/>
+  <text x="248" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#A78BFA">Email &amp; Push</text>
+
+  <!-- ── CARD 2 — Full Dashboard ── -->
+  <rect x="467" y="200" width="336" height="430" rx="20"
+    fill="#0D1528" stroke="#7C3AED" stroke-opacity="0.35" stroke-width="1.5"/>
+  <rect x="467" y="200" width="336" height="4" rx="2" fill="url(#gv3)"/>
+  <circle cx="635" cy="290" r="40" fill="rgba(124,58,237,0.16)"/>
+  <text x="635" y="306" text-anchor="middle" font-family="Arial, sans-serif" font-size="36">📊</text>
+  <text x="635" y="368"
+    text-anchor="middle"
+    font-family="Arial Black, Arial, sans-serif"
+    font-size="24"
+    font-weight="900"
+    fill="#FFFFFF"
+  >Full Dashboard</text>
+  <text x="635" y="408"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >See your real monthly and</text>
+  <text x="635" y="432"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >annual subscription cost</text>
+  <text x="635" y="456"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >at a glance.</text>
+  <rect x="551" y="574" width="168" height="30" rx="15" fill="rgba(124,58,237,0.18)" stroke="rgba(124,58,237,0.4)" stroke-width="1"/>
+  <text x="635" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#A78BFA">Free forever</text>
+
+  <!-- ── CARD 3 — Built for Europe ── -->
+  <rect x="854" y="200" width="336" height="430" rx="20"
+    fill="#0D1528" stroke="#7C3AED" stroke-opacity="0.35" stroke-width="1.5"/>
+  <rect x="854" y="200" width="336" height="4" rx="2" fill="url(#gv3)"/>
+  <circle cx="1022" cy="290" r="40" fill="rgba(124,58,237,0.16)"/>
+  <text x="1022" y="306" text-anchor="middle" font-family="Arial, sans-serif" font-size="36">🇪🇺</text>
+  <text x="1022" y="368"
+    text-anchor="middle"
+    font-family="Arial Black, Arial, sans-serif"
+    font-size="24"
+    font-weight="900"
+    fill="#FFFFFF"
+  >Built for Europe</text>
+  <text x="1022" y="408"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >Euro support, GDPR</text>
+  <text x="1022" y="432"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >compliant, Open Banking</text>
+  <text x="1022" y="456"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    fill="rgba(255,255,255,0.50)"
+  >coming soon.</text>
+  <rect x="942" y="574" width="160" height="30" rx="15" fill="rgba(124,58,237,0.18)" stroke="rgba(124,58,237,0.4)" stroke-width="1"/>
+  <text x="1022" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#A78BFA">GDPR compliant</text>
+
+  <!-- Logo bottom-right -->
+  <rect x="1098" y="694" width="32" height="32" rx="8" fill="url(#gv3)"/>
+  <text x="1114" y="719" text-anchor="middle" font-family="Nunito, sans-serif" font-size="20" font-weight="900" fill="white">K</text>
+  <text x="1140" y="719" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="rgba(255,255,255,0.85)">Klaxo</text>
+</svg>`
+
+await sharp(Buffer.from(s3))
+  .png()
+  .toFile(join(publicDir, 'klaxo-screenshot-3.png'))
+console.log('✓ klaxo-screenshot-3.png')
