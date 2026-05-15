@@ -1,5 +1,89 @@
 export const posts = [
   {
+    slug: "best-subscription-tracker-europe-2026",
+    title: "Best Subscription Tracker App for Europe in 2026",
+    date: "May 14, 2026",
+    readTime: "8 min read",
+    description: "We compared every major app. Here's what actually works for European users — and what doesn't.",
+    content: `
+**The Problem With Most Subscription Trackers**
+
+You've probably noticed it too.
+
+You search for a subscription tracker, find something that looks good, and then — it only works with US bank accounts. Or it charges in dollars. Or it lists 200 banks, none of which are yours.
+
+Most subscription management apps were built for Americans, by Americans. That's not a criticism — it's just the reality of where the market started. But if you're based in Portugal, Spain, Germany, France, or anywhere else in Europe, these tools have a fundamental problem: they weren't built for you.
+
+This guide compares the most popular subscription tracker apps available in 2026, with an honest focus on what actually works for European users.
+
+**Why Europeans Need a Different Solution**
+
+Before we compare apps, it's worth understanding why the problem is different here.
+
+**Currency complexity.** Europeans deal with euros, pounds, Swiss francs, and sometimes multiple currencies at once. Most US apps only natively support USD.
+
+**Open Banking (PSD2).** Europe has PSD2 — a regulatory framework that allows apps to securely connect to your bank with your permission. This is more standardised and privacy-forward than the US equivalent, but requires apps to integrate with European banking APIs specifically.
+
+**GDPR.** European users are rightly cautious about apps that share financial data with advertisers. Most US apps have privacy policies that would raise flags under GDPR.
+
+**Different services.** Europeans subscribe to different things — local streaming platforms, European cloud storage providers, country-specific gym chains. Apps built around US services often miss these entirely.
+
+**The Apps We Compared**
+
+**1. Rocket Money — Verdict for Europe: 0/5**
+
+Rocket Money is arguably the most powerful subscription tracker available — if you live in the US. It automatically detects subscriptions, can negotiate bills on your behalf, and has a slick interface.
+
+For Europeans, it's essentially unusable. It requires a US-based bank account, charges in USD, and its automatic detection doesn't work with European banks. If you're reading this from Lisbon, Madrid, or Berlin, move on.
+
+**2. Bobby App — Verdict for Europe: 3/5**
+
+Bobby has been around since 2015 and built a loyal following. It's clean, simple, and gets the job done for basic subscription tracking. You add your subscriptions manually, set billing dates, and Bobby reminds you before renewals.
+
+The limitations are real: it's iOS-only, there's no bank connection, the free tier is very limited, and the app hasn't evolved much in years. No dashboard, no spending trends, no web version.
+
+**3. Subby (Android) — Verdict for Europe: 3/5**
+
+Subby fills the gap for Android users that Bobby leaves open. It's free, lets you track unlimited subscriptions manually, and sends notifications before billing dates. It supports multiple currencies, which is a plus for Europeans.
+
+Like Bobby, it's entirely manual — no bank connection, no automation, and fairly bare-bones in terms of insights.
+
+**4. ReSubs — Verdict for Europe: 4/5**
+
+ReSubs is the most complete dedicated subscription tracker available right now. It works on iOS, Android, and Web, supports multiple currencies, and has trial reminders, cancel guides, and lifecycle tracking.
+
+The downside: it's not free. The premium plan is required for full functionality, pricing is higher than alternatives, and there's no Open Banking integration — everything is still manual.
+
+**5. Klaxo — Built for Europe**
+
+We built Klaxo because we kept running into the same problem: every subscription tracker we tried was American, or bare-bones, or both.
+
+Klaxo is built from the ground up for European users. Native euro support. GDPR-compliant from day one — no advertising partnerships, no data selling. European services recognised automatically. Renewal alerts 5 days before any charge. Open Banking via PSD2 in active development.
+
+Honest pricing: free for up to 5 subscriptions. Pro is €3.99/month or €29/year — cancel anytime.
+
+**Which App Should You Use?**
+
+If you're on iOS and want something free and simple: Bobby still works. Everything is manual, but it gets the job done.
+
+If you're on Android and want free manual tracking: Subby is the equivalent. Nothing fancy, but reliable.
+
+If you want the most complete manual tracker and don't mind paying more: ReSubs is the best all-round option today.
+
+If you want something built specifically for Europe — euros, GDPR compliance, and a path to automatic bank detection: Klaxo is the obvious choice. The free plan covers most people's needs, and Pro is less than a coffee per month.
+
+**How Much Are You Actually Spending?**
+
+Here's the uncomfortable truth: most Europeans significantly underestimate their subscription spending.
+
+Studies consistently show that people estimate they spend about half of what they actually pay every month on subscriptions. The services you use regularly are easy to remember. The ones you forget — that Adobe plan from 2023, the cloud storage you switched away from, the free trial that became paid — are the ones that quietly drain your account every month.
+
+A subscription tracker doesn't just help you see what you're paying. It helps you make conscious decisions about every recurring charge. That's worth more than the cost of any of these apps.
+
+[Start tracking your subscriptions for free at klaxo.app →](https://klaxo.app)
+  `,
+  },
+  {
     slug: 'i-found-34-euros-i-was-wasting',
     title: 'I found €34/month I was wasting — here\'s how',
     date: 'May 3, 2026',
