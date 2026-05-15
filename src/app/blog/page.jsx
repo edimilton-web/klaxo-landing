@@ -1,8 +1,19 @@
 import { posts } from '../../lib/posts'
 
 export const metadata = {
-  title: 'Blog — Klaxo',
-  description: 'Thoughts on subscriptions, personal finance, and building Klaxo.',
+  title: "Blog | Klaxo",
+  description: "Thoughts on subscriptions, personal finance, and building Klaxo. Tips to save money on subscriptions as a European.",
+  openGraph: {
+    title: "Blog | Klaxo",
+    description: "Thoughts on subscriptions, personal finance, and building Klaxo.",
+    url: "https://www.klaxo.app/blog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Klaxo",
+    description: "Thoughts on subscriptions, personal finance, and building Klaxo.",
+  },
+  alternates: { canonical: "https://www.klaxo.app/blog" },
 }
 
 export default function Blog() {

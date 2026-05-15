@@ -1,6 +1,17 @@
 export const metadata = {
-  title: 'Contact — Klaxo',
-  description: 'Get in touch with the Klaxo team.',
+  title: "Contact | Klaxo",
+  description: "Get in touch with the Klaxo team. We respond within 1-2 business days.",
+  openGraph: {
+    title: "Contact | Klaxo",
+    description: "Get in touch with the Klaxo team.",
+    url: "https://www.klaxo.app/contact",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact | Klaxo",
+    description: "Get in touch with the Klaxo team.",
+  },
+  alternates: { canonical: "https://www.klaxo.app/contact" },
 }
 
 export default function Contact() {

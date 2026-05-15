@@ -9,8 +9,20 @@ export function generateMetadata({ params }) {
   const post = getPostBySlug(params.slug)
   if (!post) return {}
   return {
-    title: `${post.title} — Klaxo`,
+    title: `${post.title} | Klaxo`,
     description: post.description,
+    openGraph: {
+      title: `${post.title} | Klaxo`,
+      description: post.description,
+      url: `https://www.klaxo.app/blog/${params.slug}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Klaxo`,
+      description: post.description,
+    },
+    alternates: { canonical: `https://www.klaxo.app/blog/${params.slug}` },
   }
 }
 

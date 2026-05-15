@@ -1,6 +1,17 @@
 export const metadata = {
-  title: 'Privacy Policy — Klaxo',
-  description: 'How Klaxo collects, uses and protects your personal data.',
+  title: "Privacy Policy | Klaxo",
+  description: "How Klaxo collects, uses and protects your personal data. GDPR compliant.",
+  openGraph: {
+    title: "Privacy Policy | Klaxo",
+    description: "How Klaxo collects, uses and protects your personal data.",
+    url: "https://www.klaxo.app/privacy",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy | Klaxo",
+    description: "How Klaxo collects, uses and protects your personal data.",
+  },
+  alternates: { canonical: "https://www.klaxo.app/privacy" },
 }
 
 export default function PrivacyPolicy() {

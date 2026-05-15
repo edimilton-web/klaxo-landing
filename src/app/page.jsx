@@ -1,25 +1,71 @@
-"use client"
-import { useEffect } from "react"
+import RevealObserver from "./RevealObserver"
+
+export const metadata = {
+  title: "Klaxo — Track Your Subscriptions | Built for Europe",
+  description: "See every subscription, get notified before renewals, and stop losing money. The subscription tracker built for Europeans. Free to start.",
+  alternates: {
+    canonical: "https://www.klaxo.app/",
+  },
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Klaxo",
+      "url": "https://www.klaxo.app",
+      "description": "Subscription tracker built for Europeans. Track every subscription, get notified before renewals.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Klaxo free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Klaxo has a free plan that lets you track up to 5 subscriptions. The Pro plan at €3.99/month unlocks unlimited subscriptions and renewal alerts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Klaxo built for European users?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Klaxo is built specifically for Europeans. It supports euro pricing, recognises popular European and global services, and complies with GDPR."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Klaxo notify me before renewals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Klaxo sends you an email 5 days before any subscription renews, so you always have time to decide whether to keep or cancel it."
+          }
+        }
+      ]
+    }
+  ]
+}
+
 
 export default function Home() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("visible")
-            observer.unobserve(e.target)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <>
+      <RevealObserver />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* NAV */}
       <nav>
         <div className="nav-logo">klax<span>o</span></div>

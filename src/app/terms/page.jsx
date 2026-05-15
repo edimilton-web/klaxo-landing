@@ -1,6 +1,17 @@
 export const metadata = {
-  title: 'Terms of Service — Klaxo',
-  description: 'Terms and conditions for using Klaxo.',
+  title: "Terms of Service | Klaxo",
+  description: "Terms and conditions for using Klaxo.",
+  openGraph: {
+    title: "Terms of Service | Klaxo",
+    description: "Terms and conditions for using Klaxo.",
+    url: "https://www.klaxo.app/terms",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms of Service | Klaxo",
+    description: "Terms and conditions for using Klaxo.",
+  },
+  alternates: { canonical: "https://www.klaxo.app/terms" },
 }
 
 export default function Terms() {
