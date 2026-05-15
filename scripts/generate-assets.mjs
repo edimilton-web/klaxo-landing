@@ -20,13 +20,16 @@ const logoSvg = `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http
       }
     </style>
   </defs>
+  <!-- Fundo quadrado arredondado violeta — igual ao app icon -->
+  <rect width="240" height="240" rx="52" fill="#7C5CFC"/>
+  <!-- K branco em Nunito Black -->
   <text
-    x="122" y="190"
+    x="122" y="186"
     text-anchor="middle"
     font-family="Nunito, sans-serif"
-    font-size="210"
+    font-size="168"
     font-weight="900"
-    fill="#7C3AED"
+    fill="#FFFFFF"
   >K</text>
 </svg>`
 
