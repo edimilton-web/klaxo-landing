@@ -8,14 +8,14 @@ const publicDir = join(__dirname, '..', 'public')
 
 // ─── LOGO 240×240 ──────────────────────────────────────────────────────────
 
-const nunitoB64 = readFileSync(join(__dirname, 'nunito-800.ttf')).toString('base64')
+const nunitoB64 = readFileSync(join(__dirname, 'nunito-900.ttf')).toString('base64')
 
 const logoSvg = `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       @font-face {
         font-family: 'Nunito';
-        font-weight: 800;
+        font-weight: 900;
         src: url('data:font/truetype;base64,${nunitoB64}') format('truetype');
       }
     </style>
@@ -25,7 +25,7 @@ const logoSvg = `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http
     text-anchor="middle"
     font-family="Nunito, sans-serif"
     font-size="210"
-    font-weight="800"
+    font-weight="900"
     fill="#7C3AED"
   >K</text>
 </svg>`
