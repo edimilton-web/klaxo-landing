@@ -1,5 +1,133 @@
 export const posts = [
   {
+    slug: "how-to-cancel-forgotten-subscriptions",
+    title: "How to Cancel Subscriptions You Forgot You Had",
+    date: "May 16, 2026",
+    readTime: "7 min read",
+    description: "Find everything that's charging you — and actually cancel it, including the ones that make it deliberately difficult.",
+    content: `
+At some point, you signed up for something, used it for a while, and then just... stopped. The subscription didn't stop. It kept going. It's probably still going right now.
+
+This happens to everyone. It's not carelessness — it's the result of how subscription businesses are designed. Cancellation is never the obvious next step. There's always a reason to wait one more month.
+
+Here's how to find everything that's charging you and actually cancel it.
+
+**Step 1: Find your subscriptions before you cancel anything**
+
+The most common mistake is trying to cancel individual subscriptions from memory. You'll miss half of them. Start with a proper audit first.
+
+**Check your bank statements**
+
+Go back at least 90 days — ideally 6 months. Filter for recurring charges. Look for anything that appears more than once at roughly the same amount. Make a list.
+
+Pay attention to charges in foreign currencies (common with US-based services); small amounts you've stopped noticing (€0.99, €2.99, €4.99); and annual charges you've forgotten about that hit once a year.
+
+**Search your email**
+
+Search for these terms one at a time: "subscription," "receipt," "invoice," "payment confirmation," "your plan," "billing," and "renewal."
+
+You will find things you forgot existed. Everyone does.
+
+**Check your app stores**
+
+Both Apple and Google track subscriptions made through their platforms. On iPhone: Settings → your name → Subscriptions. On Android: Google Play → Profile icon → Payments & subscriptions → Subscriptions.
+
+These often contain surprises — apps that offered a free trial, apps you downloaded once and never opened again.
+
+**Check PayPal and other payment services**
+
+If you use PayPal, log in and go to Settings → Payments → Manage automatic payments. This shows everything that's been authorised to charge you automatically.
+
+**Step 2: Decide what to keep**
+
+Before cancelling everything, it's worth being honest about what you actually use.
+
+The question isn't "have I used this in the last month?" It's "would I sign up for this today if I didn't already have it?"
+
+If the answer is no, cancel it. Common categories where people find wasted money:
+
+**Streaming services you're doubling up on.** Most households have more streaming subscriptions than they watch. Pick the ones you genuinely use most weeks. Cancel the rest — you can always resubscribe for a specific series.
+
+**Old cloud storage plans.** When you switched phones or computers, you might have signed up for new cloud storage without cancelling the old one. Check iCloud, Google One, Dropbox, and OneDrive separately.
+
+**Apps that felt essential at signup and now feel optional.** Meditation apps, language learning, productivity tools. If you haven't opened it in three months, you're not going to.
+
+**Free trials you forgot to cancel.** These are usually small amounts — €5 to €15 — which is exactly why they survive unnoticed for months.
+
+**Step 3: Actually cancel them**
+
+This is where things get deliberately complicated. Services make cancellation hard on purpose. Here's what to expect.
+
+**The direct route**
+
+Most subscriptions can be cancelled by logging into the service, going to Account → Settings → Billing or Subscription, and finding a cancel or downgrade option. Sounds simple. Often isn't.
+
+**What services do to stop you**
+
+"Are you sure?" screens that ask you to reconsider, sometimes multiple times. Offers of a discounted month if you stay. Confusing options where "pause" and "cancel" look similar. Cancellation flows that require you to call a phone number — yes, this still happens in 2026.
+
+The most important thing: cancellation usually takes effect at the end of the current billing period. You've already paid for the rest of the month (or year). Don't let this stop you — cancel anyway. The charge has happened. The question is whether you want it to happen again.
+
+**Platform-based cancellations**
+
+If you subscribed through the App Store or Google Play, you cancel through the platform, not the service itself. On iPhone: Settings → your name → Subscriptions → select → Cancel. On Android: Google Play → Subscriptions → select → Cancel subscription.
+
+This matters because cancelling directly with the service sometimes doesn't stop the platform charge, and vice versa.
+
+**Services that make it genuinely difficult**
+
+Some services require you to contact customer support to cancel. Use live chat if available. Send an email explicitly stating you want to cancel and asking for confirmation in writing.
+
+In the EU, companies are legally required to allow cancellation through the same channel you signed up. If you signed up online, they cannot legally force you to cancel by phone. Worth knowing.
+
+**Step 4: Track what you cancelled and when**
+
+After you cancel, keep a record of what you cancelled, when the cancellation takes effect, and what the last charge will be.
+
+Check your bank statement the following month to confirm nothing slipped through. Some services have bugs in their cancellation flow — rare, but it happens.
+
+If you've cancelled a lot of things at once, a subscription tracker makes this easier. Klaxo lets you mark subscriptions as cancelled without deleting them from your history, so you have a record of what was cancelled and when.
+
+**Services that are notably annoying to cancel**
+
+**Adobe Creative Cloud** — Adobe charges a cancellation fee if you cancel before your annual contract ends — often 50% of the remaining months. Check your plan type before cancelling. If you're on a monthly plan, cancellation is straightforward. If you're on an annual plan billed monthly, expect a fee.
+
+**Amazon Prime** — Amazon lets you cancel, but the flow involves multiple "are you sure?" screens and an offer to pause instead. Go to Account → Prime → Manage membership → End membership. Confirm through the subsequent screens without clicking the pause option.
+
+**Gym and fitness apps** — Many fitness apps have a cancel option in settings. Physical gym memberships in Portugal and Spain often require written notice, sometimes 30 days in advance. Check your original contract.
+
+**VPN services** — Most offer refund windows (usually 30 days). If you're within the window, you can sometimes get a refund as well as a cancellation. Worth checking before just cancelling.
+
+**After you've cancelled**
+
+**Set up alerts for future renewals.** The reason you had forgotten subscriptions in the first place is that nothing told you before the charge happened. A subscription tracker with renewal alerts means you get notified 5 days before any charge — enough time to decide whether you still want it.
+
+**Review annually.** Subscriptions accumulate over time. What makes sense today might not in a year. A 30-minute review once a year keeps the list manageable.
+
+**A note on how this happens in the first place**
+
+It's worth being clear about something: forgotten subscriptions aren't a personal failing. They're a product feature.
+
+Every decision in a subscription product's design — the free trial length, the cancellation flow complexity, the timing of price increase notices — is made to maximise retention. Some of it is fine (good products should be easy to keep). Some of it is deliberately friction-heavy (bad products make leaving hard on purpose).
+
+The fix is visibility. If you can see what you're paying for, you can make actual decisions about it. If it's invisible, you keep paying whether you're using it or not.
+
+That's the problem Klaxo solves. Track what you have, get notified before renewals, see the real cost. It doesn't cancel things for you — that's still your job — but it makes sure you're making the decision consciously rather than by default.
+
+**Frequently Asked Questions**
+
+**Can I cancel a subscription that already renewed?** Usually not for the current period — the charge has happened. You can cancel to prevent the next renewal. Some services offer refunds within a short window after renewal; check their refund policy.
+
+**What if I can't find the cancellation option?** In the EU, companies must allow you to cancel through the same channel you signed up. Contact customer support directly and explicitly request cancellation. Get it in writing (email).
+
+**Will I lose my data if I cancel?** Usually yes, eventually. Most services give you a grace period (30–90 days) where your account is deactivated but data is preserved. Export anything you need before cancelling.
+
+**How do I cancel a subscription I signed up for years ago and can't remember the login for?** Try password reset with the email you used at the time. If you no longer have access to that email, contact support with payment proof (bank statement showing the charge) and request cancellation.
+
+[Keep track of all your subscriptions and get notified before renewals at klaxo.app](https://klaxo.app)
+  `,
+  },
+  {
     slug: "how-much-europeans-spend-on-subscriptions-2026",
     title: "How Much Are Europeans Really Spending on Subscriptions? (2026 Data)",
     date: "May 16, 2026",
