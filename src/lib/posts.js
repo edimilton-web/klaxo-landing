@@ -1,5 +1,129 @@
 export const posts = [
   {
+    slug: "how-much-europeans-spend-on-subscriptions-2026",
+    title: "How Much Are Europeans Really Spending on Subscriptions? (2026 Data)",
+    date: "May 16, 2026",
+    readTime: "7 min read",
+    description: "Most people guess around €50/month. The real number is nearly four times that — and here's why.",
+    content: `
+Most people, when asked how much they spend on subscriptions each month, guess low. Not a little low — significantly low. By about half.
+
+That's not a personality flaw. It's just how subscriptions work. They're designed to be invisible. Small amounts, automatic payments, no invoice, no decision. They leave your account quietly, and you stop thinking about them.
+
+The problem is that "small amounts" across twelve different services adds up to something that isn't small at all.
+
+**The actual numbers**
+
+Research from across Europe puts the average somewhere between €150 and €200 per month per household in subscription costs. Klaxo's own data from early users lands around €130 for individuals — higher for households.
+
+That's €1,560 to €2,400 per year. On things you may or may not be using.
+
+For context: that's more than most European households spend on electricity. More than a return flight to New York. For many people, it's more than a month's rent was a decade ago.
+
+**Why the number is always higher than people expect**
+
+There are a few reasons the gap between "what I think I spend" and "what I actually spend" is so consistent.
+
+**Frequency distortion.** When you pay €9.99 per month, your brain registers it as "less than €10." But €9.99 per month is €119.88 per year. Most people don't do that conversion automatically — and services know this, which is why monthly billing is the default.
+
+**The forgetting problem.** You remember the subscriptions you use this week. You don't remember the ones you signed up for three years ago and stopped using eight months in. Those keep charging.
+
+**Free trials that became paid.** This one catches everyone eventually. You sign up, forget to cancel, and the charge appears. If you don't catch it immediately, it often continues for months before you notice.
+
+**Price increases you didn't notice.** Netflix, Spotify, Amazon Prime, Adobe — all of them have raised prices in the last two years. If you set up a payment and stopped checking, you're probably paying more than you think for several services.
+
+**The "I'll cancel next month" tax.** There's always a reason to not cancel now. You're about to watch something. It's only a few euros. You'll sort it out later. Later doesn't come, and the charge does.
+
+**What Europeans are actually subscribed to**
+
+Based on usage data and surveys from 2024–2026, the most common subscription categories for European consumers are:
+
+**Streaming video** — Netflix, Disney+, Max, Apple TV+, local services like Canal+. Most households have at least two, often three. The average cost across the EU is around €28/month for this category alone.
+
+**Music** — Spotify, Apple Music, Tidal. Usually one, sometimes two (family and individual plans running at the same time).
+
+**Cloud storage** — iCloud, Google One, Dropbox, OneDrive. Particularly sneaky because the charges are small (€0.99 to €9.99/month) and the reminder to upgrade comes from Apple or Google directly, so it feels almost automatic.
+
+**Software** — Adobe Creative Cloud, Microsoft 365, Notion, password managers, VPNs. These range widely. Adobe alone costs €54.99/month for the full package.
+
+**Gaming** — PlayStation Plus, Xbox Game Pass, Nintendo Switch Online. Increasingly common, especially in households with teenagers.
+
+**Fitness and wellness** — gym apps, meditation apps, running trackers. The January effect is strong here: sign up, use for six weeks, forget.
+
+**News and reading** — The Guardian, Le Monde, Spotify podcasts, Readwise, Kindle Unlimited.
+
+Add a few of these up and you get to €130/month faster than most people expect.
+
+**The European-specific problem**
+
+There's a wrinkle that affects European consumers more than Americans: currency and bank visibility.
+
+In the US, services like Rocket Money can automatically detect subscriptions by connecting to your bank account and scanning for recurring charges. That works because US banking infrastructure (Plaid, mostly) supports it.
+
+In Europe, the equivalent — Open Banking under PSD2 — exists but isn't as widely integrated into consumer tools yet. Most subscription trackers on the market were built for the US and simply don't connect to European banks.
+
+That means European consumers are more dependent on manually tracking what they're paying for, which most people don't do.
+
+The result is predictable: more forgotten subscriptions, more price increases missed, more money leaving accounts quietly.
+
+**What happens when you actually look**
+
+This is the part nobody warns you about. When you sit down and list every subscription you have, the reaction is almost always the same: surprise, then mild embarrassment, then determination to cancel things.
+
+Klaxo users who go through this process find an average of 2–3 subscriptions they'd forgotten about entirely. Not services they chose to keep — services they genuinely didn't know were still charging them.
+
+At €9.99 each, that's €20–30/month in charges that aren't providing any value. €240–360/year.
+
+The subscriptions people cancel most often, once they can see everything in one place: old cloud storage plans from a previous phone still running on a different account; streaming services they switched away from but never cancelled; free trials from 6–18 months ago; duplicate services (two music subscriptions, two cloud plans); apps that offered a "free month" and then just continued.
+
+**A practical way to figure out your number**
+
+If you want to know what you're actually spending, the fastest approach is this:
+
+Open your bank app and filter transactions for the last 90 days. Look for anything that recurs — same amount, same company, roughly monthly or annual. Make a list.
+
+Then go to your email and search for "receipt," "invoice," "payment confirmation," and "subscription." You'll find services you forgot existed.
+
+Add them up. Include annual charges divided by 12.
+
+Most people find the exercise takes about 20–30 minutes and produces a number that surprises them.
+
+If you'd rather have something track this automatically, Klaxo does it without connecting to your bank — you add subscriptions manually in about 30 seconds each, and it shows you the running total, alerts you before renewals, and sends a monthly summary.
+
+**The psychology of subscription spending**
+
+There's a reason subscription businesses have grown so aggressively over the last decade. Recurring revenue is good for businesses — and the mechanics of subscription payments are good for keeping customers paying even when they're not particularly engaged.
+
+Automatic renewal removes the decision. You don't choose to keep Netflix each month. You'd have to actively choose to leave. Most people don't.
+
+Small amounts reduce scrutiny. A €12.99 charge doesn't prompt the same review as a €200 one. But €12.99 twelve times a year is €155.88.
+
+This isn't a conspiracy — it's just how the business model works. Knowing it doesn't make you immune to it, but it does help explain why your subscription spending is probably higher than you think.
+
+**Frequently Asked Questions**
+
+**What is the average subscription spend per month in Europe?** Research suggests between €130 and €200 per month per household, depending on country and household size. Individual spend tends to be lower, around €80–130/month.
+
+**Which countries in Europe spend the most on subscriptions?** UK, Germany, and France tend to top the list, partly due to higher average incomes and earlier adoption of streaming services. Portugal, Spain, and Italy are catching up fast.
+
+**How can I find out all my active subscriptions?** Check your bank statements for recurring charges and search your email for "subscription" and "receipt." For an ongoing view, a subscription tracker like Klaxo shows everything in one place and alerts you before renewals.
+
+**Is it possible to spend less without cancelling things I actually use?** Yes. Switching from monthly to annual billing saves 20–40% on most services. Sharing family plans reduces per-person cost. And simply knowing what you have makes it easier to cut what you don't use.
+
+**Worth knowing before you calculate**
+
+One thing to be aware of: your subscription spending is a moving target. Prices go up — often quietly, often mid-year. What you were paying six months ago is probably not what you're paying now for several services.
+
+That's another reason a static list doesn't work long term. The number changes. The services change. People's circumstances change.
+
+The goal isn't to get to zero subscriptions. It's to know what you have, decide what's worth keeping, and not pay for things you've forgotten about.
+
+That's a pretty achievable bar. Most people just haven't set up a system to meet it.
+
+[Track your subscriptions for free at klaxo.app](https://klaxo.app)
+  `,
+  },
+  {
     slug: "best-subscription-tracker-europe-2026",
     title: "Best Subscription Tracker App for Europe in 2026",
     date: "May 14, 2026",
