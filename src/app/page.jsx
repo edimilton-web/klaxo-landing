@@ -364,8 +364,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="section-divider" />
-
       {/* TRUST SIGNALS */}
       <section className="trust-section reveal">
         <div className="trust-badges">
@@ -374,6 +372,7 @@ export default function Home() {
             { icon: "🇪🇺", label: "Built in Europe" },
             { icon: "🚫", label: "No ads. No data selling." },
             { icon: "🔐", label: "256-bit encryption" },
+            { icon: "⭐", label: "Free forever plan" },
           ].map((b) => (
             <div key={b.label} className="trust-badge">
               <span className="trust-badge-icon">{b.icon}</span>
@@ -382,8 +381,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <div className="section-divider" />
 
       {/* PRICING */}
       <section className="section-pad reveal" id="pricing">
