@@ -173,7 +173,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="app-main">
-                  <div className="app-greeting">Bom dia, Edimilton 👋</div>
+                  <div className="app-greeting">Good morning, Eddie 👋</div>
                   <div className="app-stats">
                     <div className="app-stat">
                       <div className="app-stat-label">Monthly</div>
