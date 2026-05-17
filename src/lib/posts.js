@@ -578,62 +578,6 @@ For now, it's manual entry. Which sounds like a downside until you realise that 
 Klaxo is in early access at [klaxo.app](https://klaxo.app). If you're tired of tools that weren't built for you, it might be worth a look.
     `,
   },
-  {
-    slug: 'how-much-europeans-spend-on-subscriptions',
-    title: 'How much are Europeans really spending on subscriptions?',
-    date: 'May 3, 2026',
-    readTime: '6 min read',
-    description: 'The numbers are higher than most people expect — and most people can\'t name what they\'re paying for.',
-    content: `
-Ask someone how much they spend on subscriptions each month. They'll give you a number. It's almost always wrong.
-
-Not because they're lying — because they genuinely don't know. Subscriptions are designed to be easy to forget. The charge is small, the billing is automatic, and there's no moment where you actively decide to keep paying. It just continues.
-
-**What the numbers look like**
-
-Research from several European markets consistently shows the same pattern: people underestimate their subscription spending by 30 to 50 percent.
-
-When asked, most people guess somewhere between €30 and €50 per month. When they actually add it up — streaming, music, cloud storage, software, news, fitness, gaming, food delivery memberships — the real number is usually closer to €100 to €150.
-
-For households with two adults, it often exceeds €200.
-
-The categories where money disappears most quietly:
-
-**Streaming and entertainment.** The average European household subscribes to 2.3 video streaming services. At current prices, that's €25 to €45 a month before you count music, audiobooks, or gaming.
-
-**Cloud storage and software.** These are the ones people forget most often. A 200GB iCloud plan here, a Microsoft 365 subscription there, an Adobe Creative Cloud account from three years ago that you keep meaning to cancel.
-
-**Free trials that became paid plans.** This is the most common story. A service offers a free trial, you forget to cancel, and a year later you're still paying. The amounts are usually small enough that they don't trigger concern, which is exactly the point.
-
-**Fitness and wellness.** Gym apps, meditation apps, running apps. These peak in January and go quietly unused by March. The subscriptions, however, do not.
-
-**The hidden cost of small charges**
-
-There's a psychological effect with small recurring charges. A €4.99 monthly fee feels insignificant. But twelve of them add up to €720 a year. The same amount, billed once as an annual fee, would get serious scrutiny. Split into monthly charges across a dozen services, it's nearly invisible.
-
-This is not an accident. Subscription businesses know that small monthly charges have much lower cancellation rates than annual ones. The pricing model is designed around the fact that people won't notice, or won't bother.
-
-**What you can do about it**
-
-The first step is knowing what you're actually paying for. Sounds obvious, but most people have never sat down and listed every active subscription with its monthly cost.
-
-A few things that help:
-
-Search your email for the word "receipt" and filter by the past year. You'll find subscriptions you've completely forgotten about.
-
-Check your bank or credit card statement line by line, not just the total. Small recurring charges are easy to scroll past.
-
-Once you have the list, the decision about what to keep becomes much easier. Some subscriptions are genuinely worth it. Others you'll cancel immediately without a second thought.
-
-If you want something to keep the list for you going forward, that's what Klaxo is for. It's a simple subscription tracker built specifically for Europe — it shows your monthly total, keeps your list in one place, and warns you before anything renews.
-
-Early access is open at [klaxo.app](https://klaxo.app).
-
-The average person who goes through this exercise cancels two or three subscriptions immediately. At €10 each, that's €360 back in your pocket per year.
-
-Worth an hour of your time.
-    `,
-  },
 ]
 
 export function getPostBySlug(slug) {
