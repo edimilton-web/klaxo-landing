@@ -458,9 +458,12 @@ export default function Home() {
           <a href="/terms">Terms</a>
           <a href="/contact">Contact</a>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0 8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', margin: '20px 0 8px', flexWrap: 'wrap' }}>
           <a href="https://www.producthunt.com/products/klaxo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-klaxo" target="_blank" rel="noopener noreferrer">
             <img alt="Klaxo - The subscription tracker built for Europe | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1148006&theme=dark&t=1778944673669" />
+          </a>
+          <a href="https://www.shipit.buzz/products/klaxo?ref=badge" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.shipit.buzz/api/products/klaxo/badge?theme=dark" alt="Featured on Shipit" height="54" />
           </a>
         </div>
         <div className="footer-eu">Made in Europe 🇪🇺</div>
