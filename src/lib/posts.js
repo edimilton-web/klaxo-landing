@@ -5,7 +5,154 @@ export const posts = [
     date: "May 17, 2026",
     readTime: "7 min read",
     description: "Bobby works. It just hasn't changed in years — and it was never built for Europe.",
-    content: `Bobby has been around since 2015. For a while, it was the best option for tracking personal subscriptions on iPhone. The problem is that very little has changed since then — and it was never built for European banks.`,
+    content: `Bobby has been around since 2015. For a while, it was the best option for tracking personal subscriptions on iPhone — clean design, simple concept, no unnecessary features. You added your subscriptions manually, set the billing dates, and Bobby reminded you before they renewed.
+
+That was the pitch. It still works, more or less. The problem is that very little has changed since then.
+
+---
+
+## What Bobby does well
+
+To be fair: Bobby is genuinely good at what it does. The interface is clean. Adding a subscription takes about 30 seconds. It supports multiple currencies, which matters if you're in Europe. The notifications work.
+
+For someone who wants a basic list of their subscriptions with renewal reminders, Bobby is fine.
+
+The issue isn't what Bobby does. It's what Bobby doesn't do — and what it hasn't added in years.
+
+---
+
+## Why Bobby falls short for European users in 2026
+
+### No automatic detection.
+Every subscription in Bobby is manual. That's not inherently bad — some people prefer it. But when you forget you even have a subscription (which is the whole point of tracking them), manual entry doesn't help. You can only add what you remember.
+
+### iOS only.
+If you use Android, Bobby doesn't exist for you. There's no web version either. Your subscriptions live on one device, in one app, with no way to access them from a browser or share them with a partner.
+
+### No bank connection.
+Bobby has no Open Banking integration, no ability to scan your bank statements, no way to detect subscriptions you've missed. In the US, apps like Rocket Money can do this automatically. In Europe, PSD2 makes it technically possible — but Bobby hasn't built it.
+
+### Stagnant development.
+The app's last significant update was years ago. The core feature set hasn't changed. In a space where European banking infrastructure (PSD2, Open Banking) is becoming more capable, Bobby is standing still.
+
+### One-time payment model.
+Bobby charges a one-time fee to unlock full functionality. That sounds like a good deal — and it was, in 2018. The problem is that a one-time payment model doesn't fund ongoing development. There's no recurring revenue incentive to add features, fix bugs, or integrate with new banking APIs.
+
+---
+
+## Who actually needs a Bobby alternative
+
+Not everyone. If you're on iPhone, you only have a handful of subscriptions, and you're happy entering them manually, Bobby works fine.
+
+You probably need something different if:
+
+- You're on Android and Bobby isn't an option
+- You want to access your subscriptions from a browser, not just your phone
+- You want automatic detection of recurring charges (or at least a clearer path to it)
+- You want a product that's still being actively developed
+- You need something that works correctly with European banks, currencies, and data protection requirements
+
+---
+
+## The alternatives — what's actually available
+
+### Subtrack (iOS and macOS)
+Subtrack is the closest thing to Bobby on Apple devices — simple, manual, focused on subscription tracking. It looks good, supports multiple currencies, and handles the basics.
+
+The limitations are similar: no bank connection, no Android, no web version. If you're in the Apple ecosystem and Bobby doesn't work for you, Subtrack is worth trying. Outside the Apple ecosystem, it's not an option.
+
+### ReSubs (iOS, Android, Web)
+ReSubs is the most complete dedicated subscription tracker available right now. It works across platforms, supports multiple currencies, has trial reminders and cancel guides, and gives you a proper breakdown of your spending.
+
+The downsides: it's not free. The premium tier is required for full functionality, and it's priced higher than most alternatives. There's also no bank connection — everything is still manual.
+
+For someone who wants the most capable manual tracker and doesn't mind paying more, ReSubs is the best option currently available.
+
+### Rocket Money (US only)
+Rocket Money is what the European market is missing. It automatically detects subscriptions by connecting to your bank account, can negotiate bills on your behalf, and has a genuinely powerful feature set.
+
+It also requires a US bank account. For European users, it's completely unusable. It's listed here because it represents what's possible — and what European users don't currently have access to.
+
+### Klaxo (Web, iOS, Android — built for Europe)
+Klaxo was built to fill the gap that Rocket Money left in Europe. The starting point is similar to Bobby — add your subscriptions manually, get notified before renewals, see your real monthly cost. But the roadmap and infrastructure are different.
+
+**What Klaxo does now:**
+- Manual subscription tracking across all platforms (web, iOS, Android)
+- Renewal alerts via email, 5 days before every charge
+- Monthly spending summaries
+- Dashboard showing total monthly and annual cost by category
+- Euro support with full GDPR compliance
+- Free plan for up to 5 subscriptions
+
+**What's coming:**
+- Open Banking integration via PSD2 — automatic detection of subscriptions from European bank accounts
+- Price increase alerts when a service raises its rates
+- Shared subscription tracking for couples and households
+
+The key difference from Bobby isn't just the feature set — it's the development trajectory. Klaxo is a product being actively built for the European market, with bank integration as a planned feature rather than something that was never considered.
+
+**Pricing:** Free for up to 5 subscriptions. Pro is €3,99/month or €29/year.
+
+---
+
+## Side-by-side comparison
+
+| Feature | Bobby | Subtrack | ReSubs | Klaxo |
+|---------|-------|----------|--------|-------|
+| iOS | ✅ | ✅ | ✅ | ✅ |
+| Android | ❌ | ❌ | ✅ | ✅ |
+| Web version | ❌ | ❌ | ✅ | ✅ |
+| Manual tracking | ✅ | ✅ | ✅ | ✅ |
+| Bank connection (EU) | ❌ | ❌ | ❌ | 🔜 |
+| Multi-currency | ✅ | ✅ | ✅ | ✅ |
+| Renewal alerts | ✅ | ✅ | ✅ | ✅ |
+| GDPR compliant | N/A | N/A | ✅ | ✅ |
+| Free tier | Limited | Limited | Limited | ✅ (5 subs) |
+| Active development | ❌ | ✅ | ✅ | ✅ |
+| Built for Europe | ❌ | ❌ | ❌ | ✅ |
+
+---
+
+## Which one to choose
+
+**If you're on iPhone only and want something simple and free:** Bobby still works. It's not being developed, but it functions.
+
+**If you're on Android or want a web version:** Bobby isn't an option. Try ReSubs if you're willing to pay, or Klaxo if you want a free starting point.
+
+**If you want the most complete manual tracker available:** ReSubs is currently the most capable option, though it costs more.
+
+**If you want something built specifically for Europe — with a path to automatic bank detection:** Klaxo is the only option building toward that. The manual tracking works today, and Open Banking integration is in development.
+
+**If you need automatic detection right now:** Honest answer — there's no European solution that does this reliably yet. Rocket Money works brilliantly, but only in the US. Klaxo's Open Banking integration will change this when it launches, but it's not live yet.
+
+---
+
+## The real problem with subscription tracking in Europe
+
+The apps exist. The problem is that the best technology — automatic bank-connected detection — was built for the US market and doesn't transfer to Europe cleanly.
+
+US apps use Plaid, which connects to American banks. European banks operate under PSD2, which is a different (and in some ways more privacy-protective) framework. Building a subscription tracker that works with European banks requires building integrations with European banking infrastructure — something no major subscription tracker has done well yet.
+
+Bobby never tried. ReSubs doesn't either. Rocket Money can't because it's US-only by design.
+
+That's the gap Klaxo is building toward — a subscription tracker that works the way Rocket Money works in the US, but built for European banks, European currencies, and European data protection standards.
+
+---
+
+## Frequently Asked Questions
+
+### Is Bobby still being updated in 2026?
+Bobby has seen minimal development in recent years. The core functionality works, but no significant new features have been added. For users who need more than basic manual tracking, it's worth considering alternatives.
+
+### Does Bobby work with European banks?
+No. Bobby has no bank connection at all — everything is entered manually. There's no integration with European banking APIs or Open Banking.
+
+### What's the best free subscription tracker for Europe?
+Klaxo offers a free plan for up to 5 subscriptions with renewal alerts and a dashboard. For more subscriptions, the Pro plan is €3,99/month.
+
+### When will Klaxo add automatic subscription detection?
+Open Banking integration via PSD2 is in active development. It will allow Klaxo to automatically detect subscriptions from European bank accounts — similar to how Rocket Money works in the US.
+`,
   },
   {
     slug: "how-to-cancel-forgotten-subscriptions",
