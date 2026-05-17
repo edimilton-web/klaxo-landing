@@ -1,5 +1,13 @@
 export const posts = [
   {
+    slug: "bobby-app-alternative-europe",
+    title: "Bobby App Alternative: What Europeans Should Use Instead",
+    date: "May 17, 2026",
+    readTime: "7 min read",
+    description: "Bobby works. It just hasn't changed in years — and it was never built for Europe.",
+    content: `Bobby has been around since 2015. For a while, it was the best option for tracking personal subscriptions on iPhone. The problem is that very little has changed since then — and it was never built for European banks.`,
+  },
+  {
     slug: "how-to-cancel-forgotten-subscriptions",
     title: "How to Cancel Subscriptions You Forgot You Had",
     date: "May 16, 2026",
