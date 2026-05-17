@@ -51,6 +51,15 @@ export default function About() {
             Europeans, by a European.
           </p>
 
+          <p style={{
+            fontSize: 17,
+            color: 'rgba(240,240,245,0.75)',
+            lineHeight: 1.8,
+            marginBottom: 48,
+          }}>
+            Klaxo is also building Open Banking integration via PSD2 — so you&apos;ll be able to connect your European bank account and detect every subscription automatically. No manual entry. No forgotten charges. Early Pro members get access when it launches.
+          </p>
+
           <a
             href="https://app.klaxo.app/register"
             style={{

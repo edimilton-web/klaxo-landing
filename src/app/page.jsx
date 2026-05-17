@@ -342,6 +342,111 @@ export default function Home() {
 
       <div className="section-divider" />
 
+      {/* OPEN BANKING — COMING SOON */}
+      <section className="section-pad reveal" id="open-banking">
+        <div style={{
+          maxWidth: 720,
+          margin: '0 auto',
+          background: 'rgba(124,92,252,0.06)',
+          border: '1px solid rgba(124,92,252,0.22)',
+          borderRadius: 20,
+          padding: 'clamp(32px, 5vw, 56px)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* background glow */}
+          <div style={{
+            position: 'absolute', top: -60, right: -60,
+            width: 260, height: 260,
+            background: 'radial-gradient(circle, rgba(124,92,252,0.18) 0%, transparent 70%)',
+            pointerEvents: 'none',
+          }} />
+
+          {/* COMING SOON badge */}
+          <div style={{ marginBottom: 24 }}>
+            <span style={{
+              display: 'inline-block',
+              padding: '5px 14px',
+              borderRadius: 999,
+              background: 'rgba(124,92,252,0.18)',
+              border: '1px solid rgba(124,92,252,0.4)',
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              color: '#A78BFA',
+            }}>
+              Coming Soon
+            </span>
+          </div>
+
+          <h2 style={{
+            fontSize: 'clamp(22px, 3.5vw, 32px)',
+            fontWeight: 700,
+            letterSpacing: '-0.025em',
+            lineHeight: 1.25,
+            color: '#F0F0F5',
+            marginBottom: 8,
+          }}>
+            Your bank. Your subscriptions.<br />Automatically.
+          </h2>
+
+          <p style={{
+            fontSize: 13,
+            color: 'rgba(240,240,245,0.4)',
+            marginBottom: 28,
+            fontWeight: 500,
+          }}>
+            Open Banking via PSD2
+          </p>
+
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: 'rgba(240,240,245,0.65)', marginBottom: 16 }}>
+            Most subscription trackers make you add everything manually — which means you only track what you remember.
+          </p>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: 'rgba(240,240,245,0.65)', marginBottom: 16 }}>
+            With Open Banking (PSD2), Klaxo will connect directly to your European bank account and detect every recurring charge automatically. No manual entry. No forgotten subscriptions.
+          </p>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: 'rgba(240,240,245,0.65)', marginBottom: 32 }}>
+            The same secure standard your bank already uses.
+          </p>
+
+          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {[
+              { icon: '🔒', text: 'Your bank never shares your password — read-only access only' },
+              { icon: '🇪🇺', text: 'Works with 2,300+ European banks via PSD2' },
+              { icon: '⚡', text: 'Detects subscriptions you forgot existed' },
+            ].map(({ icon, text }) => (
+              <li key={text} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, fontSize: 15, color: 'rgba(240,240,245,0.8)', lineHeight: 1.6 }}>
+                <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{icon}</span>
+                {text}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://app.klaxo.app/register"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '13px 26px',
+              borderRadius: 12,
+              background: 'rgba(124,92,252,0.15)',
+              border: '1px solid rgba(124,92,252,0.4)',
+              color: '#C4B5FD',
+              fontSize: 15,
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'background 0.2s',
+            }}
+          >
+            Join the waitlist to be first →
+          </a>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
       {/* TESTIMONIALS */}
       <section className="section-pad reveal">
         <p className="section-label">Early users</p>
@@ -417,8 +522,8 @@ export default function Home() {
               <li className="price-feature"><span className="price-check">✓</span>Categories &amp; tags</li>
               <li className="price-feature"><span className="price-check">✓</span>CSV export</li>
               <li className="price-feature">
-                <span className="price-check">✓</span>Bank connection{" "}
-                <span style={{ color: "var(--muted)", fontSize: "12px" }}>(coming soon)</span>
+                <span style={{ marginRight: 8, fontSize: 14 }}>🏦</span>Open Banking (PSD2){" "}
+                <span style={{ color: "var(--muted)", fontSize: "12px" }}>— coming soon, included in Pro</span>
               </li>
             </ul>
             <a href="https://app.klaxo.app/checkout?plan=pro-monthly" className="price-btn price-btn-violet" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
