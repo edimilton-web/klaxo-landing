@@ -531,7 +531,7 @@ No bank access required. No complicated setup. Just a clean list of what you're 
 
 The renewal alerts turned out to be the most useful part. Getting a reminder five days before a charge means you actually have time to decide if you want to keep it — instead of seeing the charge and thinking "I should probably cancel that" for the fourth month in a row.
 
-If you want to try it, Klaxo is in early access at [klaxo.app](https://klaxo.app). People on the waitlist get three months of Pro free when it launches.
+If you want to try it, [Klaxo is free to start at klaxo.app](https://app.klaxo.app/register) — no credit card required, free for up to 5 subscriptions.
 
 The €34 I found paid for a lot of dinners.
     `,
@@ -575,7 +575,7 @@ It also means being honest about what the tool does and doesn't do. Klaxo doesn'
 
 For now, it's manual entry. Which sounds like a downside until you realise that manually entering your subscriptions once, and then having a clean view of everything you pay for, is already more than most people have.
 
-Klaxo is in early access at [klaxo.app](https://klaxo.app). If you're tired of tools that weren't built for you, it might be worth a look.
+[Klaxo is free to start at klaxo.app](https://app.klaxo.app/register) — no credit card required. If you're tired of tools that weren't built for you, it might be worth a look.
     `,
   },
 ]
