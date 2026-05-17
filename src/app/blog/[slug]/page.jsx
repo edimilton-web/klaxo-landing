@@ -107,8 +107,8 @@ export default function BlogPost({ params }) {
         <div style={{
           marginTop: 64,
           padding: '32px',
-          background: 'rgba(59,130,246,0.08)',
-          border: '1px solid rgba(59,130,246,0.2)',
+          background: 'rgba(124,58,237,0.1)',
+          border: '1px solid rgba(124,58,237,0.25)',
           borderRadius: 16,
           textAlign: 'center',
         }}>
@@ -116,14 +116,14 @@ export default function BlogPost({ params }) {
             Try Klaxo for free
           </p>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 20 }}>
-            Early users get 3 months of Pro free when we launch.
+            Track every subscription. Get notified before renewals. Free forever for up to 5 subscriptions.
           </p>
           <a
-            href="/#waitlist"
+            href="https://app.klaxo.app/register"
             style={{
               display: 'inline-block',
               padding: '12px 28px',
-              background: '#3B82F6',
+              background: '#7C3AED',
               color: '#fff',
               borderRadius: 10,
               fontWeight: 600,
@@ -131,7 +131,7 @@ export default function BlogPost({ params }) {
               textDecoration: 'none',
             }}
           >
-            Join the waitlist
+            Start for free →
           </a>
         </div>
 

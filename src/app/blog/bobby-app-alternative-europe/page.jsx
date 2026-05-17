@@ -77,31 +77,31 @@ export default function Page() {
 
         {divider()}
         {h2("What Bobby does well")}
-        {p(<>To be fair: Bobby is genuinely good at what it does. The interface is clean. Adding a subscription takes about 30 seconds. It supports multiple currencies, which matters if you're in Europe. The notifications work.</>)}
+        {p(<>To be fair: Bobby is genuinely good at what it does. The interface is clean. Adding a subscription takes about 30 seconds. It supports multiple currencies, which matters if you&apos;re in Europe. The notifications work.</>)}
         {p(<>For someone who wants a basic list of their subscriptions with renewal reminders, Bobby is fine.</>)}
-        {p(<>The issue isn't what Bobby does. It's what Bobby doesn't do — and what it hasn't added in years.</>)}
+        {p(<>The issue isn&apos;t what Bobby does. It&apos;s what Bobby doesn&apos;t do — and what it hasn&apos;t added in years.</>)}
 
         {divider()}
         {h2("Why Bobby falls short for European users in 2026")}
 
         {h3("No automatic detection.")}
-        {p(<>Every subscription in Bobby is manual. That's not inherently bad — some people prefer it. But when you forget you even have a subscription (which is the whole point of tracking them), manual entry doesn't help. You can only add what you remember.</>)}
+        {p(<>Every subscription in Bobby is manual. That&apos;s not inherently bad — some people prefer it. But when you forget you even have a subscription (which is the whole point of tracking them), manual entry doesn&apos;t help. You can only add what you remember.</>)}
 
         {h3("iOS only.")}
-        {p(<>If you use Android, Bobby doesn't exist for you. There's no web version either. Your subscriptions live on one device, in one app, with no way to access them from a browser or share them with a partner.</>)}
+        {p(<>If you use Android, Bobby doesn&apos;t exist for you. There&apos;s no web version either. Your subscriptions live on one device, in one app, with no way to access them from a browser or share them with a partner.</>)}
 
         {h3("No bank connection.")}
-        {p(<>Bobby has no Open Banking integration, no ability to scan your bank statements, no way to detect subscriptions you've missed. In the US, apps like Rocket Money can do this automatically. In Europe, PSD2 makes it technically possible — but Bobby hasn't built it.</>)}
+        {p(<>Bobby has no Open Banking integration, no ability to scan your bank statements, no way to detect subscriptions you&apos;ve missed. In the US, apps like Rocket Money can do this automatically. In Europe, PSD2 makes it technically possible — but Bobby hasn&apos;t built it.</>)}
 
         {h3("Stagnant development.")}
-        {p(<>The app's last significant update was years ago. The core feature set hasn't changed. In a space where European banking infrastructure (PSD2, Open Banking) is becoming more capable, Bobby is standing still.</>)}
+        {p(<>The app&apos;s last significant update was years ago. The core feature set hasn&apos;t changed. In a space where European banking infrastructure (PSD2, Open Banking) is becoming more capable, Bobby is standing still.</>)}
 
         {h3("One-time payment model.")}
-        {p(<>Bobby charges a one-time fee to unlock full functionality. That sounds like a good deal — and it was, in 2018. The problem is that a one-time payment model doesn't fund ongoing development. There's no recurring revenue incentive to add features, fix bugs, or integrate with new banking APIs.</>)}
+        {p(<>Bobby charges a one-time fee to unlock full functionality. That sounds like a good deal — and it was, in 2018. The problem is that a one-time payment model doesn&apos;t fund ongoing development. There&apos;s no recurring revenue incentive to add features, fix bugs, or integrate with new banking APIs.</>)}
 
         {divider()}
         {h2("Who actually needs a Bobby alternative")}
-        {p(<>Not everyone. If you're on iPhone, you only have a handful of subscriptions, and you're happy entering them manually, Bobby works fine.</>)}
+        {p(<>Not everyone. If you&apos;re on iPhone, you only have a handful of subscriptions, and you&apos;re happy entering them manually, Bobby works fine.</>)}
         {p(<>You probably need something different if:</>)}
         {ul(<>
           {li("You're on Android and Bobby isn't an option")}
@@ -116,16 +116,16 @@ export default function Page() {
 
         {h3("Subtrack (iOS and macOS)")}
         {p(<>Subtrack is the closest thing to Bobby on Apple devices — simple, manual, focused on subscription tracking. It looks good, supports multiple currencies, and handles the basics.</>)}
-        {p(<>The limitations are similar: no bank connection, no Android, no web version. If you're in the Apple ecosystem and Bobby doesn't work for you, Subtrack is worth trying. Outside the Apple ecosystem, it's not an option.</>)}
+        {p(<>The limitations are similar: no bank connection, no Android, no web version. If you&apos;re in the Apple ecosystem and Bobby doesn&apos;t work for you, Subtrack is worth trying. Outside the Apple ecosystem, it&apos;s not an option.</>)}
 
         {h3("ReSubs (iOS, Android, Web)")}
         {p(<>ReSubs is the most complete dedicated subscription tracker available right now. It works across platforms, supports multiple currencies, has trial reminders and cancel guides, and gives you a proper breakdown of your spending.</>)}
-        {p(<>The downsides: it's not free. The premium tier is required for full functionality, and it's priced higher than most alternatives. There's also no bank connection — everything is still manual.</>)}
-        {p(<>For someone who wants the most capable manual tracker and doesn't mind paying more, ReSubs is the best option currently available.</>)}
+        {p(<>The downsides: it&apos;s not free. The premium tier is required for full functionality, and it&apos;s priced higher than most alternatives. There&apos;s also no bank connection — everything is still manual.</>)}
+        {p(<>For someone who wants the most capable manual tracker and doesn&apos;t mind paying more, ReSubs is the best option currently available.</>)}
 
         {h3("Rocket Money (US only)")}
         {p(<>Rocket Money is what the European market is missing. It automatically detects subscriptions by connecting to your bank account, can negotiate bills on your behalf, and has a genuinely powerful feature set.</>)}
-        {p(<>It also requires a US bank account. For European users, it's completely unusable. It's listed here because it represents what's possible — and what European users don't currently have access to.</>)}
+        {p(<>It also requires a US bank account. For European users, it&apos;s completely unusable. It&apos;s listed here because it represents what&apos;s possible — and what European users don&apos;t currently have access to.</>)}
 
         {h3("Klaxo (Web, iOS, Android — built for Europe)")}
         {p(<>Klaxo was built to fill the gap that Rocket Money left in Europe. The starting point is similar to Bobby — add your subscriptions manually, get notified before renewals, see your real monthly cost. But the roadmap and infrastructure are different.</>)}
@@ -147,7 +147,7 @@ export default function Page() {
           {li("Shared subscription tracking for couples and households")}
         </>)}
 
-        {p(<>The key difference from Bobby isn't just the feature set — it's the development trajectory. Klaxo is a product being actively built for the European market, with bank integration as a planned feature rather than something that was never considered.</>)}
+        {p(<>The key difference from Bobby isn&apos;t just the feature set — it&apos;s the development trajectory. Klaxo is a product being actively built for the European market, with bank integration as a planned feature rather than something that was never considered.</>)}
         {p(<>{b("Pricing:")} Free for up to 5 subscriptions. Pro is €3,99/month or €29/year.</>)}
 
         {divider()}
@@ -202,27 +202,27 @@ export default function Page() {
 
         {divider()}
         {h2("Which one to choose")}
-        {p(<>{b("If you're on iPhone only and want something simple and free:")} Bobby still works. It's not being developed, but it functions.</>)}
-        {p(<>{b("If you're on Android or want a web version:")} Bobby isn't an option. Try ReSubs if you're willing to pay, or Klaxo if you want a free starting point.</>)}
+        {p(<>{b("If you're on iPhone only and want something simple and free:")} Bobby still works. It&apos;s not being developed, but it functions.</>)}
+        {p(<>{b("If you're on Android or want a web version:")} Bobby isn&apos;t an option. Try ReSubs if you&apos;re willing to pay, or Klaxo if you want a free starting point.</>)}
         {p(<>{b("If you want the most complete manual tracker available:")} ReSubs is currently the most capable option, though it costs more.</>)}
         {p(<>{b("If you want something built specifically for Europe — with a path to automatic bank detection:")} Klaxo is the only option building toward that. The manual tracking works today, and Open Banking integration is in development.</>)}
-        {p(<>{b("If you need automatic detection right now:")} Honest answer — there's no European solution that does this reliably yet. Rocket Money works brilliantly, but only in the US. Klaxo's Open Banking integration will change this when it launches, but it's not live yet.</>)}
+        {p(<>{b("If you need automatic detection right now:")} Honest answer — there&apos;s no European solution that does this reliably yet. Rocket Money works brilliantly, but only in the US. Klaxo&apos;s Open Banking integration will change this when it launches, but it&apos;s not live yet.</>)}
 
         {divider()}
         {h2("The real problem with subscription tracking in Europe")}
-        {p(<>The apps exist. The problem is that the best technology — automatic bank-connected detection — was built for the US market and doesn't transfer to Europe cleanly.</>)}
+        {p(<>The apps exist. The problem is that the best technology — automatic bank-connected detection — was built for the US market and doesn&apos;t transfer to Europe cleanly.</>)}
         {p(<>US apps use Plaid, which connects to American banks. European banks operate under PSD2, which is a different (and in some ways more privacy-protective) framework. Building a subscription tracker that works with European banks requires building integrations with European banking infrastructure — something no major subscription tracker has done well yet.</>)}
-        {p(<>Bobby never tried. ReSubs doesn't either. Rocket Money can't because it's US-only by design.</>)}
-        {p(<>That's the gap Klaxo is building toward — a subscription tracker that works the way Rocket Money works in the US, but built for European banks, European currencies, and European data protection standards.</>)}
+        {p(<>Bobby never tried. ReSubs doesn&apos;t either. Rocket Money can&apos;t because it&apos;s US-only by design.</>)}
+        {p(<>That&apos;s the gap Klaxo is building toward — a subscription tracker that works the way Rocket Money works in the US, but built for European banks, European currencies, and European data protection standards.</>)}
 
         {divider()}
         {h2("Frequently Asked Questions")}
 
         {h3("Is Bobby still being updated in 2026?")}
-        {p(<>Bobby has seen minimal development in recent years. The core functionality works, but no significant new features have been added. For users who need more than basic manual tracking, it's worth considering alternatives.</>)}
+        {p(<>Bobby has seen minimal development in recent years. The core functionality works, but no significant new features have been added. For users who need more than basic manual tracking, it&apos;s worth considering alternatives.</>)}
 
         {h3("Does Bobby work with European banks?")}
-        {p(<>No. Bobby has no bank connection at all — everything is entered manually. There's no integration with European banking APIs or Open Banking.</>)}
+        {p(<>No. Bobby has no bank connection at all — everything is entered manually. There&apos;s no integration with European banking APIs or Open Banking.</>)}
 
         {h3("What's the best free subscription tracker for Europe?")}
         {p(<>Klaxo offers a free plan for up to 5 subscriptions with renewal alerts and a dashboard. For more subscriptions, the Pro plan is €3,99/month.</>)}
@@ -239,13 +239,13 @@ export default function Page() {
           textAlign: 'center',
         }}>
           <p style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: 8 }}>
-            Try Klaxo free — no credit card required
+            Try Klaxo for free
           </p>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 20 }}>
-            Free for up to 5 subscriptions. Pro from €3,99/month.
+            Track every subscription. Get notified before renewals. Free forever for up to 5 subscriptions.
           </p>
           <a
-            href="https://app.klaxo.app"
+            href="https://app.klaxo.app/register"
             style={{
               display: 'inline-block',
               padding: '12px 28px',
@@ -257,7 +257,7 @@ export default function Page() {
               textDecoration: 'none',
             }}
           >
-            Start tracking for free
+            Start for free →
           </a>
         </div>
 
