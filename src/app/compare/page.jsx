@@ -198,9 +198,7 @@ export default function ComparePage() {
               desc: "Manual tracking today, Open Banking via PSD2 in development. Free plan available, Pro at €3,99/month.",
             },
           ].map(({ name, verdict, color, bg, border, desc }) => (
-            <div key={name} style={{ background: bg, border: `1px solid ${border}`, borderRadius: 16, padding: 24, transition: "transform 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.transform = "translateY(-3px)"}
-              onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
+            <div key={name} className="cmp-verdict-card" style={{ background: bg, border: `1px solid ${border}`, borderRadius: 16, padding: 24 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.08em" }}>{name}</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: "#F0F0F5", marginBottom: 10, lineHeight: 1.4 }}>{verdict}</div>
               <div style={{ fontSize: 13.5, color: "rgba(240,240,245,0.55)", lineHeight: 1.65 }}>{desc}</div>
@@ -258,7 +256,7 @@ export default function ComparePage() {
 
         <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: 40 }}>
           {COMPARISONS.map(({ slug, vs, body, ifA, ifB }) => (
-            <div key={slug} className="reveal" style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 20, overflow: "hidden" }}>
+            <div key={slug} className="reveal cmp-vs-card" style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 20, overflow: "hidden" }}>
               {/* section header */}
               <div style={{ padding: "22px 32px", borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(124,92,252,0.06)", display: "flex", alignItems: "center", gap: 12 }}>
                 <div style={{ width: 4, height: 20, borderRadius: 2, background: "var(--violet)", flexShrink: 0 }} />
@@ -324,9 +322,7 @@ export default function ComparePage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {FAQS.map(({ q, a }) => (
-            <div key={q} style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 14, padding: "20px 24px", transition: "border-color 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(124,92,252,0.25)"}
-              onMouseLeave={e => e.currentTarget.style.borderColor = "var(--border)"}>
+            <div key={q} className="cmp-faq-item" style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 14, padding: "20px 24px" }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: "#F0F0F5", marginBottom: 8, letterSpacing: "-0.015em" }}>{q}</div>
               <div style={{ fontSize: 14, color: "rgba(240,240,245,0.55)", lineHeight: 1.7 }}>{a}</div>
             </div>
