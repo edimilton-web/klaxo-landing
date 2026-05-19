@@ -1,4 +1,5 @@
 import RevealObserver from "./RevealObserver"
+import OpenBankingModal from "./OpenBankingModal"
 
 export const metadata = {
   title: "Klaxo — Track Your Subscriptions | Built for Europe",
@@ -423,25 +424,7 @@ export default function Home() {
             ))}
           </ul>
 
-          <a
-            href="https://app.klaxo.app/register"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '13px 26px',
-              borderRadius: 12,
-              background: 'rgba(124,92,252,0.15)',
-              border: '1px solid rgba(124,92,252,0.4)',
-              color: '#C4B5FD',
-              fontSize: 15,
-              fontWeight: 600,
-              textDecoration: 'none',
-              transition: 'background 0.2s',
-            }}
-          >
-            Join the waitlist to be first →
-          </a>
+          <OpenBankingModal />
         </div>
       </section>
 

@@ -19,7 +19,7 @@ export default {
       return new Response('Method not allowed', { status: 405 })
     }
 
-    const { email, country } = await request.json()
+    const { email, country, type } = await request.json()
 
     if (!email) {
       return new Response(JSON.stringify({ error: 'Email required' }), {
@@ -27,6 +27,10 @@ export default {
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       })
     }
+
+    const groupId = type === 'open-banking'
+      ? env.MAILERLITE_OPEN_BANKING_GROUP_ID
+      : env.MAILERLITE_GROUP_ID
 
     const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
@@ -37,7 +41,7 @@ export default {
       },
       body: JSON.stringify({
         email,
-        groups: [env.MAILERLITE_GROUP_ID],
+        groups: [groupId],
         fields: { country: country || '' },
       }),
     })
