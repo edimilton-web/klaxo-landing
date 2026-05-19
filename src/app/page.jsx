@@ -74,6 +74,7 @@ export default function Home() {
           Klaxo
         </a>
         <div className="nav-right">
+          <a href="/compare" className="nav-signin">Compare</a>
           <a href="https://app.klaxo.app/login" className="nav-signin">Sign in</a>
           <a href="https://app.klaxo.app/register" className="nav-cta">Start for free</a>
         </div>
