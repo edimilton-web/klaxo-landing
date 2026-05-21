@@ -554,6 +554,9 @@ export default function Home() {
           <a href="https://www.shipit.buzz/products/klaxo?ref=badge" target="_blank" rel="noopener noreferrer">
             <img src="https://www.shipit.buzz/api/products/klaxo/badge?theme=dark" alt="Featured on Shipit" height="54" />
           </a>
+          <a href="https://www.saashub.com/klaxo?utm_source=badge&utm_campaign=badge&utm_content=klaxo&badge_variant=color&badge_kind=approved" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="Klaxo badge" style={{ maxWidth: '150px', height: '54px', objectFit: 'contain' }} />
+          </a>
         </div>
         <div className="footer-eu">Made in Europe 🇪🇺</div>
       </footer>
