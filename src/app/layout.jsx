@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata = {
@@ -49,6 +50,18 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* <script defer data-domain="klaxo.app" src="https://plausible.io/js/script.js"></script> */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6HPT9Q6QYP"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6HPT9Q6QYP');
+          `}
+        </Script>
       </head>
       <body>{children}</body>
     </html>
