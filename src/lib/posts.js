@@ -1,5 +1,105 @@
 export const posts = [
   {
+    slug: "subscription-fatigue-europe",
+    title: "Subscription Fatigue: Why Europeans Are Spending More Than Ever (Without Noticing)",
+    date: "May 23, 2026",
+    readTime: "6 min read",
+    description: "The average European pays for 8-12 subscriptions but guesses four. Here's why the math is invisible — and how to fix it.",
+    content: `You didn't sign up to spend €200 a year on subscriptions you don't use. Nobody does.
+
+But if you're like most Europeans, that's roughly what's happening. Not because you made bad decisions — because the math is designed to be invisible.
+
+---
+
+## The €2 Problem
+
+Individual subscriptions are cheap. That's the point.
+
+€9.99 for Spotify. €8.99 for Netflix basic. €2.99 for iCloud. €15.99 for NOS. None of these feel like a big deal when you sign up. And none of them feel like a big deal when the charge hits your account months later, buried in a bank statement between the supermarket and the pharmacy.
+
+This is price creep — not one big expense, but dozens of small ones that quietly compound.
+
+The average European household now pays for 8 to 12 active subscriptions. Most people, when asked to guess, say four or five.
+
+---
+
+## How It Happens
+
+Subscriptions are built to be forgotten. That's not an accident.
+
+Free trials convert to paid plans on a specific date, usually buried in the confirmation email you didn't read. Annual plans renew automatically with no notification. Prices go up by €1 or €2 — small enough to miss, consistent enough to matter.
+
+Streaming services have been especially aggressive about this. Netflix, Disney+, and Amazon Prime have all raised prices in European markets multiple times since 2021. Each increase was announced. Most subscribers didn't notice until weeks later, if at all.
+
+Vodafone, NOS, and MEO bundles follow the same pattern. The promotional rate expires. The standard rate kicks in. The difference on your direct debit is subtle enough that most people assume it's normal variation.
+
+It isn't.
+
+---
+
+## The Real Cost
+
+Run the numbers on a typical European household:
+
+- Streaming video (Netflix + Disney+): €22/month
+- Music (Spotify family): €17/month
+- Cloud storage (iCloud 200GB): €3/month
+- Mobile operator extras: €10/month
+- Productivity software (Microsoft 365): €7/month
+- News or reading apps: €10/month
+- Fitness or wellness app: €10/month
+- One forgotten free trial still charging: €8/month
+
+That's €87/month — just over €1,000 per year — before you count anything you've genuinely stopped using.
+
+Most households have at least two or three subscriptions in that last category.
+
+---
+
+## Why It's Hard to Track
+
+Banks don't help. Most banking apps group recurring charges under vague labels like "services" or "digital." You can see that €9.99 left your account. You can't easily see that it's the same charge that quietly went from €7.99 six months ago.
+
+Spreadsheets work, but barely. You have to update them manually, remember to check them, and know what you're even looking for. Most people set one up, use it for a week, and never open it again.
+
+The problem isn't discipline. Tracking subscriptions manually requires more effort than the saving feels worth — right up until you actually add it all up.
+
+---
+
+## What's Changed in Europe
+
+The subscription model has expanded well beyond streaming. In Portugal, Spain, and across northern Europe, people are now paying monthly for:
+
+- News publications that used to be free
+- Fitness apps that replaced gym memberships (and sometimes run alongside them)
+- Software that used to be a one-time purchase
+- Cloud storage that grows in small increments
+- Mobile and broadband bundles with add-ons that auto-renew quietly
+
+Open Banking regulations (PSD2) have made it easier for apps to connect to bank accounts and surface this data automatically. That's genuinely new. A few years ago, the only way to find forgotten subscriptions was to go through your statements line by line.
+
+---
+
+## The Fix Is Simple, If Annoying
+
+The first step is visibility. Most people who actually audit their subscriptions — even once, even manually — cancel something. Usually more than one thing.
+
+The second step is a system that doesn't require constant maintenance. A dedicated tracker with renewal dates and euro amounts is more useful than a spreadsheet because you don't have to remember to update it.
+
+The third step is a habit. Reviewing your subscriptions once a quarter takes about ten minutes. It's one of the few financial checks that consistently finds money you didn't know you were losing.
+
+---
+
+## Klaxo
+
+Klaxo is a subscription tracker built for the European market. It shows all your subscriptions in euros, tracks renewal dates, and alerts you before you're charged for something you forgot about.
+
+No dollar conversions. No features built around US-only services. Just a clear view of what you're paying and when.
+
+[Track your subscriptions free at klaxo.app](https://klaxo.app)
+`,
+  },
+  {
     slug: "bobby-app-alternative-europe",
     title: "Bobby App Alternative: What Europeans Should Use Instead",
     date: "May 17, 2026",
