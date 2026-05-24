@@ -17,11 +17,9 @@ const LOGOS = [
 const FEATURES = [
   {
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-        <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-        <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-        <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
       </svg>
     ),
     title: 'See everything',
@@ -29,11 +27,9 @@ const FEATURES = [
   },
   {
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
         <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-        <circle cx="18" cy="5" r="3" fill="currentColor" opacity=".3" stroke="none"/>
-        <circle cx="18" cy="5" r="3" strokeWidth="1.5"/>
       </svg>
     ),
     title: 'Never miss a renewal',
@@ -41,16 +37,22 @@ const FEATURES = [
   },
   {
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
-        <line x1="8" y1="13" x2="16" y2="13"/>
-        <line x1="8" y1="17" x2="13" y2="17"/>
+        <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>
       </svg>
     ),
     title: 'Monthly report ready',
     desc: 'Export a clean CSV every month for your accountant. No manual work.',
   },
+]
+
+const MOCK_SUBS = [
+  { name: 'Slack',     team: 'All teams',  price: '€87',  initial: 'S', color: '#4A154B' },
+  { name: 'Adobe CC',  team: 'Design',     price: '€124', initial: 'A', color: '#FF0000', alert: true },
+  { name: 'Notion',    team: 'Product',    price: '€32',  initial: 'N', color: '#000' },
+  { name: 'Figma',     team: 'Design',     price: '€45',  initial: 'F', color: '#0ACF83' },
 ]
 
 function LogoItem({ name, domain }) {
@@ -60,16 +62,51 @@ function LogoItem({ name, domain }) {
       {imgError ? (
         <div className="biz-logo-fallback">{name[0]}</div>
       ) : (
-        <img
-          src={`https://logo.clearbit.com/${domain}`}
-          alt={name}
-          width={32}
-          height={32}
-          onError={() => setImgError(true)}
-          className="biz-logo-img"
-        />
+        <img src={`https://logo.clearbit.com/${domain}`} alt={name} width={32} height={32}
+          onError={() => setImgError(true)} className="biz-logo-img" />
       )}
       <span className="biz-logo-name">{name}</span>
+    </div>
+  )
+}
+
+function AppMockup() {
+  return (
+    <div className="biz-mockup">
+      <div className="biz-mock-bar">
+        <div className="biz-mock-dots"><span/><span/><span/></div>
+        <span className="biz-mock-url">business.klaxo.app</span>
+      </div>
+      <div className="biz-mock-body">
+        <div className="biz-mock-stats">
+          <div className="biz-mock-stat">
+            <span className="biz-mock-stat-label">Monthly spend</span>
+            <span className="biz-mock-stat-val">€1,247</span>
+            <span className="biz-mock-stat-badge biz-mock-up">↑ 8%</span>
+          </div>
+          <div className="biz-mock-stat">
+            <span className="biz-mock-stat-label">Active tools</span>
+            <span className="biz-mock-stat-val">12</span>
+            <span className="biz-mock-stat-badge biz-mock-warn">2 renewing</span>
+          </div>
+        </div>
+        <div className="biz-mock-list-header">Subscriptions</div>
+        <div className="biz-mock-list">
+          {MOCK_SUBS.map(s => (
+            <div key={s.name} className={`biz-mock-row${s.alert ? ' biz-mock-row-alert' : ''}`}>
+              <div className="biz-mock-initial" style={{ background: s.color }}>{s.initial}</div>
+              <div className="biz-mock-info">
+                <span className="biz-mock-name">{s.name}</span>
+                <span className="biz-mock-team">{s.team}</span>
+              </div>
+              <div className="biz-mock-right">
+                <span className="biz-mock-price">{s.price}/mo</span>
+                {s.alert && <span className="biz-mock-alert-chip">3 days</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
@@ -77,13 +114,11 @@ function LogoItem({ name, domain }) {
 export default function BusinessContent() {
   useEffect(() => {
     document.body.classList.add('biz-theme')
-
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.target.classList.toggle('visible', e.isIntersecting)),
-      { threshold: 0.12 }
+      { threshold: 0.1 }
     )
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
-
     return () => {
       document.body.classList.remove('biz-theme')
       observer.disconnect()
@@ -91,106 +126,102 @@ export default function BusinessContent() {
   }, [])
 
   return (
-    <main className="biz-main">
-      {/* Aurora background blobs */}
-      <div className="biz-aurora biz-aurora-1" />
-      <div className="biz-aurora biz-aurora-2" />
-      <div className="biz-aurora biz-aurora-3" />
-
-      {/* BADGE */}
-      <div className="badge" style={{ marginBottom: 32 }}>
-        <span className="badge-dot" />
-        Coming Soon · Klaxo Business
-      </div>
-
-      {/* HEADLINE */}
-      <h1 className="hero-headline" style={{ marginBottom: 24 }}>
-        Your team&apos;s software spend,<br />
-        <span className="hl">under control.</span>
-      </h1>
-
-      {/* SUBHEADLINE */}
-      <p className="hero-sub" style={{ marginBottom: 40 }}>
-        Finally know what your team pays for software —<br />
-        without spreadsheets or <strong>€100/month enterprise tools.</strong><br />
-        From €9/month. 14-day free trial.
-      </p>
-
-      {/* WAITLIST FORM — inline */}
-      <div className="biz-form-wrap" style={{ marginBottom: 48 }}>
-        <WaitlistForm />
-      </div>
-
-      {/* TRUST BADGES */}
-      <div className="trust-badges" style={{ marginBottom: 80 }}>
-        <div className="trust-badge">
-          <span className="trust-badge-icon biz-svg-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-          </span>
-          Built for Europe
+    <>
+      {/* NAV */}
+      <nav className="biz-nav">
+        <div className="biz-nav-brand">
+          <div className="biz-nav-icon">K</div>
+          <span className="biz-nav-name">Klaxo <strong>Business</strong></span>
         </div>
-        <div className="trust-badge">
-          <span className="trust-badge-icon biz-svg-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M14.5 8.5a3.5 3.5 0 1 0 0 7H12M9.5 8.5H14"/>
-            </svg>
-          </span>
-          From €9/month
-        </div>
-        <div className="trust-badge">
-          <span className="trust-badge-icon biz-svg-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-          </span>
-          CSV export
-        </div>
-        <div className="trust-badge">
-          <span className="trust-badge-icon biz-svg-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-            </svg>
-          </span>
-          Zero setup
-        </div>
-      </div>
+        <a href="#waitlist" className="biz-nav-cta">Join waitlist →</a>
+      </nav>
 
-      {/* LOGOS */}
-      <section className="biz-logos reveal">
-        <p className="biz-logos-label">Teams using tools like these — finally tracked.</p>
-        <div className="biz-logos-row">
-          {LOGOS.map((l) => <LogoItem key={l.name} {...l} />)}
-        </div>
-      </section>
+      <main className="biz-main">
+        <div className="biz-aurora biz-aurora-1" />
+        <div className="biz-aurora biz-aurora-2" />
+        <div className="biz-aurora biz-aurora-3" />
 
-      {/* FEATURE CARDS */}
-      <section className="biz-features reveal">
-        {FEATURES.map((f) => (
-          <div key={f.title} className="biz-feat-card">
-            <div className="biz-feat-icon">{f.icon}</div>
-            <div>
-              <h3 className="biz-feat-title">{f.title}</h3>
-              <p className="biz-feat-desc">{f.desc}</p>
+        {/* HERO — two column */}
+        <section className="biz-hero">
+          <div className="biz-hero-left">
+            <div className="badge" style={{ marginBottom: 20, alignSelf: 'flex-start' }}>
+              <span className="badge-dot" />
+              Coming Soon
+            </div>
+            <div className="biz-product-name" style={{ marginBottom: 20 }}>
+              <span className="biz-product-k">K</span> Klaxo <strong>Business</strong>
+            </div>
+            <h1 className="biz-title">
+              Your team&apos;s<br />
+              software spend,<br />
+              <span className="hl">under control.</span>
+            </h1>
+            <p className="biz-sub">
+              Finally know what your team pays for software —
+              without spreadsheets or <strong>€100/month enterprise tools.</strong>
+              <br />From €9/month. 14-day free trial.
+            </p>
+            <div id="waitlist" className="biz-form-wrap" style={{ marginBottom: 28 }}>
+              <WaitlistForm />
+            </div>
+            <div className="biz-trust-row">
+              <span className="biz-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                Built for Europe
+              </span>
+              <span className="biz-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                Zero setup
+              </span>
+              <span className="biz-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                No credit card
+              </span>
             </div>
           </div>
-        ))}
-      </section>
+          <div className="biz-hero-right">
+            <AppMockup />
+          </div>
+        </section>
 
-      {/* SOCIAL PROOF */}
-      <p className="biz-social-proof reveal">
-        Join <strong>47 teams</strong> already on the waitlist.
-      </p>
+        {/* LOGOS */}
+        <section className="biz-logos reveal">
+          <p className="biz-logos-label">Teams using tools like these — finally tracked.</p>
+          <div className="biz-logos-row">
+            {LOGOS.map((l) => <LogoItem key={l.name} {...l} />)}
+          </div>
+        </section>
 
-      {/* FOOTER */}
-      <footer className="biz-footer">
-        <span>Klaxo Business · business.klaxo.app · Made in Europe 🇪🇺</span>
-        <a href="https://klaxo.app" className="biz-footer-link">klaxo.app →</a>
-      </footer>
-    </main>
+        {/* FEATURE STRIP */}
+        <section className="biz-feat-strip reveal">
+          {FEATURES.map((f, i) => (
+            <div key={f.title} className="biz-feat-col">
+              <div className="biz-feat-icon">{f.icon}</div>
+              <h3 className="biz-feat-title">{f.title}</h3>
+              <p className="biz-feat-desc">{f.desc}</p>
+              {i < FEATURES.length - 1 && <div className="biz-feat-divider" />}
+            </div>
+          ))}
+        </section>
+
+        {/* SOCIAL PROOF */}
+        <p className="biz-social-proof reveal">
+          Join <strong>47 teams</strong> already on the waitlist.
+        </p>
+
+        {/* FOOTER */}
+        <footer className="biz-footer">
+          <span>Klaxo Business · business.klaxo.app · Made in Europe 🇪🇺</span>
+          <a href="https://klaxo.app" className="biz-footer-link">klaxo.app →</a>
+        </footer>
+      </main>
+    </>
   )
 }
