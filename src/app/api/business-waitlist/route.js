@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const MAILERLITE_GROUP_NAME = 'Klaxo Business Waitlist'
+const MAILERLITE_GROUP_NAME = 'Klaxo Waitlist'
 
 const welcomeEmailHtml = (email) => `<!DOCTYPE html>
 <html lang="en">
