@@ -38,27 +38,29 @@ export default function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 420, margin: '0 auto' }}>
-      <input
-        type="email"
-        required
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        className="wf-input"
-      />
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
+      <div className="wf-inline-row">
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          className="wf-input wf-input-flex"
+        />
+        <button
+          type="submit"
+          disabled={state === 'loading'}
+          className="wf-btn wf-btn-inline"
+        >
+          {state === 'loading' ? 'Joining…' : 'Join the waitlist →'}
+        </button>
+      </div>
       {state === 'error' && (
         <p style={{ fontSize: 13, color: '#F87171', margin: 0 }}>
           Something went wrong. Please try again.
         </p>
       )}
-      <button
-        type="submit"
-        disabled={state === 'loading'}
-        className="wf-btn"
-      >
-        {state === 'loading' ? 'Joining\u2026' : 'Join the waitlist \u2192'}
-      </button>
       <p className="wf-hint">Free · No credit card · Cancel anytime</p>
     </form>
   )

@@ -238,6 +238,40 @@ footer{padding:40px;border-top:1px solid var(--border);display:flex;align-items:
 .trust-badge:hover{border-color:rgba(124,92,252,0.3);color:rgba(240,240,245,0.85);background:rgba(124,92,252,0.08)}
 .trust-badge-icon{font-size:14px;line-height:1}
 
+/* ── BUSINESS PAGE ── */
+.biz-main{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:120px 24px 0;text-align:center;position:relative;z-index:1}
+.biz-glow{position:fixed;top:10%;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse at center,rgba(124,92,252,0.18) 0%,transparent 70%);filter:blur(60px);pointer-events:none;z-index:0}
+.biz-form-wrap{width:100%;max-width:540px}
+
+/* Inline form */
+.wf-inline-row{display:flex;gap:8px;width:100%}
+.wf-input-flex{flex:1;min-width:0}
+.wf-btn-inline{flex-shrink:0;width:auto !important;padding:14px 22px !important;white-space:nowrap}
+
+/* Logos */
+.biz-logos{width:100%;max-width:720px;margin-bottom:80px}
+.biz-logos-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px}
+.biz-logos-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.biz-logo-pill{padding:8px 18px;border-radius:100px;border:1px solid rgba(255,255,255,0.07);font-size:13px;font-weight:500;color:rgba(255,255,255,0.4);filter:grayscale(1);letter-spacing:.02em;transition:all .2s;cursor:default}
+.biz-logo-pill:hover{opacity:.7;filter:grayscale(.5);border-color:rgba(124,92,252,0.3);color:rgba(255,255,255,0.65)}
+
+/* Feature cards */
+.biz-features{width:100%;max-width:720px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:64px}
+.biz-feat-card{background:rgba(17,17,24,0.8);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;text-align:left;transition:all .25s;cursor:default}
+.biz-feat-card:hover{border-color:rgba(124,92,252,0.35);box-shadow:0 0 40px rgba(124,92,252,0.1);transform:translateY(-3px)}
+.biz-feat-icon{font-size:20px;margin-bottom:14px;width:44px;height:44px;background:rgba(124,92,252,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.biz-feat-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.2px}
+.biz-feat-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* Social proof */
+.biz-social-proof{font-size:15px;color:var(--muted);margin-bottom:80px}
+.biz-social-proof strong{color:rgba(255,255,255,0.8);font-weight:600}
+
+/* Business footer */
+.biz-footer{width:100%;padding:32px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.biz-footer-link{color:rgba(167,139,250,0.8);text-decoration:none;transition:color .15s}
+.biz-footer-link:hover{color:#A78BFA}
+
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -268,4 +302,7 @@ footer{padding:40px;border-top:1px solid var(--border);display:flex;align-items:
   .float-card,.float-alert{display:none}
   .app-sidebar{display:none}
   footer{flex-direction:column;text-align:center}
+  .biz-features{grid-template-columns:1fr}
+  .wf-inline-row{flex-direction:column}
+  .wf-btn-inline{width:100% !important}
 }
