@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 
-const WORKER_URL = 'https://klaxo-waitlist-api.edimilton.workers.dev'
-
 export default function WaitlistForm() {
   const [email, setEmail] = useState('')
   const [state, setState] = useState('idle')
@@ -13,10 +11,10 @@ export default function WaitlistForm() {
     if (!email) return
     setState('loading')
     try {
-      const res = await fetch(WORKER_URL, {
+      const res = await fetch('/api/business-waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, type: 'klaxo-business' }),
+        body: JSON.stringify({ email }),
       })
       if (!res.ok) throw new Error('Request failed')
       setState('success')
@@ -30,10 +28,10 @@ export default function WaitlistForm() {
       <div style={{ textAlign: 'center', padding: '8px 0' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
         <h3 style={{ fontSize: 22, fontWeight: 700, color: '#F0F0F5', marginBottom: 12 }}>
-          You&apos;re on the list.
+          You&apos;re on the list!
         </h3>
         <p style={{ fontSize: 15, color: 'rgba(240,240,245,0.65)', lineHeight: 1.7 }}>
-          We&apos;ll notify you when Klaxo Business launches.
+          We&apos;ll be in touch soon.
         </p>
       </div>
     )
