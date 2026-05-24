@@ -283,6 +283,8 @@ body.biz-theme .wf-btn:disabled{animation:none;background:#4F6EF7}
 /* trust badges */
 body.biz-theme .trust-badge{background:rgba(17,24,39,0.7);border-color:rgba(79,110,247,0.3)}
 body.biz-theme .trust-badge:hover{border-color:rgba(79,110,247,0.55);background:rgba(79,110,247,0.08);color:rgba(240,240,245,0.85)}
+.biz-svg-icon{display:inline-flex;align-items:center;justify-content:center;color:#4F6EF7;line-height:1}
+body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
 
 /* feature cards — SVG icons + gradient top border */
 body.biz-theme .biz-feat-card{border-color:rgba(79,110,247,0.18);position:relative;overflow:hidden}

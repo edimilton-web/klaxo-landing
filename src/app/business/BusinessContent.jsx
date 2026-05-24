@@ -123,10 +123,41 @@ export default function BusinessContent() {
 
       {/* TRUST BADGES */}
       <div className="trust-badges" style={{ marginBottom: 80 }}>
-        <div className="trust-badge"><span className="trust-badge-icon">🇪🇺</span>Built for Europe</div>
-        <div className="trust-badge"><span className="trust-badge-icon">💶</span>From €9/month</div>
-        <div className="trust-badge"><span className="trust-badge-icon">📊</span>CSV export for accounting</div>
-        <div className="trust-badge"><span className="trust-badge-icon">⚡</span>Zero setup required</div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon biz-svg-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </span>
+          Built for Europe
+        </div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon biz-svg-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M14.5 8.5a3.5 3.5 0 1 0 0 7H12M9.5 8.5H14"/>
+            </svg>
+          </span>
+          From €9/month
+        </div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon biz-svg-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </span>
+          CSV export
+        </div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon biz-svg-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </span>
+          Zero setup
+        </div>
       </div>
 
       {/* LOGOS */}
