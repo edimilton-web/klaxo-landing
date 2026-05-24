@@ -86,8 +86,9 @@ export async function POST(request) {
   }
 
   const mailerKey = process.env.MAILERLITE_API_KEY
+  console.log('[business-waitlist] MAILERLITE_API_KEY:', mailerKey ? 'exists' : 'MISSING')
   if (!mailerKey) {
-    return Response.json({ error: 'Server configuration error' }, { status: 500 })
+    return Response.json({ error: 'Server configuration error', detail: 'MAILERLITE_API_KEY missing' }, { status: 500 })
   }
 
   const mlHeaders = {
@@ -99,16 +100,23 @@ export async function POST(request) {
   const groupsRes = await fetch('https://connect.mailerlite.com/api/groups?limit=100', {
     headers: mlHeaders,
   })
+  const groupsBody = await groupsRes.text()
+  console.log('[business-waitlist] groups status:', groupsRes.status, groupsBody.slice(0, 500))
   if (!groupsRes.ok) {
-    console.error('MailerLite groups error:', await groupsRes.text())
-    return Response.json({ error: 'Failed to fetch groups' }, { status: 500 })
+    return Response.json({ error: 'Failed to fetch groups', detail: groupsBody }, { status: 500 })
   }
-  const groupsData = await groupsRes.json()
+
+  const groupsData = JSON.parse(groupsBody)
+  const allGroupNames = groupsData.data?.map((g) => g.name) ?? []
+  console.log('[business-waitlist] groups found:', allGroupNames)
+
   const group = groupsData.data?.find((g) => g.name === MAILERLITE_GROUP_NAME)
   if (!group) {
-    console.error(`MailerLite group "${MAILERLITE_GROUP_NAME}" not found`)
-    return Response.json({ error: 'Group not found' }, { status: 500 })
+    const msg = `Group "${MAILERLITE_GROUP_NAME}" not found. Available: ${allGroupNames.join(', ')}`
+    console.error('[business-waitlist]', msg)
+    return Response.json({ error: 'Group not found', detail: msg }, { status: 500 })
   }
+  console.log('[business-waitlist] using group:', group.id, group.name)
 
   // Add subscriber to group
   const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
@@ -116,15 +124,15 @@ export async function POST(request) {
     headers: mlHeaders,
     body: JSON.stringify({ email, groups: [group.id] }),
   })
-
+  const mlBody = await mlRes.text()
+  console.log('[business-waitlist] subscriber status:', mlRes.status, mlBody.slice(0, 500))
   if (!mlRes.ok) {
-    const err = await mlRes.text()
-    console.error('MailerLite subscriber error:', err)
-    return Response.json({ error: 'Failed to subscribe' }, { status: 500 })
+    return Response.json({ error: 'Failed to subscribe', detail: mlBody }, { status: 500 })
   }
 
   // Send welcome email via Resend
   const resendKey = process.env.RESEND_API_KEY
+  console.log('[business-waitlist] RESEND_API_KEY:', resendKey ? 'exists' : 'missing (skipping email)')
   if (resendKey) {
     const resend = new Resend(resendKey)
     await resend.emails.send({
@@ -132,7 +140,7 @@ export async function POST(request) {
       to: email,
       subject: "You're on the Klaxo Business waitlist 🎉",
       html: welcomeEmailHtml(email),
-    }).catch((err) => console.error('Resend error:', err))
+    }).catch((err) => console.error('[business-waitlist] Resend error:', err))
   }
 
   return Response.json({ success: true })
