@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const MAILERLITE_GROUP_ID = '188352647414154489'
+const MAILERLITE_GROUP_NAME = 'Klaxo Business Waitlist'
 
 const welcomeEmailHtml = (email) => `<!DOCTYPE html>
 <html lang="en">
@@ -90,25 +90,36 @@ export async function POST(request) {
     return Response.json({ error: 'Server configuration error' }, { status: 500 })
   }
 
-  // Add to MailerLite group
-  const mlRes = await fetch(
-    `https://connect.mailerlite.com/api/subscribers`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${mailerKey}`,
-      },
-      body: JSON.stringify({
-        email,
-        groups: [MAILERLITE_GROUP_ID],
-      }),
-    }
-  )
+  const mlHeaders = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${mailerKey}`,
+  }
+
+  // Resolve group ID by name
+  const groupsRes = await fetch('https://connect.mailerlite.com/api/groups?limit=100', {
+    headers: mlHeaders,
+  })
+  if (!groupsRes.ok) {
+    console.error('MailerLite groups error:', await groupsRes.text())
+    return Response.json({ error: 'Failed to fetch groups' }, { status: 500 })
+  }
+  const groupsData = await groupsRes.json()
+  const group = groupsData.data?.find((g) => g.name === MAILERLITE_GROUP_NAME)
+  if (!group) {
+    console.error(`MailerLite group "${MAILERLITE_GROUP_NAME}" not found`)
+    return Response.json({ error: 'Group not found' }, { status: 500 })
+  }
+
+  // Add subscriber to group
+  const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    method: 'POST',
+    headers: mlHeaders,
+    body: JSON.stringify({ email, groups: [group.id] }),
+  })
 
   if (!mlRes.ok) {
     const err = await mlRes.text()
-    console.error('MailerLite error:', err)
+    console.error('MailerLite subscriber error:', err)
     return Response.json({ error: 'Failed to subscribe' }, { status: 500 })
   }
 
