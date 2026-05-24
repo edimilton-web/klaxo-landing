@@ -13,42 +13,52 @@ export const metadata = {
 
 export default function BusinessPage() {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 80px', textAlign: 'center' }}>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 80px', textAlign: 'center' }}>
 
-      <div className="badge">
+      {/* BADGE */}
+      <div className="badge" style={{ marginBottom: 32 }}>
         <span className="badge-dot" />
         Coming Soon · Klaxo Business
       </div>
 
-      <h1 className="hero-headline">
+      {/* HEADLINE */}
+      <h1 className="hero-headline" style={{ marginBottom: 24 }}>
         Your team&apos;s software spend,<br />
         <span className="hl">under control.</span>
       </h1>
 
-      <p className="hero-sub">
+      {/* SUB */}
+      <p className="hero-sub" style={{ marginBottom: 40 }}>
         Finally know what your team pays for software —<br />
         without spreadsheets or <strong>€100/month enterprise tools.</strong><br />
         From €9/month. 14-day free trial.
       </p>
 
-      <WaitlistForm />
+      {/* WAITLIST FORM */}
+      <div style={{ width: '100%', maxWidth: 420, marginBottom: 64 }}>
+        <WaitlistForm />
+      </div>
 
-      <div className="trust-section" style={{ width: '100%', marginTop: 8 }}>
-        <div className="trust-badges">
-          {[
-            { icon: '🇪🇺', label: 'Built for Europe' },
-            { icon: '💶', label: 'From €9/month' },
-            { icon: '📊', label: 'CSV export for accounting' },
-            { icon: '⚡', label: 'Zero setup required' },
-          ].map((b) => (
-            <div key={b.label} className="trust-badge">
-              <span className="trust-badge-icon">{b.icon}</span>
-              {b.label}
-            </div>
-          ))}
+      {/* TRUST BADGES */}
+      <div className="trust-badges">
+        <div className="trust-badge">
+          <span className="trust-badge-icon">🇪🇺</span>
+          Built for Europe
+        </div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon">💶</span>
+          From €9/month
+        </div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon">📊</span>
+          CSV export for accounting
+        </div>
+        <div className="trust-badge">
+          <span className="trust-badge-icon">⚡</span>
+          Zero setup required
         </div>
       </div>
 
-    </div>
+    </main>
   )
 }
