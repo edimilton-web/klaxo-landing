@@ -118,16 +118,33 @@ export async function POST(request) {
   }
   console.log('[business-waitlist] using group:', group.id, group.name)
 
-  // Add subscriber to group
+  // Step 1: upsert subscriber
   const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
     method: 'POST',
     headers: mlHeaders,
-    body: JSON.stringify({ email, groups: [group.id] }),
+    body: JSON.stringify({ email }),
   })
   const mlBody = await mlRes.text()
-  console.log('[business-waitlist] subscriber status:', mlRes.status, mlBody.slice(0, 500))
+  console.log('[business-waitlist] subscriber upsert status:', mlRes.status, mlBody.slice(0, 500))
   if (!mlRes.ok) {
     return Response.json({ error: 'Failed to subscribe', detail: mlBody }, { status: 500 })
+  }
+
+  const subscriberId = JSON.parse(mlBody).data?.id
+  console.log('[business-waitlist] subscriber id:', subscriberId)
+  if (!subscriberId) {
+    return Response.json({ error: 'Failed to get subscriber id', detail: mlBody }, { status: 500 })
+  }
+
+  // Step 2: explicitly assign subscriber to group
+  const assignRes = await fetch(
+    `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups/${group.id}`,
+    { method: 'POST', headers: mlHeaders }
+  )
+  const assignBody = await assignRes.text()
+  console.log('[business-waitlist] group assign status:', assignRes.status, assignBody.slice(0, 300))
+  if (!assignRes.ok) {
+    return Response.json({ error: 'Failed to assign group', detail: assignBody }, { status: 500 })
   }
 
   // Send welcome email via Resend
