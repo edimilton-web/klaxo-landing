@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const MAILERLITE_GROUP_NAME = 'Klaxo Waitlist'
+const MAILERLITE_GROUP_ID = '188352647414154489'
 
 const welcomeEmailHtml = (email) => `<!DOCTYPE html>
 <html lang="en">
@@ -95,20 +95,6 @@ export async function POST(request) {
     Authorization: `Bearer ${mailerKey}`,
   }
 
-  // Resolve group ID by name
-  const groupsRes = await fetch('https://connect.mailerlite.com/api/groups?limit=100', {
-    headers: mlHeaders,
-  })
-  if (!groupsRes.ok) {
-    return Response.json({ error: 'Failed to fetch groups' }, { status: 500 })
-  }
-
-  const groupsData = await groupsRes.json()
-  const group = groupsData.data?.find((g) => g.name === MAILERLITE_GROUP_NAME)
-  if (!group) {
-    return Response.json({ error: 'Group not found' }, { status: 500 })
-  }
-
   // Step 1: upsert subscriber (without touching existing group memberships)
   const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
     method: 'POST',
@@ -126,7 +112,7 @@ export async function POST(request) {
 
   // Step 2: explicitly add to group (additive only, never removes from other groups)
   const assignRes = await fetch(
-    `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups/${group.id}`,
+    `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups/${MAILERLITE_GROUP_ID}`,
     { method: 'POST', headers: mlHeaders }
   )
   if (!assignRes.ok) {
