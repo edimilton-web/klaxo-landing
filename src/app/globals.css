@@ -238,6 +238,58 @@ footer{padding:40px;border-top:1px solid var(--border);display:flex;align-items:
 .trust-badge:hover{border-color:rgba(124,92,252,0.3);color:rgba(240,240,245,0.85);background:rgba(124,92,252,0.08)}
 .trust-badge-icon{font-size:14px;line-height:1}
 
+/* ── BUSINESS THEME (body.biz-theme overrides) ── */
+body.biz-theme{
+  background:radial-gradient(ellipse at 50% 30%, #0F1628 0%, #0A0F1E 100%);
+}
+body.biz-theme::before{
+  background-image:radial-gradient(rgba(79,110,247,0.04) 1px, transparent 1px);
+  background-size:32px 32px;
+}
+
+/* badge */
+body.biz-theme .badge{background:rgba(79,110,247,0.12);border-color:rgba(79,110,247,0.35);color:#7B9FFF}
+body.biz-theme .badge-dot{background:#4F6EF7;box-shadow:0 0 6px #4F6EF7}
+
+/* headline gradient */
+body.biz-theme .hero-headline .hl{
+  background:linear-gradient(90deg,#4F6EF7,#7C3AED);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* glow */
+body.biz-theme .biz-glow{
+  background:radial-gradient(ellipse at center,rgba(79,110,247,0.18) 0%,transparent 70%);
+}
+
+/* input focus */
+body.biz-theme .wf-input:focus{border-color:rgba(79,110,247,0.55)}
+
+/* button */
+body.biz-theme .wf-btn{background:#4F6EF7;box-shadow:0 0 40px rgba(79,110,247,0.45)}
+body.biz-theme .wf-btn:hover{background:#3A5CE5;box-shadow:0 8px 40px rgba(79,110,247,0.65)}
+
+/* trust badges */
+body.biz-theme .trust-badge{background:rgba(17,24,39,0.7);border-color:rgba(79,110,247,0.3)}
+body.biz-theme .trust-badge:hover{border-color:rgba(79,110,247,0.55);background:rgba(79,110,247,0.08);color:rgba(240,240,245,0.85)}
+
+/* feature cards */
+body.biz-theme .biz-feat-card{border-color:rgba(79,110,247,0.2)}
+body.biz-theme .biz-feat-card:hover{border-color:rgba(79,110,247,0.5);box-shadow:0 0 40px rgba(79,110,247,0.12)}
+body.biz-theme .biz-feat-icon{background:rgba(79,110,247,0.12)}
+
+/* scrollbar */
+body.biz-theme ::-webkit-scrollbar-thumb{background:rgba(79,110,247,0.35)}
+
+/* logo items */
+.biz-logo-item{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);transition:all .2s;cursor:default}
+body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background:rgba(79,110,247,0.06)}
+.biz-logo-img{width:32px;height:32px;border-radius:50%;object-fit:contain;filter:grayscale(1);opacity:.4;transition:all .2s;background:rgba(255,255,255,0.05)}
+.biz-logo-item:hover .biz-logo-img{opacity:.65;filter:grayscale(.3)}
+.biz-logo-fallback{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:rgba(255,255,255,0.4)}
+.biz-logo-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:.01em;transition:color .2s}
+.biz-logo-item:hover .biz-logo-name{color:rgba(255,255,255,0.65)}
+
 /* ── BUSINESS PAGE ── */
 .biz-main{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:120px 24px 0;text-align:center;position:relative;z-index:1}
 .biz-glow{position:fixed;top:10%;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse at center,rgba(124,92,252,0.18) 0%,transparent 70%);filter:blur(60px);pointer-events:none;z-index:0}
@@ -252,8 +304,6 @@ footer{padding:40px;border-top:1px solid var(--border);display:flex;align-items:
 .biz-logos{width:100%;max-width:720px;margin-bottom:80px}
 .biz-logos-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px}
 .biz-logos-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.biz-logo-pill{padding:8px 18px;border-radius:100px;border:1px solid rgba(255,255,255,0.07);font-size:13px;font-weight:500;color:rgba(255,255,255,0.4);filter:grayscale(1);letter-spacing:.02em;transition:all .2s;cursor:default}
-.biz-logo-pill:hover{opacity:.7;filter:grayscale(.5);border-color:rgba(124,92,252,0.3);color:rgba(255,255,255,0.65)}
 
 /* Feature cards */
 .biz-features{width:100%;max-width:720px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:64px}

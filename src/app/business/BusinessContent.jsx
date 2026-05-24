@@ -1,9 +1,18 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import WaitlistForm from './WaitlistForm'
 
-const LOGOS = ['Notion', 'Slack', 'Adobe', 'Zoom', 'ChatGPT', 'Figma', 'Microsoft 365', 'Spotify']
+const LOGOS = [
+  { name: 'Notion',        domain: 'notion.so' },
+  { name: 'Slack',         domain: 'slack.com' },
+  { name: 'Adobe',         domain: 'adobe.com' },
+  { name: 'Zoom',          domain: 'zoom.us' },
+  { name: 'ChatGPT',       domain: 'openai.com' },
+  { name: 'Figma',         domain: 'figma.com' },
+  { name: 'Microsoft 365', domain: 'microsoft.com' },
+  { name: 'Spotify',       domain: 'spotify.com' },
+]
 
 const FEATURES = [
   {
@@ -23,14 +32,41 @@ const FEATURES = [
   },
 ]
 
+function LogoItem({ name, domain }) {
+  const [imgError, setImgError] = useState(false)
+  return (
+    <div className="biz-logo-item">
+      {imgError ? (
+        <div className="biz-logo-fallback">{name[0]}</div>
+      ) : (
+        <img
+          src={`https://logo.clearbit.com/${domain}`}
+          alt={name}
+          width={32}
+          height={32}
+          onError={() => setImgError(true)}
+          className="biz-logo-img"
+        />
+      )}
+      <span className="biz-logo-name">{name}</span>
+    </div>
+  )
+}
+
 export default function BusinessContent() {
   useEffect(() => {
+    document.body.classList.add('biz-theme')
+
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.target.classList.toggle('visible', e.isIntersecting)),
       { threshold: 0.12 }
     )
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+
+    return () => {
+      document.body.classList.remove('biz-theme')
+      observer.disconnect()
+    }
   }, [])
 
   return (
@@ -73,9 +109,7 @@ export default function BusinessContent() {
       <section className="biz-logos reveal">
         <p className="biz-logos-label">Teams using tools like these — finally tracked.</p>
         <div className="biz-logos-row">
-          {LOGOS.map((name) => (
-            <span key={name} className="biz-logo-pill">{name}</span>
-          ))}
+          {LOGOS.map((l) => <LogoItem key={l.name} {...l} />)}
         </div>
       </section>
 
