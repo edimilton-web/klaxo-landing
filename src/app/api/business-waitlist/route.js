@@ -95,28 +95,16 @@ export async function POST(request) {
     Authorization: `Bearer ${mailerKey}`,
   }
 
-  // Step 1: upsert subscriber (without touching existing group memberships)
+  // Upsert subscriber and assign to group in one call
   const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
     method: 'POST',
     headers: mlHeaders,
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, groups: [MAILERLITE_GROUP_ID] }),
   })
   if (!mlRes.ok) {
+    const body = await mlRes.text()
+    console.error('[business-waitlist] MailerLite error:', mlRes.status, body)
     return Response.json({ error: 'Failed to subscribe' }, { status: 500 })
-  }
-
-  const subscriberId = (await mlRes.json()).data?.id
-  if (!subscriberId) {
-    return Response.json({ error: 'Failed to get subscriber id' }, { status: 500 })
-  }
-
-  // Step 2: explicitly add to group (additive only, never removes from other groups)
-  const assignRes = await fetch(
-    `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups/${MAILERLITE_GROUP_ID}`,
-    { method: 'POST', headers: mlHeaders }
-  )
-  if (!assignRes.ok) {
-    return Response.json({ error: 'Failed to assign group' }, { status: 500 })
   }
 
   // Send welcome email via Resend
