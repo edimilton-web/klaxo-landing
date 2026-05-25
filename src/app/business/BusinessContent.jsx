@@ -159,8 +159,7 @@ export default function BusinessContent() {
               <span className="biz-product-k">K</span> Klaxo <strong>Business</strong>
             </div>
             <h1 className="biz-title">
-              Your team&apos;s<br />
-              software spend,<br />
+              Your team&apos;s software spend,{' '}
               <span className="hl">under control.</span>
             </h1>
 
