@@ -1,17 +1,17 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import WaitlistForm from './WaitlistForm'
 
 const LOGOS = [
-  { name: 'Notion',        domain: 'notion.so' },
-  { name: 'Slack',         domain: 'slack.com' },
-  { name: 'Adobe',         domain: 'adobe.com' },
-  { name: 'Zoom',          domain: 'zoom.us' },
-  { name: 'ChatGPT',       domain: 'openai.com' },
-  { name: 'Figma',         domain: 'figma.com' },
-  { name: 'Microsoft 365', domain: 'microsoft.com' },
-  { name: 'Spotify',       domain: 'spotify.com' },
+  { name: 'Notion',        initial: 'N', color: '#000000' },
+  { name: 'Slack',         initial: 'S', color: '#4A154B' },
+  { name: 'Adobe',         initial: 'A', color: '#FF0000' },
+  { name: 'Zoom',          initial: 'Z', color: '#2D8CFF' },
+  { name: 'ChatGPT',       initial: 'C', color: '#10A37F' },
+  { name: 'Figma',         initial: 'F', color: '#F24E1E' },
+  { name: 'Microsoft 365', initial: 'M', color: '#D83B01' },
+  { name: 'Spotify',       initial: 'S', color: '#1DB954' },
 ]
 
 const FEATURES = [
@@ -55,22 +55,12 @@ const MOCK_SUBS = [
   { name: 'Figma',     team: 'Design',    price: '€45',  initial: 'F', color: '#0ACF83' },
 ]
 
-// Fix 1: image in a white-bg circle wrapper; on error hide image entirely, show name only
-function LogoItem({ name, domain }) {
-  const [loaded, setLoaded] = useState(false)
-  const [failed, setFailed] = useState(false)
+function LogoItem({ name, initial, color }) {
   return (
     <div className="biz-logo-item">
-      <img
-        src={`https://logo.clearbit.com/${domain}`}
-        alt=""
-        width={24}
-        height={24}
-        onLoad={() => setLoaded(true)}
-        onError={() => setFailed(true)}
-        className="biz-logo-img"
-        style={{ display: loaded && !failed ? 'block' : 'none' }}
-      />
+      <div className="biz-logo-circle" style={{ background: color }}>
+        {initial}
+      </div>
       <span className="biz-logo-name">{name}</span>
     </div>
   )
