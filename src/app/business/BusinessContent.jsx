@@ -49,21 +49,28 @@ const FEATURES = [
 ]
 
 const MOCK_SUBS = [
-  { name: 'Slack',     team: 'All teams',  price: '€87',  initial: 'S', color: '#4A154B' },
-  { name: 'Adobe CC',  team: 'Design',     price: '€124', initial: 'A', color: '#FF0000', alert: true },
-  { name: 'Notion',    team: 'Product',    price: '€32',  initial: 'N', color: '#000' },
-  { name: 'Figma',     team: 'Design',     price: '€45',  initial: 'F', color: '#0ACF83' },
+  { name: 'Slack',     team: 'All teams', price: '€87',  initial: 'S', color: '#4A154B' },
+  { name: 'Adobe CC',  team: 'Design',    price: '€124', initial: 'A', color: '#FF0000', alert: true },
+  { name: 'Notion',    team: 'Product',   price: '€32',  initial: 'N', color: '#000' },
+  { name: 'Figma',     team: 'Design',    price: '€45',  initial: 'F', color: '#0ACF83' },
 ]
 
+// Fix 1: image in a white-bg circle wrapper; on error hide image entirely, show name only
 function LogoItem({ name, domain }) {
   const [imgError, setImgError] = useState(false)
   return (
     <div className="biz-logo-item">
-      {imgError ? (
-        <div className="biz-logo-fallback">{name[0]}</div>
-      ) : (
-        <img src={`https://logo.clearbit.com/${domain}`} alt={name} width={32} height={32}
-          onError={() => setImgError(true)} className="biz-logo-img" />
+      {!imgError && (
+        <div className="biz-logo-img-wrap">
+          <img
+            src={`https://logo.clearbit.com/${domain}`}
+            alt={name}
+            width={22}
+            height={22}
+            onError={() => setImgError(true)}
+            className="biz-logo-img"
+          />
+        </div>
       )}
       <span className="biz-logo-name">{name}</span>
     </div>
@@ -156,14 +163,19 @@ export default function BusinessContent() {
               software spend,<br />
               <span className="hl">under control.</span>
             </h1>
+
+            {/* Fix 2: updated subheadline */}
             <p className="biz-sub">
-              Finally know what your team pays for software —
-              without spreadsheets or <strong>€100/month enterprise tools.</strong>
-              <br />From €9/month. 14-day free trial.
+              Built for teams of 3–15 people. Track every subscription your team
+              pays for — in euros, with renewal alerts and monthly reports for
+              your accountant. From €19/month.
             </p>
+
             <div id="waitlist" className="biz-form-wrap" style={{ marginBottom: 28 }}>
               <WaitlistForm />
             </div>
+
+            {/* Fix 5: added 4th badge "For teams of 3-15" */}
             <div className="biz-trust-row">
               <span className="biz-trust-item">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -184,6 +196,15 @@ export default function BusinessContent() {
                 </svg>
                 No credit card
               </span>
+              <span className="biz-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Teams of 3–15
+              </span>
             </div>
           </div>
           <div className="biz-hero-right">
@@ -191,7 +212,7 @@ export default function BusinessContent() {
           </div>
         </section>
 
-        {/* LOGOS */}
+        {/* Fix 3: reduced padding — biz-logos now has less top space */}
         <section className="biz-logos reveal">
           <p className="biz-logos-label">Teams using tools like these — finally tracked.</p>
           <div className="biz-logos-row">
@@ -209,6 +230,14 @@ export default function BusinessContent() {
               {i < FEATURES.length - 1 && <div className="biz-feat-divider" />}
             </div>
           ))}
+        </section>
+
+        {/* Fix 4: secondary CTA */}
+        <section className="biz-cta-section reveal">
+          <p className="biz-cta-text">
+            Ready to take control of your team&apos;s software spend?
+          </p>
+          <a href="#waitlist" className="biz-cta-btn">Join the waitlist →</a>
         </section>
 
         {/* SOCIAL PROOF */}

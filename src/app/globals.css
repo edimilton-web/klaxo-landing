@@ -335,7 +335,7 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background
 .wf-btn-inline{flex-shrink:0;width:auto !important;padding:14px 22px !important;white-space:nowrap}
 
 /* Hero — two column */
-.biz-hero{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:80px 48px 80px;min-height:calc(100vh - 80px)}
+.biz-hero{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:80px 48px 48px;min-height:calc(100vh - 80px)}
 .biz-hero-left{display:flex;flex-direction:column;align-items:flex-start}
 .biz-title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(36px,4vw,58px);letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:20px;text-align:left;animation:fadeUp .7s ease .1s both}
 .biz-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px;text-align:left;max-width:440px;animation:fadeUp .7s ease .2s both}
@@ -381,8 +381,8 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background
 .biz-mock-price{font-size:12px;font-weight:700;color:var(--text)}
 .biz-mock-alert-chip{font-size:9px;font-weight:600;padding:2px 6px;border-radius:20px;background:rgba(245,158,11,0.15);color:#FCD34D}
 
-/* Logos */
-.biz-logos{width:100%;max-width:1100px;padding:0 48px 80px;text-align:center}
+/* Logos — Fix 3: reduced top space by cutting hero bottom padding + logos bottom */
+.biz-logos{width:100%;max-width:1100px;padding:0 48px 40px;text-align:center}
 .biz-logos-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px}
 .biz-logos-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 
@@ -395,6 +395,12 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background
 .biz-feat-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.2px}
 .biz-feat-desc{font-size:13.5px;color:var(--muted);line-height:1.65}
 
+/* Secondary CTA — Fix 4 */
+.biz-cta-section{width:100%;max-width:1100px;padding:60px 48px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px}
+.biz-cta-text{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.03em;line-height:1.25;max-width:440px}
+.biz-cta-btn{display:inline-flex;align-items:center;padding:15px 32px;border-radius:10px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;text-decoration:none;cursor:pointer;border:none;background:linear-gradient(90deg,#4F6EF7,#7B6FF7,#4F6EF7);background-size:200% auto;animation:bizShimmer 5s linear infinite;box-shadow:0 0 40px rgba(79,110,247,0.4);color:#fff;transition:box-shadow .2s,transform .2s}
+.biz-cta-btn:hover{box-shadow:0 8px 48px rgba(79,110,247,0.6);transform:translateY(-2px)}
+
 /* Social proof */
 .biz-social-proof{font-size:15px;color:var(--muted);margin-bottom:80px;text-align:center}
 .biz-social-proof strong{color:rgba(255,255,255,0.8);font-weight:600}
@@ -404,14 +410,14 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background
 .biz-footer-link{color:rgba(167,139,250,0.8);text-decoration:none;transition:color .15s}
 .biz-footer-link:hover{color:#A78BFA}
 
-/* Logo items */
+/* Logo items — Fix 1: white-bg wrapper, 70% opacity, name-only fallback */
 .biz-logo-item{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);transition:all .2s;cursor:default}
 body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background:rgba(79,110,247,0.06)}
-.biz-logo-img{width:32px;height:32px;border-radius:50%;object-fit:contain;filter:grayscale(1);opacity:.4;transition:all .2s;background:rgba(255,255,255,0.05)}
-.biz-logo-item:hover .biz-logo-img{opacity:.65;filter:grayscale(.3)}
-.biz-logo-fallback{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:rgba(255,255,255,0.4)}
-.biz-logo-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:.01em;transition:color .2s}
-.biz-logo-item:hover .biz-logo-name{color:rgba(255,255,255,0.65)}
+.biz-logo-img-wrap{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.biz-logo-img{width:20px;height:20px;object-fit:contain;filter:grayscale(1);opacity:.7;transition:all .2s;display:block}
+.biz-logo-item:hover .biz-logo-img{opacity:.9;filter:grayscale(.2)}
+.biz-logo-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.45);letter-spacing:.01em;transition:color .2s}
+.biz-logo-item:hover .biz-logo-name{color:rgba(255,255,255,0.7)}
 
 /* SVG icon in trust badges */
 .biz-svg-icon{display:inline-flex;align-items:center;justify-content:center;color:#4F6EF7;line-height:1}
@@ -454,7 +460,9 @@ body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
   .biz-sub{text-align:center}
   .biz-trust-row{justify-content:center}
   .biz-mockup{max-width:340px}
-  .biz-logos{padding:0 24px 60px}
+  .biz-logos{padding:0 24px 32px}
+  .biz-cta-section{padding:40px 24px}
+  .biz-cta-text{font-size:18px}
   .biz-feat-strip{grid-template-columns:1fr;padding:0 24px 60px}
   .biz-feat-col{padding:24px 0}
   .biz-feat-divider{display:none}
