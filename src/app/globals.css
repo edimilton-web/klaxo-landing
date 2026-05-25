@@ -410,11 +410,10 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background
 .biz-footer-link{color:rgba(167,139,250,0.8);text-decoration:none;transition:color .15s}
 .biz-footer-link:hover{color:#A78BFA}
 
-/* Logo items — Fix 1: white-bg wrapper, 70% opacity, name-only fallback */
+/* Logo items */
 .biz-logo-item{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);transition:all .2s;cursor:default}
 body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.3);background:rgba(79,110,247,0.06)}
-.biz-logo-img-wrap{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
-.biz-logo-img{width:20px;height:20px;object-fit:contain;filter:grayscale(1);opacity:.7;transition:all .2s;display:block}
+.biz-logo-img{width:24px;height:24px;border-radius:6px;object-fit:contain;filter:grayscale(1);opacity:.7;flex-shrink:0;background:rgba(255,255,255,0.88);padding:2px;transition:all .2s}
 .biz-logo-item:hover .biz-logo-img{opacity:.9;filter:grayscale(.2)}
 .biz-logo-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.45);letter-spacing:.01em;transition:color .2s}
 .biz-logo-item:hover .biz-logo-name{color:rgba(255,255,255,0.7)}

@@ -57,21 +57,20 @@ const MOCK_SUBS = [
 
 // Fix 1: image in a white-bg circle wrapper; on error hide image entirely, show name only
 function LogoItem({ name, domain }) {
-  const [imgError, setImgError] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  const [failed, setFailed] = useState(false)
   return (
     <div className="biz-logo-item">
-      {!imgError && (
-        <div className="biz-logo-img-wrap">
-          <img
-            src={`https://logo.clearbit.com/${domain}`}
-            alt={name}
-            width={22}
-            height={22}
-            onError={() => setImgError(true)}
-            className="biz-logo-img"
-          />
-        </div>
-      )}
+      <img
+        src={`https://logo.clearbit.com/${domain}`}
+        alt=""
+        width={24}
+        height={24}
+        onLoad={() => setLoaded(true)}
+        onError={() => setFailed(true)}
+        className="biz-logo-img"
+        style={{ display: loaded && !failed ? 'block' : 'none' }}
+      />
       <span className="biz-logo-name">{name}</span>
     </div>
   )
