@@ -307,10 +307,10 @@ body.biz-theme .biz-feat-card:hover .biz-feat-icon{
 body.biz-theme ::-webkit-scrollbar-thumb{background:rgba(79,110,247,0.35)}
 
 /* logo items */
-.biz-logo-item{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;border:1px solid #2A3150;background:#1E2333;transition:all .2s;cursor:default}
+.biz-logo-item{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 6px;border-radius:999px;border:1px solid #2A3150;background:#1E2333;transition:all .2s;cursor:default}
 body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.4);background:rgba(79,110,247,0.08)}
-.biz-logo-circle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0;line-height:1}
-.biz-logo-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);letter-spacing:.01em;transition:color .2s}
+.biz-logo-circle{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;line-height:1}
+.biz-logo-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.55);letter-spacing:.01em;transition:color .2s}
 .biz-logo-item:hover .biz-logo-name{color:rgba(255,255,255,0.85)}
 
 /* ── BUSINESS PAGE ── */
@@ -382,7 +382,7 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.4);background
 /* Logos — Fix 3: reduced top space by cutting hero bottom padding + logos bottom */
 .biz-logos{width:100%;max-width:1100px;padding:0 48px 40px;text-align:center}
 .biz-logos-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px}
-.biz-logos-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.biz-logos-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 
 /* Feature strip — horizontal */
 .biz-feat-strip{width:100%;max-width:1100px;padding:0 48px 80px;display:grid;grid-template-columns:repeat(3,1fr);position:relative}
