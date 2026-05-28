@@ -1,5 +1,6 @@
 import RevealObserver from "./RevealObserver"
 import OpenBankingModal from "./OpenBankingModal"
+import DashboardMockup from "./components/DashboardMockup"
 
 export const metadata = {
   title: "Klaxo — Track Your Subscriptions | Built for Europe",
@@ -113,135 +114,9 @@ export default function Home() {
           Free forever · No credit card required · Upgrade anytime
         </p>
 
-        {/* APP SHOWCASE */}
-        <div className="showcase-wrap">
-          <div className="showcase-glow" />
-
-          <div className="float-card">
-            <div className="float-card-label">This month</div>
-            <div className="float-card-value">€130.96</div>
-            <div className="float-card-sub">↑ 7 active subscriptions</div>
-          </div>
-
-          <div className="float-alert">
-            <div className="float-alert-icon">⚡</div>
-            <div>
-              <div className="float-alert-text">Netflix renews in 3 days</div>
-              <div className="float-alert-sub">€15.99 · 06 Jun 2026</div>
-            </div>
-          </div>
-
-          <div className="showcase-float">
-            <div className="browser">
-              <div className="browser-bar">
-                <div className="browser-dots">
-                  <div className="dot dot-r" />
-                  <div className="dot dot-y" />
-                  <div className="dot dot-g" />
-                </div>
-                <div className="browser-url">app.klaxo.app/dashboard</div>
-              </div>
-              <div className="app-inner">
-                <div className="app-sidebar">
-                  <div className="app-logo-row">
-                    <div className="app-logo-k">K</div>
-                    Klaxo
-                  </div>
-                  <div className="app-nav-item active">
-                    <span className="app-nav-dot" />
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
-                      <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
-                    </svg>
-                    Dashboard
-                  </div>
-                  <div className="app-nav-item">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    </svg>
-                    Subscriptions
-                  </div>
-                  <div className="app-nav-item">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="1" y="4" width="22" height="16" rx="2" /><line x1="1" y1="10" x2="23" y2="10" />
-                    </svg>
-                    Billing
-                  </div>
-                  <div className="app-nav-item">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="3" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
-                    </svg>
-                    Settings
-                  </div>
-                </div>
-                <div className="app-main">
-                  <div className="app-greeting">Good morning, Eddie 👋</div>
-                  <div className="app-stats">
-                    <div className="app-stat">
-                      <div className="app-stat-label">Monthly</div>
-                      <div className="app-stat-val">€89</div>
-                      <div className="app-stat-badge badge-amber">↑ +€12</div>
-                    </div>
-                    <div className="app-stat">
-                      <div className="app-stat-label">Next bill</div>
-                      <div className="app-stat-val" style={{ fontSize: "13px", paddingTop: "3px" }}>Netflix</div>
-                      <div className="app-stat-badge badge-amber">⚡ 3 days</div>
-                    </div>
-                    <div className="app-stat">
-                      <div className="app-stat-label">Active</div>
-                      <div className="app-stat-val">7</div>
-                      <div className="app-stat-badge badge-green">✓ OK</div>
-                    </div>
-                  </div>
-                  <div className="app-subs-title">Upcoming Renewals</div>
-                  <div className="app-sub-row">
-                    <div className="app-sub-logo">N</div>
-                    <div className="app-sub-info">
-                      <div className="app-sub-name">Netflix</div>
-                      <div className="app-sub-date">06 Jun · Monthly</div>
-                    </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div className="app-sub-price">€15.99</div>
-                      <div className="app-sub-urgent">in 3 days</div>
-                    </div>
-                  </div>
-                  <div className="app-sub-row">
-                    <div className="app-sub-logo">S</div>
-                    <div className="app-sub-info">
-                      <div className="app-sub-name">Spotify</div>
-                      <div className="app-sub-date">10 Jun · Monthly</div>
-                    </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div className="app-sub-price">€9.99</div>
-                      <div className="app-sub-date">in 7 days</div>
-                    </div>
-                  </div>
-                  <div className="app-sub-row">
-                    <div className="app-sub-logo">A</div>
-                    <div className="app-sub-info">
-                      <div className="app-sub-name">Adobe CC</div>
-                      <div className="app-sub-date">18 Jun · Monthly</div>
-                    </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div className="app-sub-price">€54.99</div>
-                      <div className="app-sub-date">in 15 days</div>
-                    </div>
-                  </div>
-                  <div className="app-sub-row">
-                    <div className="app-sub-logo">G</div>
-                    <div className="app-sub-info">
-                      <div className="app-sub-name">GitHub</div>
-                      <div className="app-sub-date">01 Jul · Monthly</div>
-                    </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div className="app-sub-price">€4.00</div>
-                      <div className="app-sub-date">in 28 days</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* DASHBOARD MOCKUP */}
+        <div style={{ width: "100%", maxWidth: 900, margin: "0 auto", paddingTop: 8 }}>
+          <DashboardMockup />
         </div>
       </section>
 
