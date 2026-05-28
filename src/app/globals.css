@@ -333,10 +333,12 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.4);background
 .wf-btn-inline{flex-shrink:0;width:auto !important;padding:14px 22px !important;white-space:nowrap}
 
 /* Hero — two column */
-.biz-hero{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:80px 48px 48px;min-height:calc(100vh - 80px)}
+.biz-hero{width:100%;max-width:1100px;display:flex;flex-direction:column;align-items:center;padding:80px 48px 48px;min-height:calc(100vh - 80px)}
+.biz-hero-vertical{align-items:center}
+.biz-hero-center{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
 .biz-hero-left{display:flex;flex-direction:column;align-items:flex-start}
-.biz-title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(36px,4vw,58px);letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:20px;text-align:left;animation:fadeUp .7s ease .1s both}
-.biz-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px;text-align:left;max-width:440px;animation:fadeUp .7s ease .2s both}
+.biz-title{font-family:'DM Sans',sans-serif;font-weight:800;font-size:clamp(36px,4vw,58px);letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:20px;text-align:center;animation:fadeUp .7s ease .1s both}
+.biz-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px;text-align:center;max-width:560px;animation:fadeUp .7s ease .2s both}
 .biz-sub strong{color:rgba(255,255,255,0.8);font-weight:500}
 .biz-form-wrap{width:100%;max-width:480px;animation:fadeUp .7s ease .3s both}
 
@@ -346,7 +348,7 @@ body.biz-theme .biz-logo-item:hover{border-color:rgba(79,110,247,0.4);background
 .biz-product-name strong{color:rgba(240,240,245,0.9);font-weight:700}
 .biz-product-k{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,#4F6EF7,#3A5CE5);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;font-family:'Nunito',sans-serif;color:#fff}
 
-.biz-trust-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;animation:fadeUp .7s ease .4s both}
+.biz-trust-row{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;animation:fadeUp .7s ease .4s both}
 .biz-trust-item{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(240,240,245,0.45);letter-spacing:.01em}
 .biz-trust-item svg{color:#4F6EF7;flex-shrink:0}
 
@@ -445,7 +447,7 @@ body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
   .app-sidebar{display:none}
   footer{flex-direction:column;text-align:center}
   .biz-nav{padding:12px 20px}
-  .biz-hero{grid-template-columns:1fr;padding:60px 24px 48px;min-height:auto;gap:48px}
+  .biz-hero{padding:60px 24px 48px;min-height:auto}
   .biz-hero-left{align-items:center;text-align:center}
   .biz-title{text-align:center}
   .biz-sub{text-align:center}

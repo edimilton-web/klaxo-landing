@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import WaitlistForm from './WaitlistForm'
+import DashboardMockup from '../components/DashboardMockup'
 
 const LOGOS = [
   { name: 'Notion',        initial: 'N', color: '#000000' },
@@ -48,12 +49,6 @@ const FEATURES = [
   },
 ]
 
-const MOCK_SUBS = [
-  { name: 'Slack',     team: 'All teams', price: '€87',  initial: 'S', color: '#4A154B' },
-  { name: 'Adobe CC',  team: 'Design',    price: '€124', initial: 'A', color: '#FF0000', alert: true },
-  { name: 'Notion',    team: 'Product',   price: '€32',  initial: 'N', color: '#000' },
-  { name: 'Figma',     team: 'Design',    price: '€45',  initial: 'F', color: '#0ACF83' },
-]
 
 function LogoItem({ name, initial, color }) {
   return (
@@ -66,46 +61,6 @@ function LogoItem({ name, initial, color }) {
   )
 }
 
-function AppMockup() {
-  return (
-    <div className="biz-mockup">
-      <div className="biz-mock-bar">
-        <div className="biz-mock-dots"><span/><span/><span/></div>
-        <span className="biz-mock-url">business.klaxo.app</span>
-      </div>
-      <div className="biz-mock-body">
-        <div className="biz-mock-stats">
-          <div className="biz-mock-stat">
-            <span className="biz-mock-stat-label">Monthly spend</span>
-            <span className="biz-mock-stat-val">€1,247</span>
-            <span className="biz-mock-stat-badge biz-mock-up">↑ 8%</span>
-          </div>
-          <div className="biz-mock-stat">
-            <span className="biz-mock-stat-label">Active tools</span>
-            <span className="biz-mock-stat-val">12</span>
-            <span className="biz-mock-stat-badge biz-mock-warn">2 renewing</span>
-          </div>
-        </div>
-        <div className="biz-mock-list-header">Subscriptions</div>
-        <div className="biz-mock-list">
-          {MOCK_SUBS.map(s => (
-            <div key={s.name} className={`biz-mock-row${s.alert ? ' biz-mock-row-alert' : ''}`}>
-              <div className="biz-mock-initial" style={{ background: s.color }}>{s.initial}</div>
-              <div className="biz-mock-info">
-                <span className="biz-mock-name">{s.name}</span>
-                <span className="biz-mock-team">{s.team}</span>
-              </div>
-              <div className="biz-mock-right">
-                <span className="biz-mock-price">{s.price}/mo</span>
-                {s.alert && <span className="biz-mock-alert-chip">3 days</span>}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export default function BusinessContent() {
   useEffect(() => {
@@ -137,10 +92,10 @@ export default function BusinessContent() {
         <div className="biz-aurora biz-aurora-2" />
         <div className="biz-aurora biz-aurora-3" />
 
-        {/* HERO — two column */}
-        <section className="biz-hero">
-          <div className="biz-hero-left">
-            <div className="badge" style={{ marginBottom: 20, alignSelf: 'flex-start' }}>
+        {/* HERO — vertical centered */}
+        <section className="biz-hero biz-hero-vertical">
+          <div className="biz-hero-center">
+            <div className="badge" style={{ marginBottom: 20 }}>
               <span className="badge-dot" />
               Coming Soon
             </div>
@@ -152,7 +107,6 @@ export default function BusinessContent() {
               <span className="hl">under control.</span>
             </h1>
 
-            {/* Fix 2: updated subheadline */}
             <p className="biz-sub">
               Built for teams of 3–15 people. Track every subscription your team
               pays for — in euros, with renewal alerts and monthly reports for
@@ -163,7 +117,6 @@ export default function BusinessContent() {
               <WaitlistForm />
             </div>
 
-            {/* Fix 5: added 4th badge "For teams of 3-15" */}
             <div className="biz-trust-row">
               <span className="biz-trust-item">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -194,9 +147,11 @@ export default function BusinessContent() {
                 Teams of 3–15
               </span>
             </div>
-          </div>
-          <div className="biz-hero-right">
-            <AppMockup />
+
+            {/* Dashboard mockup below text */}
+            <div style={{ width: "100%", maxWidth: 860, margin: "48px auto 0" }}>
+              <DashboardMockup />
+            </div>
           </div>
         </section>
 
