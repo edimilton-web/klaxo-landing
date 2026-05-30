@@ -5,12 +5,9 @@ import React from "react";
 /* ─── shared data ─────────────────────────────────────────────────────────── */
 
 const subs = [
-  { initial: "S", color: "#FF6B6B", name: "Slack Pro",     cat: "Communication", users: ["AR","ML","JP"], extra: 12, date: "Jun 1",  dateWarn: false, amount: "€89.90", status: "duplicate", owner: "AR", ownerColor: "#6366F1" },
-  { initial: "N", color: "#7B8CDE", name: "Notion",        cat: "Productivity",  users: ["AR","SL"],      extra: 3,  date: "Jun 5",  dateWarn: false, amount: "€48.00", status: "unused",    owner: "SL", ownerColor: "#EC4899" },
-  { initial: "V", color: "#5B7EFF", name: "Vercel Pro",    cat: "Dev Tools",     users: ["AR","ML"],      extra: 0,  date: "Jun 3",  dateWarn: true,  amount: "€20.00", status: "active",    owner: "ML", ownerColor: "#10B981" },
-  { initial: "G", color: "#61AFEF", name: "GitHub Teams",  cat: "Dev Tools",     users: ["AR","JP","SL"], extra: 2,  date: "Jun 10", dateWarn: false, amount: "€32.00", status: "active",    owner: "AR", ownerColor: "#6366F1" },
-  { initial: "F", color: "#A78BFA", name: "Figma",         cat: "Design",        users: ["SL","JP"],      extra: 0,  date: "Jun 15", dateWarn: false, amount: "€36.00", status: "unused",    owner: "SL", ownerColor: "#EC4899" },
-  { initial: "L", color: "#10B981", name: "Linear",        cat: "Dev Tools",     users: ["AR","ML","JP"], extra: 0,  date: "Jun 20", dateWarn: false, amount: "€26.00", status: "trial",     owner: "ML", ownerColor: "#10B981" },
+  { initial: "M", color: "#0078D4", name: "Microsoft 365",    cat: "Produtividade", users: ["AR","ML"],      extra: 0, date: "Jun 5",  dateWarn: false, amount: "€12/mês", status: "duplicate", owner: "AR", ownerColor: "#6366F1" },
+  { initial: "G", color: "#34A853", name: "Google Workspace", cat: "Produtividade", users: ["AR","SL","JP"], extra: 0, date: "Jun 10", dateWarn: false, amount: "€8/mês",  status: "active",    owner: "SL", ownerColor: "#EC4899" },
+  { initial: "Z", color: "#2D8CFF", name: "Zoom",             cat: "Comunicação",   users: ["AR"],           extra: 0, date: "Jun 15", dateWarn: false, amount: "€15/mês", status: "unused",    owner: "AR", ownerColor: "#6366F1" },
 ];
 
 const userColors = { AR: "#6366F1", ML: "#10B981", JP: "#F59E0B", SL: "#EC4899" };
@@ -19,10 +16,10 @@ const userColors = { AR: "#6366F1", ML: "#10B981", JP: "#F59E0B", SL: "#EC4899" 
 
 const StatusBadge = ({ status, light }) => {
   const map = {
-    active:    { label: "Active",    bg: light ? "rgba(16,185,129,.12)"  : "rgba(16,185,129,.15)",  color: light ? "#059669" : "#34D399" },
-    duplicate: { label: "Duplicate", bg: light ? "rgba(239,68,68,.10)"   : "rgba(239,68,68,.15)",   color: light ? "#DC2626" : "#F87171" },
-    unused:    { label: "Unused?",   bg: light ? "rgba(245,158,11,.12)"  : "rgba(245,158,11,.15)",  color: light ? "#D97706" : "#FCD34D" },
-    trial:     { label: "Trial",     bg: light ? "rgba(99,102,241,.12)"  : "rgba(99,102,241,.15)",  color: light ? "#4F46E5" : "#A5B4FC" },
+    active:    { label: "Ativa",      bg: light ? "rgba(16,185,129,.12)"  : "rgba(16,185,129,.15)",  color: light ? "#059669" : "#34D399" },
+    duplicate: { label: "Duplicado",  bg: light ? "rgba(239,68,68,.10)"   : "rgba(239,68,68,.15)",   color: light ? "#DC2626" : "#F87171" },
+    unused:    { label: "Não usada?", bg: light ? "rgba(245,158,11,.12)"  : "rgba(245,158,11,.15)",  color: light ? "#D97706" : "#FCD34D" },
+    trial:     { label: "Trial",      bg: light ? "rgba(99,102,241,.12)"  : "rgba(99,102,241,.15)",  color: light ? "#4F46E5" : "#A5B4FC" },
   };
   const s = map[status] ?? map.active;
   return (
@@ -38,9 +35,9 @@ const StatusBadge = ({ status, light }) => {
 
 function MobileDashboard() {
   const kpis = [
-    { label: "Monthly spend",   value: "€2,847", sub: "+12% vs last mo",   color: "#DC2626", icon: "↑" },
-    { label: "Active subs",     value: "68",      sub: "+5 this quarter",   color: "#6366F1", icon: "↗" },
-    { label: "Saved this year", value: "€1,240",  sub: "4 duplicates fixed",color: "#059669", icon: "↓" },
+    { label: "Monthly spend",   value: "€847",  sub: "+12% vs last mo",    color: "#DC2626", icon: "↑" },
+    { label: "Active subs",     value: "18",    sub: "+5 this quarter",     color: "#6366F1", icon: "↗" },
+    { label: "Saved this year", value: "€890",  sub: "4 duplicates fixed",  color: "#059669", icon: "↓" },
   ];
 
   return (
@@ -90,10 +87,10 @@ function MobileDashboard() {
         <span style={{ fontSize: 13, color: "#EF4444", lineHeight: 1, marginTop: 1 }}>⚠</span>
         <div>
           <div style={{ fontSize: 12, fontWeight: 600, color: "#DC2626" }}>
-            2 duplicate subscriptions — €29.80/month wasted
+            2 subscrições duplicadas detetadas — €127/mês desperdiçados
           </div>
           <div style={{ fontSize: 11, color: "#EF4444", opacity: 0.8, marginTop: 2 }}>
-            Slack Pro · Notion
+            Microsoft 365 · Zoom
           </div>
         </div>
       </div>
@@ -336,8 +333,8 @@ export default function DashboardMockup() {
                 }}>
                   <span style={{ fontSize: 14, color: "#EF4444" }}>⚠</span>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: "#FCA5A5" }}>2 duplicate subscriptions detected — potential waste of €29.80/month</div>
-                    <div style={{ fontSize: 11, color: "#F87171", opacity: 0.7, marginTop: 1 }}>Slack Pro appears twice · Notion appears twice</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: "#FCA5A5" }}>⚠ 2 subscrições duplicadas detetadas — €127/mês desperdiçados</div>
+                    <div style={{ fontSize: 11, color: "#F87171", opacity: 0.7, marginTop: 1 }}>Microsoft 365 · Zoom</div>
                   </div>
                   <div style={{ fontSize: 11, fontWeight: 600, color: "#EF4444", whiteSpace: "nowrap" }}>Review duplicates →</div>
                 </div>
@@ -345,11 +342,11 @@ export default function DashboardMockup() {
                 {/* KPIs */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, flexShrink: 0 }}>
                   {[
-                    { label: "Monthly spend",        value: "€2,847",  delta: "+12% vs last month",   dir: "up", sparkHi: [5,6] },
-                    { label: "Yearly projection",    value: "€34,164", delta: "+8% vs last year",      dir: "up", sparkHi: [4,5,6] },
-                    { label: "Active subscriptions", value: "68",      delta: "+5 this quarter",       dir: "up", sparkHi: [3,4,5,6] },
-                    { label: "Saved this year",      value: "€1,240",  delta: "4 duplicates resolved", dir: "dn", sparkHi: [4,5,6], green: true },
-                    { label: "Possibly unused",      value: "4 subs",  delta: "€380/month at risk",    dir: "am", sparkHi: [4,5,6], warn: true, cta: "Review insights →" },
+                    { label: "Monthly spend",        value: "€847",    delta: "+12% vs last month",   dir: "up", sparkHi: [5,6] },
+                    { label: "Yearly projection",    value: "€10.164", delta: "+8% vs last year",      dir: "up", sparkHi: [4,5,6] },
+                    { label: "Active subscriptions", value: "18",      delta: "+5 this quarter",       dir: "up", sparkHi: [3,4,5,6] },
+                    { label: "Saved this year",      value: "€890",    delta: "4 duplicates resolved", dir: "dn", sparkHi: [4,5,6], green: true },
+                    { label: "Possibly unused",      value: "3 subs",  delta: "€380/month at risk",    dir: "am", sparkHi: [4,5,6], warn: true, cta: "Review insights →" },
                   ].map((kpi) => {
                     const heights = [35, 50, 44, 62, 55, 80, 100];
                     return (
