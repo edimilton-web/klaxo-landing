@@ -315,9 +315,6 @@ export default function BusinessContent() {
             <a href={TYPEFORM} className="biz2-btn-primary" target="_blank" rel="noopener noreferrer">
               Quero acesso antecipado — grátis →
             </a>
-            <a href="https://business.klaxo.app" className="biz2-btn-ghost" target="_blank" rel="noopener noreferrer">
-              Ver o site
-            </a>
           </div>
           <p className="biz2-cta-note">Sem compromisso · Trial 14 dias · Feito em Portugal 🇵🇹</p>
         </section>
