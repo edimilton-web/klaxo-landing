@@ -77,8 +77,8 @@ section{position:relative;z-index:1}
 .cta-primary:hover::before{opacity:1}
 .cta-ghost{display:inline-flex;align-items:center;gap:6px;padding:14px 24px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:rgba(255,255,255,0.7);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none}
 .cta-ghost:hover{border-color:rgba(255,255,255,0.2);color:#fff;background:rgba(255,255,255,0.08)}
-.cta-demo{display:inline-flex;align-items:center;gap:6px;padding:14px 24px;border-radius:12px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none}
-.cta-demo:hover{color:var(--text)}
+.cta-demo{display:inline-flex;align-items:center;gap:6px;padding:14px 24px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.22);color:rgba(240,240,245,0.72);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none}
+.cta-demo:hover{color:var(--text);border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.07)}
 .hero-social{font-size:13px;color:var(--muted);margin-bottom:64px;animation:fadeUp .7s ease .4s both}
 .hero-social span{color:rgba(255,255,255,0.6);font-weight:500}
 
