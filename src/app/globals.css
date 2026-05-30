@@ -585,6 +585,8 @@ body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
   transition:border-color .2s,color .2s,background .2s;
 }
 .biz2-btn-ghost:hover{border-color:#3F3F46;color:#FAFAFA;background:rgba(255,255,255,.08)}
+.biz2-btn-demo{display:inline-flex;align-items:center;gap:6px;padding:14px 24px;border-radius:10px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:15px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
+.biz2-btn-demo:hover{color:var(--text);border-color:rgba(255,255,255,.35)}
 
 /* ── STATS ── */
 .biz2-stats{

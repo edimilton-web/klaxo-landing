@@ -158,13 +158,16 @@ export default function BusinessContent() {
             1 a 20 pessoas.
           </p>
 
-          <div className="biz2-hero-ctas">
+          <div className="biz2-hero-ctas" style={{flexDirection:'column'}}>
             <a href={TYPEFORM} className="biz2-btn-primary" target="_blank" rel="noopener noreferrer">
               Quero acesso antecipado — grátis 3 meses
             </a>
-            <a href="#como" className="biz2-btn-ghost" onClick={(e) => scrollTo(e, 'como')}>
-              Ver como funciona
-            </a>
+            <div style={{display:'flex',gap:'12px',flexWrap:'wrap',justifyContent:'center'}}>
+              <a href="https://demobusinessklaxo.netlify.app/" target="_blank" rel="noopener noreferrer" className="biz2-btn-demo">Ver em ação →</a>
+              <a href="#como" className="biz2-btn-ghost" onClick={(e) => scrollTo(e, 'como')}>
+                Ver como funciona
+              </a>
+            </div>
           </div>
 
           <div className="biz2-stats">
