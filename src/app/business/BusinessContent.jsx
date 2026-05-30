@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import DashboardMockup from '../components/DashboardMockup'
+import { ThemeToggle } from '../components/theme-toggle'
 
 const TYPEFORM = 'https://form.typeform.com/to/FClmuFNN'
 
@@ -131,9 +132,12 @@ export default function BusinessContent() {
           ))}
         </div>
 
-        <a href={TYPEFORM} className="biz2-nav-cta" target="_blank" rel="noopener noreferrer">
-          Quero acesso antecipado →
-        </a>
+        <div style={{display:'flex',alignItems:'center',gap:8,flexShrink:0}}>
+          <ThemeToggle />
+          <a href={TYPEFORM} className="biz2-nav-cta" target="_blank" rel="noopener noreferrer">
+            Quero acesso antecipado →
+          </a>
+        </div>
       </nav>
 
       <main className="biz2-main">

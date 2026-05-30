@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import './globals.css'
+import { ThemeProvider } from './components/theme-provider'
 
 export const metadata = {
   metadataBase: new URL('https://www.klaxo.app'),
@@ -47,7 +48,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-PT">
+    <html lang="pt-PT" data-theme="dark">
       <head>
         {/* <script defer data-domain="klaxo.app" src="https://plausible.io/js/script.js"></script> */}
         <Script
@@ -82,7 +83,7 @@ export default function RootLayout({ children }) {
           />
         </noscript>
       </head>
-      <body>{children}</body>
+      <body><ThemeProvider>{children}</ThemeProvider></body>
     </html>
   )
 }

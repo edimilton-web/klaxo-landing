@@ -8,6 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: { DEFAULT: '#5856D6', dark: '#4240C4' },
+        success: '#10B981',
+        warning: '#F59E0B',
+        danger:  '#EF4444',
         navy: '#0A0F1E',
         'navy-800': '#0F1629',
         'navy-700': '#141C35',
