@@ -3,11 +3,11 @@ import { Resend } from 'resend'
 const MAILERLITE_GROUP_ID = '188352647414154489'
 
 const welcomeEmailHtml = (email) => `<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>You're on the Klaxo Business waitlist 🎉</title>
+  <title>Estás na lista de espera do Klaxo Business 🎉</title>
 </head>
 <body style="margin:0;padding:0;background:#0A0A0F;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#F0F0F5;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0F;padding:40px 0;">
@@ -36,13 +36,13 @@ const welcomeEmailHtml = (email) => `<!DOCTYPE html>
             <td style="padding:36px 40px;">
               <p style="font-size:32px;margin:0 0 24px;">🎉</p>
               <h1 style="margin:0 0 16px;font-size:24px;font-weight:700;color:#F0F0F5;letter-spacing:-0.03em;line-height:1.2;">
-                Thanks for joining the waitlist.
+                Obrigado por te juntares à lista de espera.
               </h1>
               <p style="margin:0 0 20px;font-size:15px;line-height:1.75;color:rgba(240,240,245,0.7);">
-                Klaxo Business is a simple way to track all your company's software subscriptions in one place — in euros, with renewal alerts and monthly reports for your accountant.
+                O Klaxo Business é a forma mais simples de controlar todas as subscrições de software da tua empresa — em euros, com alertas de renovação e relatórios mensais para contabilidade.
               </p>
               <p style="margin:0 0 32px;font-size:15px;line-height:1.75;color:rgba(240,240,245,0.7);">
-                We're launching soon. You'll be the first to know.
+                O lançamento está próximo. Serás o primeiro a saber.
               </p>
 
               <!-- CTA -->
@@ -50,7 +50,7 @@ const welcomeEmailHtml = (email) => `<!DOCTYPE html>
                 <tr>
                   <td style="background:#7C3AED;border-radius:10px;">
                     <a href="https://business.klaxo.app" style="display:inline-block;padding:13px 28px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;letter-spacing:0.01em;">
-                      Visit business.klaxo.app →
+                      Visitar business.klaxo.app →
                     </a>
                   </td>
                 </tr>
@@ -62,11 +62,11 @@ const welcomeEmailHtml = (email) => `<!DOCTYPE html>
           <tr>
             <td style="padding:24px 40px;border-top:1px solid rgba(255,255,255,0.06);">
               <p style="margin:0;font-size:13px;color:rgba(240,240,245,0.35);line-height:1.6;">
-                The Klaxo Team —
+                A equipa Klaxo —
                 <a href="https://klaxo.app" style="color:#A78BFA;text-decoration:none;">klaxo.app</a>
               </p>
               <p style="margin:8px 0 0;font-size:12px;color:rgba(240,240,245,0.25);">
-                You're receiving this because you signed up at business.klaxo.app.
+                Estás a receber este email porque te inscreveste em business.klaxo.app.
               </p>
             </td>
           </tr>
@@ -114,7 +114,7 @@ export async function POST(request) {
     await resend.emails.send({
       from: 'Klaxo Business <hello@klaxo.app>',
       to: email,
-      subject: "You're on the Klaxo Business waitlist 🎉",
+      subject: "Estás na lista de espera do Klaxo Business 🎉",
       html: welcomeEmailHtml(email),
     }).catch((err) => console.error('[business-waitlist] Resend error:', err))
   }

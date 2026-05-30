@@ -23,7 +23,7 @@ export const metadata = {
     url: 'https://www.klaxo.app',
     siteName: 'Klaxo',
     type: 'website',
-    locale: 'en_EU',
+    locale: 'pt_PT',
     images: [{ url: '/icons/klaxo-icon-512.png', width: 512, height: 512, alt: 'Klaxo' }],
   },
   twitter: {
@@ -47,7 +47,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="pt-PT">
       <head>
         {/* <script defer data-domain="klaxo.app" src="https://plausible.io/js/script.js"></script> */}
         <Script
