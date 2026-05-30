@@ -5,7 +5,7 @@
 <title>Klaxo Business Flyer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -34,8 +34,8 @@
   .copy-col { width:418px; flex-shrink:0; display:flex; flex-direction:column; justify-content:space-between; z-index:2; }
 
   .logo-row { display:flex; align-items:center; gap:9px; }
-  .logo-icon { width:30px; height:30px; background:var(--v); border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:18px; color:#fff; flex-shrink:0; }
-  .logo-text { font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:20px; letter-spacing:-.01em; color:var(--t); }
+  .logo-icon { width:30px; height:30px; background:var(--v); border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Nunito',sans-serif; font-weight:900; font-size:17px; color:#fff; flex-shrink:0; }
+  .logo-text { font-family:'Nunito',sans-serif; font-weight:900; font-size:21px; letter-spacing:-.01em; color:var(--t); }
   .logo-text em { font-style:normal; color:var(--v); }
   .launch-badge { background:var(--v10); border:1px solid rgba(99,102,241,.3); color:#A5B4FC; font-size:8.5px; font-weight:600; letter-spacing:.12em; padding:3px 8px; border-radius:100px; }
 
@@ -44,7 +44,7 @@
   .eyebrow { display:flex; align-items:center; gap:7px; font-size:9.5px; font-weight:600; letter-spacing:.16em; color:var(--v); text-transform:uppercase; }
   .eyebrow-dot { width:5px; height:5px; border-radius:50%; background:var(--g); box-shadow:0 0 7px var(--g); }
 
-  h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:35px; line-height:1.08; letter-spacing:-.032em; color:var(--t); }
+  h1 { font-family:'DM Sans',sans-serif; font-weight:800; font-size:36px; line-height:1.08; letter-spacing:-.03em; color:var(--t); }
   h1 em { font-style:normal; color:var(--v); }
 
   .sub { font-size:13px; line-height:1.68; color:var(--m); }
@@ -57,7 +57,7 @@
   .sl { font-size:8.5px; color:var(--m2); text-transform:uppercase; letter-spacing:.04em; margin-top:3px; }
 
   .bottom-copy { display:flex; flex-direction:column; gap:9px; }
-  .cta-line { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--t); display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+  .cta-line { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:700; color:var(--t); display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
   .cta-url { color:var(--v); border-bottom:1px solid rgba(99,102,241,.4); }
   .price-note { font-size:10.5px; color:var(--m2); display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
   .pchip { background:var(--s2); border:1px solid var(--bd); border-radius:4px; padding:2px 7px; font-family:'DM Mono',monospace; font-size:9.5px; color:var(--m); }
@@ -82,7 +82,7 @@
   .dash { background:#0D0D10; border-radius:0 0 5px 5px; display:flex; min-height:456px; overflow:hidden; }
 
   .sb { width:126px; background:#111114; border-right:1px solid #1F1F24; padding:12px 0; flex-shrink:0; }
-  .sb-logo { padding:0 13px 10px; font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:14px; color:var(--t); border-bottom:1px solid #1F1F24; margin-bottom:7px; }
+  .sb-logo { padding:0 13px 10px; font-family:'Nunito',sans-serif; font-weight:900; font-size:14px; color:var(--t); border-bottom:1px solid #1F1F24; margin-bottom:7px; }
   .sb-logo em { font-style:normal; color:var(--v); }
   .ni { padding:6px 13px; font-size:9.5px; color:var(--m2); display:flex; align-items:center; justify-content:space-between; }
   .ni.act { background:var(--v10); color:#A5B4FC; border-left:2px solid var(--v); padding-left:11px; }
@@ -103,7 +103,7 @@
   .tr { display:grid; grid-template-columns:1fr 78px 72px 62px; gap:7px; padding:8px 9px; border-bottom:1px solid rgba(39,39,42,.55); align-items:center; }
   .tr:last-child { border-bottom:none; }
   .tc { display:flex; align-items:center; gap:7px; }
-  .ti { width:22px; height:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:900; font-family:'Big Shoulders Display',sans-serif; flex-shrink:0; }
+  .ti { width:22px; height:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:900; font-family:'Nunito',sans-serif; flex-shrink:0; }
   .tn { font-size:10.5px; color:var(--t); font-weight:500; }
   .tp { font-family:'DM Mono',monospace; font-size:10.5px; color:var(--m); text-align:right; }
   .trn { font-size:8.5px; color:var(--m2); text-align:right; }
