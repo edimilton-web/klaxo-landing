@@ -106,6 +106,7 @@ export default function Home() {
               <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
             </svg>
           </a>
+          <a href="https://taupe-buttercream-a9c26f.netlify.app/" target="_blank" rel="noopener noreferrer" className="cta-demo">Ver em ação →</a>
           <a href="#how" className="cta-ghost">See how it works →</a>
         </div>
 
