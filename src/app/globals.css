@@ -486,6 +486,7 @@ body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:12px 20px}
+  .nav-signin{display:none}
   .pain-grid{grid-template-columns:1fr}
   .testi-grid{grid-template-columns:1fr}
   .pricing-grid{grid-template-columns:1fr}
