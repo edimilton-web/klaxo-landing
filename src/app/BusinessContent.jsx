@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import DashboardMockup from './components/DashboardMockup'
 import { ThemeToggle } from './components/theme-toggle'
 
@@ -70,6 +70,8 @@ const ROADMAP = [
 ]
 
 export default function BusinessContent() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   useEffect(() => {
     document.body.classList.add('biz-theme')
 
@@ -137,8 +139,42 @@ export default function BusinessContent() {
           <a href={TYPEFORM} className="biz2-nav-cta" target="_blank" rel="noopener noreferrer">
             Quero acesso antecipado →
           </a>
+          <button
+            className="biz2-hamburger"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          >
+            {menuOpen ? '✕' : '☰'}
+          </button>
         </div>
       </nav>
+
+      {menuOpen && (
+        <>
+          <div style={{position:'fixed',inset:0,zIndex:198}} onClick={() => setMenuOpen(false)} />
+          <nav className="biz2-mobile-menu" role="navigation">
+            {NAV_PILLS.map(({ id, label }) => (
+              <a
+                key={id}
+                className="biz2-mobile-menu-link"
+                href={`#${id}`}
+                onClick={(e) => { scrollTo(e, id); setMenuOpen(false) }}
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href={TYPEFORM}
+              className="biz2-mobile-menu-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+            >
+              Quero acesso antecipado →
+            </a>
+          </nav>
+        </>
+      )}
 
       <main className="biz2-main">
 

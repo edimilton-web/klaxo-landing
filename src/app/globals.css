@@ -838,24 +838,85 @@ body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
   background:#0A0A0B;
 }
 
+/* ── BIZ2 HAMBURGER ── */
+.biz2-hamburger{
+  display:none;
+  background:none;border:1px solid #27272A;color:#FAFAFA;
+  font-size:18px;line-height:1;
+  width:36px;height:36px;border-radius:8px;
+  cursor:pointer;align-items:center;justify-content:center;flex-shrink:0;
+  transition:border-color .15s,background .15s;
+}
+.biz2-hamburger:hover{border-color:#3F3F46;background:rgba(255,255,255,.06)}
+
+/* ── BIZ2 MOBILE MENU ── */
+.biz2-mobile-menu{
+  position:fixed;top:57px;left:0;right:0;
+  background:rgba(10,10,11,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid #27272A;
+  display:flex;flex-direction:column;
+  padding:12px;gap:4px;z-index:199;
+  animation:menuSlide .18s ease;
+}
+@keyframes menuSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.biz2-mobile-menu-link{
+  padding:13px 16px;border-radius:8px;
+  color:#A1A1AA;text-decoration:none;
+  font-size:15px;font-weight:500;display:block;
+  transition:color .15s,background .15s;
+}
+.biz2-mobile-menu-link:hover,.biz2-mobile-menu-link:active{color:#FAFAFA;background:rgba(255,255,255,.06)}
+.biz2-mobile-menu-cta{
+  margin-top:8px;padding:14px 16px;border-radius:8px;
+  background:#6366F1;color:#fff;text-decoration:none;
+  font-size:15px;font-weight:600;text-align:center;display:block;
+  transition:background .15s;min-height:48px;display:flex;align-items:center;justify-content:center;
+}
+.biz2-mobile-menu-cta:hover{background:#4F46E5}
+
 /* ── RESPONSIVE ── */
 @media(max-width:860px){
   .biz2-nav{padding:10px 16px;gap:8px;overflow:hidden}
   .biz2-nav-pills{display:none}
   .biz2-launch-badge{display:none}
-  .biz2-nav-cta{padding:7px 10px;font-size:11px;white-space:nowrap;flex-shrink:0;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+  .biz2-nav-cta{padding:7px 12px;font-size:12px;white-space:nowrap;flex-shrink:0}
+  .biz2-hamburger{display:flex}
+  /* stats stack */
   .biz2-stats{grid-template-columns:1fr}
   .biz2-stat{border-right:none;border-bottom:1px solid #27272A}
   .biz2-stat:last-child{border-bottom:none}
+  /* grids → 1 col */
   .biz2-pain-grid{grid-template-columns:1fr}
   .biz2-steps-grid{grid-template-columns:1fr}
   .biz2-pricing-grid{grid-template-columns:1fr}
+  /* showcase */
   .biz2-showcase-header{display:none}
-  .biz2-showcase-row{grid-template-columns:1fr 1fr;gap:8px}
-  .biz2-section{padding:60px 24px}
-  .biz2-hero{padding:60px 24px 48px}
-  .biz2-footer{padding:20px 24px;flex-direction:column;text-align:center}
+  .biz2-showcase-row{display:flex;flex-direction:column;gap:8px;padding:14px 16px}
+  .biz2-tool-cell{flex-wrap:wrap}
+  .biz2-waste-val,.biz2-accounts-val{font-size:13px}
+  /* sections */
+  .biz2-section{padding:60px 20px}
+  .biz2-hero{padding:56px 20px 40px;min-height:auto}
+  .biz2-h2{margin-bottom:32px}
+  /* hero buttons: full width, centered */
+  .biz2-hero-ctas{width:100%;max-width:420px;align-self:center}
+  .biz2-hero-ctas .biz2-btn-primary{width:100%;justify-content:center;min-height:48px}
+  .biz2-hero-ctas>div{width:100%}
+  .biz2-hero-ctas>div .biz2-btn-ghost,
+  .biz2-hero-ctas>div .biz2-btn-demo{flex:1;justify-content:center;min-height:48px}
+  /* final CTA button */
+  .biz2-cta-final{padding:60px 20px}
+  .biz2-cta-btns .biz2-btn-primary{width:100%;justify-content:center;min-height:48px}
+  .biz2-cta-btns{width:100%;max-width:420px}
+  /* footer */
+  .biz2-footer{padding:20px 20px;flex-direction:column;text-align:center}
 }
 @media(max-width:480px){
   .biz2-nav-cta{display:none}
+  .biz2-nav{padding:10px 14px}
+  .biz2-section{padding:48px 16px}
+  .biz2-hero{padding:48px 16px 36px}
+  .biz2-hero-sub{font-size:16px}
+  .biz2-stats{margin:0 0 8px}
+  .biz2-stat-val{font-size:26px}
 }
