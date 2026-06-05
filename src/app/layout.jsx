@@ -3,9 +3,9 @@ import './globals.css'
 import { ThemeProvider } from './components/theme-provider'
 
 export const metadata = {
-  metadataBase: new URL('https://www.klaxo.app'),
-  title: 'Klaxo — Track Your Subscriptions | Built for Europe',
-  description: 'See every subscription, get notified before renewals, and stop losing money. The subscription tracker built for Europeans. Free to start.',
+  metadataBase: new URL('https://business.klaxo.app'),
+  title: 'Klaxo Business — Team subscription tracking, finally simple',
+  description: 'Track your team\'s software spend. Renewal alerts, CSV export for accounting. From €9/month.',
   icons: {
     icon: [
       { url: '/icons/klaxo-icon-32.png', sizes: '32x32', type: 'image/png' },
@@ -19,18 +19,18 @@ export const metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: 'Klaxo — Track Your Subscriptions | Built for Europe',
-    description: 'See every subscription, get notified before renewals, and stop losing money. The subscription tracker built for Europeans. Free to start.',
-    url: 'https://www.klaxo.app',
-    siteName: 'Klaxo',
+    title: 'Klaxo Business — Team subscription tracking, finally simple',
+    description: 'Finally know what your team pays for software. No spreadsheets. No €100/month tools.',
+    url: 'https://business.klaxo.app',
+    siteName: 'Klaxo Business',
     type: 'website',
     locale: 'pt_PT',
-    images: [{ url: '/icons/klaxo-icon-512.png', width: 512, height: 512, alt: 'Klaxo' }],
+    images: [{ url: '/icons/klaxo-icon-512.png', width: 512, height: 512, alt: 'Klaxo Business' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Klaxo — Track Your Subscriptions | Built for Europe',
-    description: 'See every subscription, get notified before renewals, and stop losing money. The subscription tracker built for Europeans. Free to start.',
+    title: 'Klaxo Business — Team subscription tracking, finally simple',
+    description: 'Track your team\'s software spend. Renewal alerts, CSV export for accounting. From €9/month.',
     images: ['/icons/klaxo-icon-512.png'],
   },
   robots: {
@@ -38,7 +38,7 @@ export const metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://www.klaxo.app',
+    canonical: 'https://business.klaxo.app',
   },
 }
 

@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import DashboardMockup from '../components/DashboardMockup'
-import { ThemeToggle } from '../components/theme-toggle'
+import DashboardMockup from './components/DashboardMockup'
+import { ThemeToggle } from './components/theme-toggle'
 
 const TYPEFORM = 'https://form.typeform.com/to/FClmuFNN'
 
