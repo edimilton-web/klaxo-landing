@@ -6,7 +6,7 @@ import { ThemeToggle } from './components/theme-toggle'
 
 const TYPEFORM = 'https://form.typeform.com/to/FClmuFNN'
 
-const LOGO_STYLE = { fontFamily: "'Nunito', sans-serif", fontWeight: 900 }
+const LOGO_STYLE = { fontFamily: "'Nunito', sans-serif", fontWeight: 900, color: '#FAFAFA' }
 
 function KlaxoBrand() {
   return (
