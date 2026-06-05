@@ -889,11 +889,20 @@ body.biz-theme .trust-badge:hover .biz-svg-icon{color:#7B9FFF}
   .biz2-pain-grid{grid-template-columns:1fr}
   .biz2-steps-grid{grid-template-columns:1fr}
   .biz2-pricing-grid{grid-template-columns:1fr}
-  /* showcase */
+  /* showcase — horizontal compact row on mobile */
   .biz2-showcase-header{display:none}
-  .biz2-showcase-row{display:flex;flex-direction:column;gap:8px;padding:14px 16px}
-  .biz2-tool-cell{flex-wrap:wrap}
-  .biz2-waste-val,.biz2-accounts-val{font-size:13px}
+  .biz2-showcase-row{
+    display:flex;align-items:center;gap:8px;padding:10px 14px;
+    grid-template-columns:unset;
+  }
+  .biz2-tool-cell{flex:1;min-width:0;gap:6px;flex-wrap:nowrap}
+  .biz2-tool-name{font-size:12px}
+  .biz2-dup-badge{font-size:8px;padding:1px 5px}
+  .biz2-accounts-val{display:none}
+  .biz2-waste-val{font-size:12px;flex-shrink:0}
+  .biz2-resolve-btn{padding:4px 8px;font-size:11px;flex-shrink:0}
+  .biz2-total-bar{padding:12px 14px;font-size:12px}
+  .biz2-total-val{font-size:15px}
   /* sections */
   .biz2-section{padding:60px 20px}
   .biz2-hero{padding:56px 20px 40px;min-height:auto}

@@ -23,6 +23,7 @@ const NAV_PILLS = [
   { id: 'como',      label: 'Como funciona' },
   { id: 'feature',   label: 'Hero Feature' },
   { id: 'pricing',   label: 'Preços' },
+  { id: 'blog',      label: 'Blog', href: '/blog' },
 ]
 
 const STEPS = [
@@ -93,7 +94,8 @@ export default function BusinessContent() {
       },
       { threshold: 0.25, rootMargin: '-80px 0px -40% 0px' }
     )
-    NAV_PILLS.forEach(({ id }) => {
+    NAV_PILLS.forEach(({ id, href }) => {
+      if (href) return
       const el = document.getElementById(id)
       if (el) navObs.observe(el)
     })
@@ -121,13 +123,13 @@ export default function BusinessContent() {
         </div>
 
         <div className="biz2-nav-pills">
-          {NAV_PILLS.map(({ id, label }) => (
+          {NAV_PILLS.map(({ id, label, href }) => (
             <a
               key={id}
               className={`biz2-nav-pill${id === 'inicio' ? ' active' : ''}`}
               data-navpill={id}
-              href={`#${id}`}
-              onClick={(e) => scrollTo(e, id)}
+              href={href ?? `#${id}`}
+              onClick={href ? undefined : (e) => scrollTo(e, id)}
             >
               {label}
             </a>
@@ -153,12 +155,12 @@ export default function BusinessContent() {
         <>
           <div style={{position:'fixed',inset:0,zIndex:198}} onClick={() => setMenuOpen(false)} />
           <nav className="biz2-mobile-menu" role="navigation">
-            {NAV_PILLS.map(({ id, label }) => (
+            {NAV_PILLS.map(({ id, label, href }) => (
               <a
                 key={id}
                 className="biz2-mobile-menu-link"
-                href={`#${id}`}
-                onClick={(e) => { scrollTo(e, id); setMenuOpen(false) }}
+                href={href ?? `#${id}`}
+                onClick={href ? () => setMenuOpen(false) : (e) => { scrollTo(e, id); setMenuOpen(false) }}
               >
                 {label}
               </a>
